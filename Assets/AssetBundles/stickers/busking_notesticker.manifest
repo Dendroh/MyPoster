@@ -1,0 +1,38 @@
+ManifestFileVersion: 0
+CRC: 4130525387
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 8be2ebf027f85d3b2747d9c93a17e34f
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 94d7998c63942d111f749c9a227ee820
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 35579223a39f34613a44851cec6a626d, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Stickers/StickerPrefabs/Temiorae/9.Busking/busking_noteSticker.prefab
+Dependencies: []

@@ -1,0 +1,1 @@
+libFaceDetection_Android bin/ c.1.1 c.1.2 d.1.1.1 d.1.1.2 d.1.2.1 d.1.2.2 d.1.3.1 d.1.3.2 e.1.1 e.1.2 l.1.1 l.1.2 v.1.1 v.1.2 v.1.3 v.1.4

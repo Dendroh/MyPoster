@@ -1,0 +1,28 @@
+ManifestFileVersion: 0
+CRC: 4211337636
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: b656d139853107ae56738a2668885c88
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Stickers/StickerPrefabs/7.Cat/cat_ear_r.prefab
+Dependencies: []

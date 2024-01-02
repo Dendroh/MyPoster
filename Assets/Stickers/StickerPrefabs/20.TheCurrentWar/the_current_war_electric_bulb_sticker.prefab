@@ -1,0 +1,175 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5585534325542647894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4211366263564217605}
+  m_Layer: 0
+  m_Name: Anchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4211366263564217605
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5585534325542647894}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 6373411103897694770}
+  m_Father: {fileID: 2496522979558320214}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -3e-45, y: 1.83671e-40, z: 5.5407e-41}
+--- !u!1 &8602027904974527731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2496522979558320214}
+  - component: {fileID: 5325993901148848246}
+  - component: {fileID: 1152951394512646049}
+  m_Layer: 0
+  m_Name: the_current_war_electric_bulb_sticker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2496522979558320214
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8602027904974527731}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.07, y: -0.06, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_Children:
+  - {fileID: 4211366263564217605}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 1.83671e-40, y: 1.623e-41, z: -3e-45}
+--- !u!95 &5325993901148848246
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8602027904974527731}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 011cff26ff5b53848bb3887d727d50e6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1152951394512646049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8602027904974527731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35579223a39f34613a44851cec6a626d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  "\uD544\uC218\uACF5\uC9C0\uC0AC\uD56D1": "- \uBB38\uC758: \uC8FC\uC218\uAC15 sg.ju@alcherainc.com
+    || 010-4374-0071"
+  motionType: 1
+--- !u!1001 &7053613006630845437
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4211366263564217605}
+    m_Modifications:
+    - target: {fileID: 2066156073761203479, guid: ca756697dfaa5c04a8aaf181f1de2b27,
+        type: 3}
+      propertyPath: m_Name
+      value: the_current_war_electric_bulb
+      objectReference: {fileID: 0}
+    - target: {fileID: 4148255104343230927, guid: ca756697dfaa5c04a8aaf181f1de2b27,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4148255104343230927, guid: ca756697dfaa5c04a8aaf181f1de2b27,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4148255104343230927, guid: ca756697dfaa5c04a8aaf181f1de2b27,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4148255104343230927, guid: ca756697dfaa5c04a8aaf181f1de2b27,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4148255104343230927, guid: ca756697dfaa5c04a8aaf181f1de2b27,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4148255104343230927, guid: ca756697dfaa5c04a8aaf181f1de2b27,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4148255104343230927, guid: ca756697dfaa5c04a8aaf181f1de2b27,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4148255104343230927, guid: ca756697dfaa5c04a8aaf181f1de2b27,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4148255104343230927, guid: ca756697dfaa5c04a8aaf181f1de2b27,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 993.5852
+      objectReference: {fileID: 0}
+    - target: {fileID: 4148255104343230927, guid: ca756697dfaa5c04a8aaf181f1de2b27,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 8.949792e-39
+      objectReference: {fileID: 0}
+    - target: {fileID: 4148255104343230927, guid: ca756697dfaa5c04a8aaf181f1de2b27,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 6.327167e+22
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ca756697dfaa5c04a8aaf181f1de2b27, type: 3}
+--- !u!4 &6373411103897694770 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4148255104343230927, guid: ca756697dfaa5c04a8aaf181f1de2b27,
+    type: 3}
+  m_PrefabInstance: {fileID: 7053613006630845437}
+  m_PrefabAsset: {fileID: 0}

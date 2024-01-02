@@ -1,0 +1,1 @@
+AdvancedFaceDetector_v2.2_Win model/ c.m c.p l.m l.p license.cer o.m o.p p.m p.p r.m r.p

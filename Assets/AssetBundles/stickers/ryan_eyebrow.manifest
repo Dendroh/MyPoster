@@ -1,0 +1,28 @@
+ManifestFileVersion: 0
+CRC: 2016376538
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 69d8ab32a173bbf557441fb48b34c8a5
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Stickers/StickerPrefabs/Kakao/ryan_eyebrow.prefab
+Dependencies: []

@@ -1,0 +1,28 @@
+ManifestFileVersion: 0
+CRC: 1123843232
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 4878d4bfd5c2dcb970ae9094e28968c0
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Stickers/StickerPrefabs/24.Yesterday/fg_singer.prefab
+Dependencies: []

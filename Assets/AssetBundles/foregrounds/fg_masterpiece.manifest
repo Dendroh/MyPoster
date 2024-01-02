@@ -1,0 +1,29 @@
+ManifestFileVersion: 0
+CRC: 2066136381
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 6644bda6d2cdef941b1d08ca40b91943
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Stickers/StickerPrefabs/Masterpiece/fg_masterpiece.prefab
+- Assets/Stickers/Sticker/Masterpiece/fg_masterpiece.png
+Dependencies: []

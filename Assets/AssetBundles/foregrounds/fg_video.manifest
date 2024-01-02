@@ -1,0 +1,22 @@
+ManifestFileVersion: 0
+CRC: 834165992
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 6d8770947b957838ce78467036540b96
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: b66dcfd35eb79e2005d74f1c03324681
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 328
+  Script: {instanceID: 0}
+- Class: 329
+  Script: {instanceID: 0}
+Assets:
+- Assets/Stickers/StickerPrefabs/Video/fg_video.prefab
+Dependencies: []

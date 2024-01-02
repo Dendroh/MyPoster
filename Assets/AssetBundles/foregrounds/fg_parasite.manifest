@@ -1,0 +1,28 @@
+ManifestFileVersion: 0
+CRC: 1926912282
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 85c690eddbe3335ac938abbd5acde58a
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Stickers/StickerPrefabs/Parasite/fg_parasite.prefab
+Dependencies: []

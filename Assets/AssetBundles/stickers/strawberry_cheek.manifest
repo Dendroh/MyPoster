@@ -1,0 +1,28 @@
+ManifestFileVersion: 0
+CRC: 3626651490
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 974fc38df5e7064c534f35d296ff8580
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Stickers/StickerPrefabs/15.Strawberry/strawberry_cheek.prefab
+Dependencies: []

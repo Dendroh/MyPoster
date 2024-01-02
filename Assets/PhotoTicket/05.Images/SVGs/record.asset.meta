@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 01b0a410dbbfc415d8da980ae675485d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!-- Generator: Adobe Illustrator
+    16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\r\n<!DOCTYPE svg
+    PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\r\n<svg
+    version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"
+    x=\"0px\" y=\"0px\"\r\n\t width=\"300px\" height=\"300px\" viewBox=\"0 0 300 300\"
+    enable-background=\"new 0 0 300 300\" xml:space=\"preserve\">\r\n<g>\r\n\t<circle
+    fill=\"#FFFFFF\" cx=\"150\" cy=\"150\" r=\"150\"/>\r\n\t<circle fill=\"#B10000\"
+    cx=\"150\" cy=\"150\" r=\"120\"/>\r\n</g>\r\n</svg>\r\n"
+  assetBundleName: 
+  assetBundleVariant: 

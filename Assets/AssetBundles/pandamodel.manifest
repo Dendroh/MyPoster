@@ -1,0 +1,32 @@
+ManifestFileVersion: 0
+CRC: 29187191
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 690c71be90a61f2090abccb61eb2ace1
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 408a1ecde1436d3a6707089c153214ff
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 137
+  Script: {instanceID: 0}
+Assets:
+- Assets/Alchera/Example/03.Prefabs/PandaModel.prefab
+Dependencies: []

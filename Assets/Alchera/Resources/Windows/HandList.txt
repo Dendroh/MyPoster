@@ -1,0 +1,1 @@
+AdvancedHandDetector_v2.2_Win model/ license.cer

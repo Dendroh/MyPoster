@@ -1,0 +1,143 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+using System.Runtime.InteropServices;
+using System;
+using System.Text;
+
+public class PhotoTicketConfig : MonoBehaviour
+{
+
+    public string param1 = "여기에 저장된 값은 프로그램 내내 유지됩니다.";
+    public string param2 = "여기에 저장된 값은 프로그램 내내 유지됩니다.";
+    public string param3 = "여기에 저장된 값은 프로그램 내내 유지됩니다.";
+    public string param4 = "여기에 저장된 값은 프로그램 내내 유지됩니다.";
+
+    InputField param1input;
+    InputField param2input;
+    InputField param3input;
+    InputField param4input;
+
+    /*
+    * 결제 관련 API
+    */
+
+    [System.Runtime.InteropServices.DllImport("user32.dll")]
+    private static extern System.IntPtr GetActiveWindow();
+
+    public static System.IntPtr GetWindowHandle()
+    {
+        return GetActiveWindow();
+    }
+
+    [DllImport("VMdll.dll",
+                  EntryPoint = "SetDongleParentHwnd",
+                  ExactSpelling = false,
+                  CharSet = CharSet.Ansi,
+                  CallingConvention = CallingConvention.Cdecl)]
+    public static extern void SetDongleParentHwnd(IntPtr hwnd);
+
+    [DllImport("VMdll.dll",
+                EntryPoint = "GET_TID",
+                ExactSpelling = false,
+                CharSet = CharSet.Ansi,
+                CallingConvention = CallingConvention.Cdecl)]
+
+    public static extern byte GET_TID(byte[] TID);
+
+    [DllImport("VMdll.dll",
+               EntryPoint = "GET_CID",
+               ExactSpelling = false,
+               CharSet = CharSet.Ansi,
+               CallingConvention = CallingConvention.Cdecl)]
+
+    public static extern byte GET_CID(byte[] CID);
+
+    [DllImport("VMdll.dll",
+                EntryPoint = "DongleConnect",
+                ExactSpelling = false,
+                CharSet = CharSet.Ansi,
+                CallingConvention = CallingConvention.Cdecl)]
+    public static extern bool DongleConnect(byte nConect, byte[] pPort, byte[] pSpeed);
+
+    [DllImport("VMdll.dll",
+               EntryPoint = "DongleDisconnect",
+               ExactSpelling = false,
+               CharSet = CharSet.Ansi,
+               CallingConvention = CallingConvention.Cdecl)]
+    public static extern bool DongleDisconnect();
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        DontDestroyOnLoad(this);
+        param1input = GameObject.Find("Input1").GetComponent<InputField>();
+        param2input = GameObject.Find("Input2").GetComponent<InputField>();
+        param3input = GameObject.Find("Input3").GetComponent<InputField>();
+        param4input = GameObject.Find("Input4").GetComponent<InputField>();
+
+        param1input.onValueChange.AddListener((s) => {
+            param1 = s;
+        });
+        param2input.onValueChange.AddListener((s) => {
+            param2 = s;
+        });
+        param3input.onValueChange.AddListener((s) => {
+            param3 = s;
+        });
+        param4input.onValueChange.AddListener((s) => {
+            param4 = s;
+        });
+
+        // Default Value
+        param1input.text = "COM3";
+        param2input.text = "11";
+        param3input.text = "1";
+        param4input.text = "n";
+
+    }
+
+    public void StartPhotoTicket()
+    {
+        byte nConnect = 0x01;
+        bool result;
+
+        Debug.Log("[DBG] param {0}" + param1);
+
+
+        string comport = param1input.text;
+        string siteId = param2input.text;
+        string kioskId = param3input.text;
+        string paymode = param4input.text;
+
+        PlayerPrefs.SetString("site_id", siteId);
+        PlayerPrefs.SetString("kiosk_id", kioskId);
+        PlayerPrefs.SetString("pay_mode", paymode);
+
+
+        if (paymode.Equals("p"))
+        {
+            // 결제 단말 연결
+            byte[] port = new UTF8Encoding(true).GetBytes(comport);
+            byte[] baud = new UTF8Encoding(true).GetBytes("115200");
+
+            // VMDll에 hWnd를 설정
+            SetDongleParentHwnd(GetWindowHandle());
+            result = DongleConnect(nConnect, port, baud);
+
+            Debug.Log("[DBG] Open {0}" + result);
+
+            if (result)
+                SceneManager.LoadScene("PhotoTicket");
+            else
+                DongleDisconnect();
+        }
+        else
+        {
+            SceneManager.LoadScene("PhotoTicket");
+        }
+    }
+}

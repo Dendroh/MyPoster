@@ -1,0 +1,34 @@
+ManifestFileVersion: 0
+CRC: 4039179326
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: cdf27ba3e70feb39ed837ed74f9c9457
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ec4436b66a5abab9bdd9110e03e29c18
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Stickers/StickerPrefabs/Temiorae/8.Travel/fg_travel.prefab
+Dependencies: []

@@ -1,0 +1,28 @@
+ManifestFileVersion: 0
+CRC: 2817622151
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 4715ab4ea3fd1d30dc6c42c6cca5c0a0
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 6d87aca133e46a7ef138fa81452c8760
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 328
+  Script: {instanceID: 0}
+- Class: 329
+  Script: {instanceID: 0}
+Assets:
+- Assets/Stickers/StickerPrefabs/Hwanwha/fg_kimtaekyun_test.prefab
+Dependencies: []

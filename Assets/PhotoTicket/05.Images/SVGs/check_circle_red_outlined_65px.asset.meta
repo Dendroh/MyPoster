@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: bfb8c37d45d523342b116cae609dfae8
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!-- Generator: Adobe Illustrator
+    16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\r\n<!DOCTYPE svg
+    PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\r\n<svg
+    version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"
+    x=\"0px\" y=\"0px\"\r\n\t width=\"100px\" height=\"100px\" viewBox=\"0 0 100 100\"
+    enable-background=\"new 0 0 100 100\" xml:space=\"preserve\">\r\n<g>\r\n\t<path
+    fill=\"#AE0000\" d=\"M50,22.5c15.163,0,27.5,12.336,27.5,27.5c0,15.163-12.337,27.5-27.5,27.5c-15.164,0-27.5-12.337-27.5-27.5\r\n\t\tC22.5,34.836,34.836,22.5,50,22.5
+    M50,17.5c-17.949,0-32.5,14.551-32.5,32.5S32.051,82.5,50,82.5S82.5,67.949,82.5,50\r\n\t\tS67.949,17.5,50,17.5L50,17.5z\"/>\r\n</g>\r\n<path
+    fill=\"#AE0000\" d=\"M44.01,57.209l-7.76-7.771l-2.75,2.623l10.51,10.486L66.5,40.075l-2.75-2.622L44.01,57.209z\"/>\r\n</svg>\r\n"
+  assetBundleName: 
+  assetBundleVariant: 

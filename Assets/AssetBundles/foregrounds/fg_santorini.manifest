@@ -1,0 +1,28 @@
+ManifestFileVersion: 0
+CRC: 3859725871
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 3d94f40df450cff7f1ab273c3f0cafed
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Stickers/StickerPrefabs/25.Santorini/fg_santorini.prefab
+Dependencies: []

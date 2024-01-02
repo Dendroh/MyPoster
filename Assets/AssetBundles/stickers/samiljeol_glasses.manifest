@@ -1,0 +1,28 @@
+ManifestFileVersion: 0
+CRC: 2840866767
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 5ad52d2ae046000fa130ae43c1d86717
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Stickers/StickerPrefabs/12.SamIlJeol/samiljeol_glasses.prefab
+Dependencies: []

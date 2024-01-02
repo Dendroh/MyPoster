@@ -1,0 +1,28 @@
+ManifestFileVersion: 0
+CRC: 3979246683
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 7d2691d001d9524f0a8bd3f772b88335
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Stickers/StickerPrefabs/Temiorae/9.Busking/busking_hat.prefab
+Dependencies: []

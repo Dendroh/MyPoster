@@ -1,0 +1,28 @@
+ManifestFileVersion: 0
+CRC: 443246501
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 7ff2d0e70c5e3c1bfe8f114e097a21c5
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Stickers/StickerPrefabs/12.SamIlJeol/samiljeol_hanbok.prefab
+Dependencies: []

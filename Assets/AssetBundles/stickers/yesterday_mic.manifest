@@ -1,0 +1,28 @@
+ManifestFileVersion: 0
+CRC: 3586414534
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 539882128452e2132d28ed379354a927
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Stickers/StickerPrefabs/24.Yesterday/yesterday_mic.prefab
+Dependencies: []
