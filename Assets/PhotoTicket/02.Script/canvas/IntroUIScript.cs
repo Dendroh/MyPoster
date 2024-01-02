@@ -23,30 +23,36 @@ public class IntroUIScript : MonoBehaviour, UIScript
 	bool isIntroUIInitialized = false;
 	bool isIntroCanvas = true;
 
-	void Start() {
+	void Start()
+	{
 		idleAnimation = GetComponent<Animation>();
 		camReader = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<ReadWebcamInSequence>();
 
 		thumbNail.sprite = idlePosters[1 % idlePosters.Length];
-		transparentTouch.onClick.AddListener(() => {
+		transparentTouch.onClick.AddListener(() =>
+		{
 			introAudioKr.enabled = false;
 			introAudioEn.enabled = false;
-			if (PlayerPrefs.GetString("quiz") == "true") {
+			if (PlayerPrefs.GetString("quiz") == "true")
+			{
 				FlowController.instance.ChangeFlow(FlowController.instance.quizCanvas);
-			} else {
+			} else
+			{
 				FlowController.instance.ChangeFlow(FlowController.instance.selectCanvas);
 			}
 		});
 	}
 
-	public void InstantiatePoster() {
+	public void InstantiatePoster()
+	{
 		Debug.Log("InstantiatePoster");
 		background.sprite = downManager.idlePosterSprites[0];
 		thumbNail.sprite = downManager.idlePosterSprites[1 % downManager.idlePosterSprites.Length];
 		isIntroUIInitialized = true;
 	}
 
-	void Update() {
+	void Update()
+	{
 		if (isIntroUIInitialized == false)
 			return;
 		if (isIntroCanvas == false)
@@ -59,22 +65,29 @@ public class IntroUIScript : MonoBehaviour, UIScript
 
 		// 타이머 동작
 		timerChangeScean += Time.deltaTime;
-		if (timerChangeScean > changeTime) {
+		if (timerChangeScean > changeTime)
+		{
 			UpdateNextImage();
 
 			timerChangeScean = 0;
 		}
 
 		// 기본 - 10초마다 루프 동작(러닝 타임 포함)
-		if (introAudio == "true") {
+		if (introAudio == "true")
+		{
 			timerAudio += Time.deltaTime;
-			if (timerAudio > second) {
-				if (lang == "kr") {
-					if (introAudioKr && introAudioKr.isActiveAndEnabled) {
+			if (timerAudio > second)
+			{
+				if (lang == "kr")
+				{
+					if (introAudioKr && introAudioKr.isActiveAndEnabled)
+					{
 						introAudioKr.Play();   // 음성 출력
 					}
-				} else if (lang == "en") {
-					if (introAudioEn && introAudioEn.isActiveAndEnabled) {
+				} else if (lang == "en")
+				{
+					if (introAudioEn && introAudioEn.isActiveAndEnabled)
+					{
 						introAudioEn.Play();   // 음성 출력
 					}
 				}
@@ -84,37 +97,45 @@ public class IntroUIScript : MonoBehaviour, UIScript
 		}
 	}
 
-	public void Init() {
+	public void Init()
+	{
 		print("IntroInit");
 		isIntroCanvas = true;
-		if (PlayerPrefs.GetString("introAudio") == "true") {
+		if (PlayerPrefs.GetString("introAudio") == "true")
+		{
 			introAudioKr.enabled = true;
 			introAudioEn.enabled = true;
 		}
 
-		if (PlayerPrefs.GetString("quiz") != "true") {  // 퀴즈 모드가 아닌 경우, 포토 모드에서만 사용
+		if (PlayerPrefs.GetString("quiz") != "true")
+		{  // 퀴즈 모드가 아닌 경우, 포토 모드에서만 사용
 			camReader.changeCameraState(false);
 		}
 
 		FlowController.instance.currentMovieNumber = -1;
 	}
 
-	public void Dispose() {
+	public void Dispose()
+	{
 		isIntroCanvas = false;
 		print("DisposeInit");
 	}
 
-	public void UpdateNextImage() {
+	public void UpdateNextImage()
+	{
 		// 배경 설정 2개 이상인 경우 애니메이션 적용
-		if (downManager.idlePosterSprites.Length > 1) {
+		if (downManager.idlePosterSprites.Length > 1)
+		{
 			thumbNail.sprite = downManager.idlePosterSprites[posterIndex];
 			idleAnimation.Play();
 		}
 	}
 
-	public void ResetAnim() {
+	public void ResetAnim()
+	{
 		// 배경 설정 2개 이상인 경우 애니메이션 적용
-		if (downManager.idlePosterSprites.Length > 1) {
+		if (downManager.idlePosterSprites.Length > 1)
+		{
 			background.sprite = downManager.idlePosterSprites[posterIndex];
 			posterIndex = (posterIndex + 1) % (downManager.idlePosterSprites.Length);
 		}

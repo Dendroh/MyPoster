@@ -52,7 +52,7 @@ namespace Alchera {
                     quad.transform.localScale = new Vector3(zScale, zScale * (h / w), 1);
             }
 
-            quad.transform.localRotation = Quaternion.Euler(0, 0, -90); // 이미지를 좌로 90도 회전
+            quad.transform.localRotation = Quaternion.Euler(0, 0, 0); // 이미지를 좌로 90도 회전
             quad.transform.localScale = new Vector3(-quad.transform.localScale.x, quad.transform.localScale.y, quad.transform.localScale.z); //좌우반전
         }
 

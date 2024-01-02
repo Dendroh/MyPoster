@@ -11,7 +11,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/PhotoTicket/PhotoTicket.unity
     guid: 3dfd7810c92b443578e3c72e73751d7e
-  - enabled: 0
-    path: Assets/PhotoTicket/PhotoTicket_Temi.unity
-    guid: 4ce90a8702695d8408da0ed374579a3b
   m_configObjects: {}

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1844850769
+CRC: 1393292590
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 9a97ec1f6a46b53821518fb74f088ab7
+    Hash: 078116ffbc92d387cd23e222b95b4a7c
   TypeTreeHash:
     serializedVersion: 2
     Hash: 1d8ce9a7d09062fcc6dba5ecccd3aca0
@@ -32,4 +32,4 @@ ClassTypes:
 Assets:
 - Assets/Stickers/StickerPrefabs/Video/fg_sample.prefab
 Dependencies:
-- C:/Users/THE-S/Documents/myposter/cgv-project/myposter_v1.0.6/Assets/AssetBundles/foregrounds/fg_video_test
+- D:/The-S Projects/MyPoster/Assets/AssetBundles/foregrounds/fg_video_test
