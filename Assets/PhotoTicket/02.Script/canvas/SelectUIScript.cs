@@ -73,6 +73,38 @@ public class SelectUIScript : MonoBehaviour, UIScript
 		camReader.changeCameraState(true);
 	}
 
+
+	void Update()
+	{
+		if (isSelectUIInitialized == false)
+			return;
+		if (isSelectCanvas == false)
+			return;
+
+		if (Input.GetMouseButtonDown(0))
+		{
+			beforePos = Input.mousePosition;
+		}
+		if (Input.GetMouseButtonUp(0))
+		{
+			if (beforePos.x > Input.mousePosition.x + 40)
+			{
+				moveRight();
+			} else if (beforePos.x + 40 < Input.mousePosition.x)
+			{
+				moveLeft();
+			}
+		}
+		for (int i = 0; i < thumbnailValues.Length; i++)
+		{
+			moviePosters[i].localScale = Vector3.one * Mathf.Max((1 - 2f * Mathf.Abs(movieScroll.value - thumbnailValues[i])), 0.646f);
+			if (moviePosters[i].localScale.x > 0.85f)
+				posterButtons[i].interactable = true;
+			else
+				posterButtons[i].interactable = false;
+		}
+	}
+
 	public void InstantiatePoster()
 	{
 		print("instantiate Poster");
@@ -120,37 +152,6 @@ public class SelectUIScript : MonoBehaviour, UIScript
 			posterButtons[i].interactable = false;
 		}
 		isSelectUIInitialized = true;
-	}
-
-	void Update()
-	{
-		if (isSelectUIInitialized == false)
-			return;
-		if (isSelectCanvas == false)
-			return;
-
-		if (Input.GetMouseButtonDown(0))
-		{
-			beforePos = Input.mousePosition;
-		}
-		if (Input.GetMouseButtonUp(0))
-		{
-			if (beforePos.x > Input.mousePosition.x + 40)
-			{
-				moveRight();
-			} else if (beforePos.x + 40 < Input.mousePosition.x)
-			{
-				moveLeft();
-			}
-		}
-		for (int i = 0; i < thumbnailValues.Length; i++)
-		{
-			moviePosters[i].localScale = Vector3.one * Mathf.Max((1 - 2f * Mathf.Abs(movieScroll.value - thumbnailValues[i])), 0.646f);
-			if (moviePosters[i].localScale.x > 0.85f)
-				posterButtons[i].interactable = true;
-			else
-				posterButtons[i].interactable = false;
-		}
 	}
 
 	void moveRight()
@@ -438,14 +439,6 @@ public class SelectUIScript : MonoBehaviour, UIScript
 		}
 	}
 
-	public void cancelPopup(GameObject popup)
-	{
-		// 버튼 효과음 출력
-		StartCoroutine(UtilsScript.playEffectAudio(buttonAudio));
-
-		popup.SetActive(false);
-	}
-
 	public void failCheckPrint()
 	{
 		Debug.Log("fail check select canvas");
@@ -467,14 +460,6 @@ public class SelectUIScript : MonoBehaviour, UIScript
 
 		// 에러 팝업 활성화
 		printProgressPopup.SetActive(true);
-	}
-
-	public void GoToIntro()
-	{
-		// 버튼 효과음 출력
-		StartCoroutine(UtilsScript.playEffectAudio(buttonAudio));
-
-		FlowController.instance.ChangeFlow(FlowController.instance.introCanvas);
 	}
 
 	public void Dispose()

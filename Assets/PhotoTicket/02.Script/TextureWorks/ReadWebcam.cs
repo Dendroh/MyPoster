@@ -16,7 +16,7 @@ namespace Alchera
 		public static ReadWebcam instance = null;
 		public static bool bWebcam = false;
 
-		protected WebCamDevice[] devices;
+		public static WebCamDevice[] devices;
 		[HideInInspector] public WebCamTexture current, front, rear;
 		[HideInInspector] public bool isCameraFront;
 		bool[] CamerasFR;
@@ -47,15 +47,13 @@ namespace Alchera
 				if (front != null && rear != null) break; // 멀티카메라인 경우 일반 카메라가 첫번째 인덱스에 있다고 생각. 차후 수정필요
 
 				if (device.name == "Logitech HD Pro Webcam C920" || front == null)
-				{ //에디터 카메라는 front 이다.
+				{
 					front = new WebCamTexture(device.name, RequestWidth, RequestHeight, RequestedFPS);
 					CamerasFR[i] = true;
 					FRIndex = i;
 					isCameraFront = CamerasFR[i];
 					bWebcam = true;
 					current = front;
-					Debug.Log(front);
-					Debug.Log(current);
 					Debug.Log("현재 카메라 이름 : " + current.deviceName);
 				} else
 				{
@@ -63,6 +61,7 @@ namespace Alchera
 					CamerasFR[i] = true;
 					bWebcam = false;
 				}
+
 				i++;
 			}
 		}
@@ -71,6 +70,7 @@ namespace Alchera
 		{
 			return CamerasFR[(++FRIndex) % 2];
 		}
+
 		public void GetMirrorValue(out int mirrorX, out int mirrorY)
 		{
 			mirrorX = 1;
@@ -84,10 +84,12 @@ namespace Alchera
 					mirrorY *= -1;
 			}
 		}
+
 		public int GetAdjustedVideoRotationAngle()
 		{
 			return 90;
 		}
+
 		protected void OnDestroy()
 		{
 			Debug.LogWarning("ReadWebcam.OnDestroy");

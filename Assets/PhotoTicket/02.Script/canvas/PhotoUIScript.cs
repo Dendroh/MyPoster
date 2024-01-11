@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.IO;
 using UnityEngine.Video;
+using Amazon.CognitoIdentity.Model;
 
 public class PhotoUIScript : MonoBehaviour, UIScript
 {
@@ -31,8 +32,8 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 	[SerializeField] GameObject thumbnailPrefab;
 	[SerializeField] Scrollbar movieScroll;
 	[SerializeField] Transform content;
-	[SerializeField] GameObject downArrow;
-	[SerializeField] GameObject upArrow;
+	[SerializeField] Button downArrow;
+	[SerializeField] Button upArrow;
 	[SerializeField] GameObject carousel;
 	[SerializeField] GameObject quizClickBlocker;
 	[SerializeField] GameObject introButton;
@@ -61,10 +62,9 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 	StickerController sticker;
 	ComplexSceneBehavior detector;
 	bool isPhotoUIInitialized = false;
-	static bool doneSetPoster = false; // 포스터 프리팹 생성 완료 여부, 비동기에서 사용하기에 static
+	static bool doneSetPoster = false;
 	static bool doneLoading = false;
 	bool isPhotoCanvas = true;
-	//int posterWidth = 280;
 	int posterHeight = 280;
 	bool[] isFree;
 	public int posterPrepabProgress = 0;
@@ -80,7 +80,7 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 
 		for (int i = 0; i < moviePosters.Length; i++)
 		{
-			moviePosters[i] = Instantiate(thumbnailPrefab, Vector3.zero, Quaternion.identity).GetComponent<RectTransform>(); //포스터 갯수만큼 복제
+			moviePosters[i] = Instantiate(thumbnailPrefab, Vector3.zero, Quaternion.identity).GetComponent<RectTransform>();
 			moviePosters[i].transform.SetParent(content);
 
 			moviePosters[i].GetComponent<RectTransform>().anchoredPosition3D = Vector3.one;
@@ -101,12 +101,9 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 		for (int i = 0; i < moviePosters.Length; i++)
 		{
 			posterButtons[i] = moviePosters[i].GetComponent<Button>();
-			posterChecks[i] = moviePosters[i].GetComponentsInChildren<RectTransform>()[3]; //체크박스
+			posterChecks[i] = moviePosters[i].GetComponentsInChildren<RectTransform>()[3];
 
-			//무료인지 보여주는 이미지 설정
 			moviePosters[i].GetComponentsInChildren<RectTransform>()[1].gameObject.SetActive(!isFree[i]);
-			// 유료 이미지 설정
-			// moviePosters[i].GetComponentsInChildren<RectTransform>()[2].gameObject.SetActive(!isFree[i]);
 			moviePosters[i].pivot = new Vector2(-i, 1);
 		}
 		var mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
@@ -119,6 +116,16 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 			content.GetComponent<RectTransform>().sizeDelta = new Vector2(0, posterHeight * ((moviePosters.Length / 5) - 2) + (posterHeight / 2.2f) - 130);
 
 		isPhotoUIInitialized = true;
+	}
+
+	void Start()
+	{
+		downArrow.onClick.AddListener(() => {
+			StartCoroutine(SmoothScroll(movieScroll.value - 1.5f * (1f / (moviePosters.Length / 5f))));
+		});
+		upArrow.onClick.AddListener(() => {
+			StartCoroutine(SmoothScroll(movieScroll.value + 1.5f * (1f / (moviePosters.Length / 5f))));
+		});
 	}
 
 	void Update()
@@ -154,6 +161,55 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 		if (moviePosters.Length <= 4)
 			return;
 
+
+		// 스크롤 윗 방향 리모컨
+		if (Input.GetKeyDown(KeyCode.UpArrow))
+		{
+			StartCoroutine(SmoothScroll(movieScroll.value + 1.5f * (1f / (moviePosters.Length / 5f))));
+		}
+
+		// 스크롤 아래 방향 리모컨
+		if (Input.GetKeyDown(KeyCode.DownArrow))
+		{
+			StartCoroutine(SmoothScroll(movieScroll.value - 1.5f * (1f / (moviePosters.Length / 5f))));
+		}
+
+		// 포스터 위 방향 리모컨
+		if (Input.GetKeyDown(KeyCode.W))
+		{
+			if (FlowController.instance.currentMovieNumber - 5 >= 0)
+			{
+				selectPoster(FlowController.instance.currentMovieNumber - 5);
+			}
+		}
+
+		// 포스터 아래 방향 리모컨
+		if (Input.GetKeyDown(KeyCode.S))
+		{
+			if (FlowController.instance.currentMovieNumber + 5 <= moviePosters.Length - 1)
+			{
+				selectPoster(FlowController.instance.currentMovieNumber + 5);
+			}
+		}
+
+		// 포스터 왼쪽 방향 리모컨
+		if (Input.GetKeyDown(KeyCode.A))
+		{	
+			if(FlowController.instance.currentMovieNumber > 0)
+			{
+				selectPoster(FlowController.instance.currentMovieNumber - 1);
+			}
+		}
+
+		// 포스터 오른쪽 방향 리모컨
+		if (Input.GetKeyDown(KeyCode.D))
+		{
+			if(FlowController.instance.currentMovieNumber < moviePosters.Length - 1)
+			{
+				selectPoster(FlowController.instance.currentMovieNumber + 1);
+			}
+		}
+
 		// 풋 스위치 클릭시 촬영
 		if (Input.GetKeyDown(KeyCode.F3))
 		{
@@ -170,8 +226,8 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 		print("IntroPhoto");
 		ReadWebcamInSequence.bSendTexture = true;
 		camReader.changeCameraState(true);
-		downArrow.SetActive(true);
-		upArrow.SetActive(true);
+		downArrow.gameObject.SetActive(true);
+		upArrow.gameObject.SetActive(true);
 		isPhotoCanvas = true;
 		JPGResult.texture = null;
 		GifResult.texture = null;
@@ -198,15 +254,13 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 	public void Dispose()
 	{
 		print("DisposePhoto");
-		// sticker.RemoveAllStickers();
 		resultLoadingShield.SetActive(false);
 		photoResultAnimation.Play();
 		isPhotoCanvas = false;
 		contentsClickAudio.enabled = false;
-		ReadWebcamInSequence.bUpdateQuad = false;   // 쿼드 설정 여부 초기화
+		ReadWebcamInSequence.bUpdateQuad = false;
 		ReadWebcamInSequence.bSendTexture = false;
 
-		// 화면 전환을 위한 오디오 중지
 		StartCoroutine(UtilsScript.stopAudio(photoAudioKr));
 		StartCoroutine(UtilsScript.stopAudio(photoAudioEn));
 	}
@@ -219,7 +273,7 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 			posterPrepabProgress++;
 
 			if (i == downManager.jsonData.movieInfo.Count - 1)
-			{    // 마지막 반복인 경우
+			{
 				doneSetPoster = true;
 			}
 
@@ -235,28 +289,27 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 
 		MeshRenderer meshRenderer = backGroundQuad.GetComponent<MeshRenderer>();
 
-		// 이미지 경로
 		string filePath = Path.Combine(Application.persistentDataPath, "Assetbundles", downManager.jsonData.movieInfo[movieNumber].chromakeyBackground);
 
 		if (File.Exists(filePath))
 		{
 			if (type == "0")
-			{  // 이미지
-				byte[] fileData = File.ReadAllBytes(filePath); // 파일을 바이트 배열로 읽음
+			{  
+				byte[] fileData = File.ReadAllBytes(filePath);
 
-				Texture2D loadedTexture = new Texture2D(1080, 1440); // 새로운 Texture2D 생성 (크기 조정 필요)
-				loadedTexture.LoadImage(fileData); // 파일 데이터를 Texture2D에 로드
+				Texture2D loadedTexture = new Texture2D(1080, 1440);
+
+				loadedTexture.LoadImage(fileData);
 
 				Sprite ccImage = centerCrop(loadedTexture, 1080, 1440);
 
-				// Renderer의 mainTexture에 할당
 				meshRenderer.material.mainTexture = ccImage.texture;
 
 				Texture backGroundTexture = backGroundQuad.GetComponent<Renderer>().material.mainTexture;
 
 				AutoBackgroundQuad.SetQuadSize(backGroundQuad, backGroundTexture);
 			} else
-			{    // 비디오
+			{    
 				VideoPlayer videoPlayer = backGroundQuad.GetComponent<VideoPlayer>();
 				if (videoPlayer == null)
 				{
@@ -264,23 +317,19 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 					videoPlayer.isLooping = true;
 				}
 
-				videoPlayer.url = filePath; // 비디오 파일 할당
+				videoPlayer.url = filePath;
 
-				// 음향 출력 모드를 "None"으로 설정
 				videoPlayer.audioOutputMode = VideoAudioOutputMode.None;
 
-				// 볼륨을 0으로 설정
 				videoPlayer.SetDirectAudioVolume(0, 0);
 
 				backGroundQuad.transform.localScale = new Vector3(-backGroundQuad.transform.localScale.x, backGroundQuad.transform.localScale.y, backGroundQuad.transform.localScale.z); //좌우반전
 
-				// 비디오 크기를 1080x1440으로 조절하고 센터 크롭 적용
 				videoPlayer.targetCamera = null;
 				videoPlayer.targetTexture = RenderTexture.GetTemporary(1080, 1440);
 				videoPlayer.aspectRatio = VideoAspectRatio.Stretch;
-				// videoPlayer.transform.rotation = Quaternion.Euler(0f, 0f, -90f);
-				videoPlayer.transform.rotation = Quaternion.Euler(0f, 0f, 0f); // 현재 각도
-				videoPlayer.transform.Rotate(0f, 0f, -180f); // 추가로 180도 회전
+				videoPlayer.transform.rotation = Quaternion.Euler(0f, 0f, 0f); 
+				videoPlayer.transform.Rotate(0f, 0f, -180f); 
 				videoPlayer.Play();
 			}
 		}
@@ -401,9 +450,6 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 		FlowController.instance.currentMovieId = downManager.jsonData.movieInfo[movieNumber].ID;
 	}
 
-
-
-
 	public void SetPhotoCountText(float timer, float expectedTime)
 	{
 		if (timer == expectedTime)
@@ -436,15 +482,19 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 		StartCoroutine(UtilsScript.stopAudio(photoAudioEn));
 	}
 
-	/* 2019-07-12 백상열 추가 */
-	/* 처음화면으로 돌아가기 */
-	public void GoToIntro()
+	IEnumerator SmoothScroll(float targetValue)
 	{
-		if (UtilsScript.checkConfig() != "")
+		float duration = 0.1f; 
+		float startValue = movieScroll.value;
+		float time = 0;
+
+		while (time < duration)
 		{
-			buttonAudio.Play();    // 버튼 효과음 출력
+			movieScroll.value = Mathf.Lerp(startValue, targetValue, time / duration);
+			time += Time.deltaTime;
+			yield return null;
 		}
 
-		FlowController.instance.ChangeFlow(FlowController.instance.selectCanvas);
+		movieScroll.value = targetValue; 
 	}
 }

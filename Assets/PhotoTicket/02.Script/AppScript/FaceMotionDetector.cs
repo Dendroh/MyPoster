@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+
 public class FaceMotionDetector : MonoBehaviour
 {
     List<Animator> mouseOpenClose;
@@ -66,10 +67,5 @@ public class FaceMotionDetector : MonoBehaviour
             case 1: eyeOpenClose.Add(animator); break;
             default: break;
         }
-    }
-    public void RemoveAllAnimator()
-    {
-        mouseOpenClose.Clear();
-        eyeOpenClose.Clear();
     }
 }

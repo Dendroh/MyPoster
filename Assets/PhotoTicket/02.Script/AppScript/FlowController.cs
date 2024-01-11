@@ -72,46 +72,7 @@ public class FlowController : MonoBehaviour
 		StartCoroutine(SetCanvasActive(promotionCanvas, false));
 		StartCoroutine(IsInternetReachable());
 	}
-	public void Loading(bool flag)  //로딩 창 필요시에 생성하여 터치를 막는다.
-	{
-		LoadingCanvas.SetActive(flag);
-	}
 
-	public void ChangeFlow(CanvasGroup canvas)
-	{
-		if (IsDimming)
-			return;
-		IsDimming = true;
-		currentCanvas.GetComponent<UIScript>().Dispose();
-		StartCoroutine(SetCanvasActive(currentCanvas, false));
-
-		beforeCanvas = currentCanvas;
-		currentCanvas = canvas;
-
-		StartCoroutine(SetCanvasActive(currentCanvas, true));
-		currentCanvas.GetComponent<UIScript>().Init();
-	}
-	IEnumerator SetCanvasActive(CanvasGroup cg, bool flag) //활성화되는 canvas를 선택한다. 디졸브를 위해 코루틴으로 실행
-	{
-		cg.interactable = flag;
-		cg.blocksRaycasts = flag;
-		if (flag)
-		{
-			while (cg.alpha < 1)
-			{
-				cg.alpha += Time.deltaTime * Dimmingspeed * 10;
-				yield return null;
-			}
-		} else
-		{
-			while (cg.alpha > 0)
-			{
-				cg.alpha -= Time.deltaTime * Dimmingspeed * 10;
-				yield return null;
-			}
-		}
-		IsDimming = false;
-	}
 	void Update()
 	{
 		if (NetClientErrorCanvas.activeSelf == true)
@@ -142,6 +103,48 @@ public class FlowController : MonoBehaviour
 				timer = 0;
 			}
 		}
+	}
+
+	public void Loading(bool flag)  //로딩 창 필요시에 생성하여 터치를 막는다.
+	{
+		LoadingCanvas.SetActive(flag);
+	}
+
+	public void ChangeFlow(CanvasGroup canvas)
+	{
+		if (IsDimming)
+			return;
+		IsDimming = true;
+		currentCanvas.GetComponent<UIScript>().Dispose();
+		StartCoroutine(SetCanvasActive(currentCanvas, false));
+
+		beforeCanvas = currentCanvas;
+		currentCanvas = canvas;
+
+		StartCoroutine(SetCanvasActive(currentCanvas, true));
+		currentCanvas.GetComponent<UIScript>().Init();
+	}
+
+	IEnumerator SetCanvasActive(CanvasGroup cg, bool flag) //활성화되는 canvas를 선택한다. 디졸브를 위해 코루틴으로 실행
+	{
+		cg.interactable = flag;
+		cg.blocksRaycasts = flag;
+		if (flag)
+		{
+			while (cg.alpha < 1)
+			{
+				cg.alpha += Time.deltaTime * Dimmingspeed * 10;
+				yield return null;
+			}
+		} else
+		{
+			while (cg.alpha > 0)
+			{
+				cg.alpha -= Time.deltaTime * Dimmingspeed * 10;
+				yield return null;
+			}
+		}
+		IsDimming = false;
 	}
 
 	IEnumerator IsInternetReachable()
