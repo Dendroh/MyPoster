@@ -153,7 +153,6 @@ public class StickerController : MonoBehaviour
     {
         var foregroundInfo = downManager.jsonData.movieInfo[movieNumber].Foregrounds;
         GameObject[] Foregrounds = new GameObject[foregroundInfo.Length];
-        // Foregrounds = GetAllStickerPrefabs(foregroundInfo);
         GetAllStickerPrefabs(foregroundInfo, ref Foregrounds);
         for (int i = 0; i < Foregrounds.Length; i++)
         {

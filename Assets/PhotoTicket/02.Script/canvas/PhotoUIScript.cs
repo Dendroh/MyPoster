@@ -170,8 +170,8 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 		print("IntroPhoto");
 		ReadWebcamInSequence.bSendTexture = true;
 		camReader.changeCameraState(true);
-		downArrow.SetActive(false);
-		upArrow.SetActive(false);
+		downArrow.SetActive(true);
+		upArrow.SetActive(true);
 		isPhotoCanvas = true;
 		JPGResult.texture = null;
 		GifResult.texture = null;
@@ -237,6 +237,7 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 
 		// 이미지 경로
 		string filePath = Path.Combine(Application.persistentDataPath, "Assetbundles", downManager.jsonData.movieInfo[movieNumber].chromakeyBackground);
+
 		if (File.Exists(filePath))
 		{
 			if (type == "0")
@@ -399,6 +400,9 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 		FlowController.instance.currentMovieNumber = movieNumber;
 		FlowController.instance.currentMovieId = downManager.jsonData.movieInfo[movieNumber].ID;
 	}
+
+
+
 
 	public void SetPhotoCountText(float timer, float expectedTime)
 	{

@@ -24,9 +24,6 @@ namespace Alchera {
         public static bool updateQuad = false;
 
         void Start() {
-            Debug.Log(chromarkeyWebcamMaterial.ToString());
-            Debug.Log(normalWebcamMaterial.ToString());
-
             chromarkeyWebcamMaterial.mainTexture = blackTexture;
             normalWebcamMaterial.mainTexture = blackTexture;
             texture = new Texture2D(16, 16);
@@ -52,34 +49,8 @@ namespace Alchera {
                     quad.transform.localScale = new Vector3(zScale, zScale * (h / w), 1);
             }
 
-            quad.transform.localRotation = Quaternion.Euler(0, 0, 0); // 이미지를 좌로 90도 회전
+            quad.transform.localRotation = Quaternion.Euler(0, 0, -90f); // 이미지를 좌로 90도 회전
             quad.transform.localScale = new Vector3(-quad.transform.localScale.x, quad.transform.localScale.y, quad.transform.localScale.z); //좌우반전
-        }
-
-        void ChangeBackGroundQuadMaterialVideo() {
-            GameObject backGroundQuad = GameObject.Find("BackGroundQuad");
-
-            MeshRenderer meshRenderer = backGroundQuad.GetComponent<MeshRenderer>();
-
-            VideoPlayer videoPlayer = backGroundQuad.GetComponent<VideoPlayer>();
-            if (videoPlayer == null) {
-                videoPlayer = backGroundQuad.AddComponent<VideoPlayer>();
-                videoPlayer.isLooping = true;
-            }
-
-            // string videoPath = "Assets/Stickers/Resources/test(bird).mp4";
-
-            //videoPlayer.url = videoPath;
-            videoPlayer.clip = Resources.Load<VideoClip>("test(bird)");
-
-
-            backGroundQuad.transform.localScale = new Vector3(-backGroundQuad.transform.localScale.x, backGroundQuad.transform.localScale.y, backGroundQuad.transform.localScale.z); //좌우반전
-
-
-            videoPlayer.Play();
-            videoPlayer.transform.rotation = Quaternion.Euler(0f, 0f, -90f);
-
-
         }
 
         public void SetQuadMaterial(bool flag) {
@@ -139,6 +110,7 @@ namespace Alchera {
         void SetQuadRotation() {
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, ReadWebcam.instance.GetAdjustedVideoRotationAngle()));
         }
+
         public IEnumerator UpdateFromTextureSequence() {
             yield return null;
             var ws = new WaitForSeconds(0.2f);
