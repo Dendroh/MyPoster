@@ -5,3 +5,7 @@
 [Uu]serSettings
 [Oo]bj
 .vscode
+.vs
+photo
+*.csproj
+*.sln
