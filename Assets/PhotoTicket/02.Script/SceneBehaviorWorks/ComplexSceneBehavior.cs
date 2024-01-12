@@ -58,8 +58,9 @@ namespace Alchera
 		Coroutine videoCoroutine;
 
 		bool isCapturing;
+		bool isDetected;
 		bool isPhotoTaken;
-		public float posingWatingTime; 
+		public float posingWatingTime;
 		///< 촬영 전 대기 count. 마지막 1초 내외를 gif 촬영, 마지막 프레임을 jpg로 촬영하며, 도중에 인식 실패 시 초기화됩니다. 
 		float posingTimer;
 
@@ -116,13 +117,9 @@ namespace Alchera
 					{
 						foreach (var item in faces)
 							detectCount++;
-
 						faceConsumer.Consume(ref image, faces);
 					}
-					//release holding resources for detection
 					faceTranslator.Dispose();
-
-
 
 					image = await converter.ConvertAsync(texture);
 					var handTranslator = await handService.DetectAsync(ref image);
@@ -131,16 +128,13 @@ namespace Alchera
 					{
 						foreach (var item in hands)
 							detectCount++;
-
 						handConsumer.Consume(ref image, hands);
 					}
-					//release holding resources for detection
 					handTranslator.Dispose();
 
-
-
-					if (detectCount > 0)    //1개라도 인식하면 진행
+					if (detectCount > 0 || isDetected == true)    //1개라도 인식하면 진행
 					{
+						isDetected = true;
 						FlowController.instance.timer = 0; //처음 화면으로 되돌아가지 않음
 						if (!isCapturing)    //촬영 버튼 누르지 않으면 아래 촬영코드를 수행하지 않는다. 디텍팅은 하고 잇음 
 							continue;
@@ -157,7 +151,7 @@ namespace Alchera
 						{
 							isPhotoTaken = true;
 
-							if (recoder != null)// photo/1.jpg
+							if (recoder != null) // photo/1.jpg
 							{
 								StartCoroutine(recoder.SavePhoto(jpgResult.GetComponent<RawImage>(), "1"));
 								await textureSaver.SaveTexture(texture, "1_raw");
@@ -221,9 +215,12 @@ namespace Alchera
 							countAudioEn[i].Stop();
 						}
 
-						posingTimer = posingWatingTime; //촬영 중 인식 실패 시 타이머 초기화
-										//Recorder가 Save호출하기 이전 최근의 Record Time 길이의
-										//영상 저장하므로 수동 flush는 불필요
+						if(isCapturing == true & isDetected == false)
+						{
+							posingTimer = posingWatingTime; //촬영 중 인식 실패 시 타이머 초기화
+														//Recorder가 Save호출하기 이전 최근의 Record Time 길이의
+														//영상 저장하므로 수동 flush는 불필요
+						}
 					}
 
 					photoCanvas.SetPhotoCountText(posingTimer, posingWatingTime); //화면에 보여지는 3,2,1, 카운터
@@ -257,6 +254,7 @@ namespace Alchera
 		public void StartTimer()
 		{
 			isCapturing = true;
+			isDetected = false;
 			isPhotoTaken = false;
 			isInitMP4Recorder = false;
 			recoder.FlushMemory();
