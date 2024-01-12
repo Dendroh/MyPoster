@@ -497,4 +497,13 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 
 		movieScroll.value = targetValue; 
 	}
+
+	public void GoToIntro()
+	{
+		if (UtilsScript.checkConfig() != "")
+		{
+			buttonAudio.Play();    // 버튼 효과음 출력
+		}
+		FlowController.instance.ChangeFlow(FlowController.instance.selectCanvas);
+	}
 }
