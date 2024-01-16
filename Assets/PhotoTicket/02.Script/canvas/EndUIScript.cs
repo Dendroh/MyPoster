@@ -32,7 +32,7 @@ public class EndUIScript : MonoBehaviour, UIScript
 	[SerializeField] AudioSource counselAudioKr;
 	[SerializeField] AudioSource counselAudioEn;
 	[SerializeField] int maxPrintCount;
-	[SerializeField] Image qrCode;
+	[SerializeField] RawImage qrCode;
 	[SerializeField] SelectUIScript selectUIScript;
 
 	int printCount = 0;
@@ -69,10 +69,10 @@ public class EndUIScript : MonoBehaviour, UIScript
 			if (downUrl != null && !downUrl.Equals(""))
 			{
 				qrCode.gameObject.SetActive(true);
+
 				Texture2D qr = addQR(downUrl);
-				Rect rect = new Rect(0, 0, qr.width, qr.height);
-				Sprite qrSprite = Sprite.Create(qr, rect, new Vector2(0.5f, 0.5f));
-				qrCode.sprite = qrSprite;
+
+				qrCode.texture = qr;
 			} else
 			{
 				qrCode.gameObject.SetActive(false);
@@ -181,8 +181,11 @@ public class EndUIScript : MonoBehaviour, UIScript
 	public static Texture2D addQR(string text)
 	{
 		// 인코딩 작업을 위한 Encode 함수 호출
-		var encoded = new Texture2D(256, 256);
+		var encoded = new Texture2D(256	, 256, TextureFormat.RGBA32, false);
+		encoded.filterMode = FilterMode.Point;
+
 		var color32 = Encode(text, encoded.width, encoded.height);
+
 		encoded.SetPixels32(color32);
 		encoded.Apply();
 

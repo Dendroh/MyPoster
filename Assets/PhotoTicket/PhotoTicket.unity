@@ -6563,7 +6563,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 14.993408, y: 38.8}
+  m_AnchoredPosition: {x: -0.00003146575, y: 38.8}
   m_SizeDelta: {x: 3822.3635, y: 0}
   m_Pivot: {x: 0.5, y: 0.61}
 --- !u!1 &236334862
@@ -10463,14 +10463,14 @@ RectTransform:
   m_GameObject: {fileID: 428477748}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0001402, y: 1.0001402, z: 1.0001402}
+  m_LocalScale: {x: 2, y: 2, z: 1.0001402}
   m_Children: []
   m_Father: {fileID: 1065839622}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 250}
+  m_AnchoredPosition: {x: 0, y: 256}
   m_SizeDelta: {x: 256, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &428477750
@@ -10482,7 +10482,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 428477748}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -10493,15 +10493,13 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
+  m_Texture: {fileID: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!222 &428477751
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24686,7 +24684,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 514767576}
   m_HandleRect: {fileID: 514767575}
   m_Direction: 0
-  m_Value: 0.49453261
+  m_Value: 0.5
   m_Size: 0.28254768
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -25080,7 +25078,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FaceConsumer: {fileID: 1016391925}
   HandConsumer: {fileID: 1016391925}
-  result_Script: {fileID: 1654165793}
   jpgResult: {fileID: 1353740574}
   gifResult: {fileID: 1860603450}
   resultAudioKr: {fileID: 407427704}
@@ -41109,7 +41106,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   downManager: {fileID: 1687650755}
-  progressbar: {fileID: 0}
   cameraErrorPopup: {fileID: 682483013}
   sendAudioKr: {fileID: 624370628}
   sendAudioEn: {fileID: 1319575823}
@@ -54899,7 +54895,6 @@ MonoBehaviour:
   photoResultAnimation: {fileID: 1654165794}
   JPGResult: {fileID: 1353740576}
   GifResult: {fileID: 1860603452}
-  resultLoadingShield: {fileID: 0}
   photoAudioKr: {fileID: 484107291}
   photoAudioEn: {fileID: 1582446041}
   contentsClickAudio: {fileID: 588891990}
@@ -55446,7 +55441,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000030347592}
+  m_AnchoredPosition: {x: 0, y: 0.000021670745}
   m_SizeDelta: {x: 0, y: -400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7642381961803278557
