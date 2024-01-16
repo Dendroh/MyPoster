@@ -41,7 +41,6 @@ namespace Alchera
 		[SerializeField] GameObject HandConsumer = null;
 		///< Detection 결과를 이용하는 객체. HandData를직접 이용하는 것은 아니고, multiHand를 관리해 주는 중간자 역할
 
-		[SerializeField] ResultUIScript result_Script;
 		[SerializeField] GameObject jpgResult;
 		[SerializeField] GameObject gifResult;
 		[SerializeField] AudioSource resultAudioKr;
@@ -71,12 +70,13 @@ namespace Alchera
 
 		void Awake()
 		{
+			Debug.Log("ComplexSceneBehavior Awake");
+
 			sequence = this.GetComponent<ITextureSequence>();
 			converter = this.GetComponent<ITextureConverter>();
 			textureSaver = this.GetComponent<SaveLastTexture>();
 
 			var detectors = this.GetComponents<IDetectService>();
-			Debug.Log("Number of detectors : " + detectors.Length);
 			faceService = detectors[0];
 			handService = detectors[1];
 
@@ -86,19 +86,22 @@ namespace Alchera
 
 		public async void Start()  //detect 로직 수행 중 
 		{
+			Debug.Log("ComplexSceneBehavior Start");
+
 			recoder = this.GetComponent<Moments.Recorder>();
 
 			photoCanvas = FlowController.instance.photoCanvas.GetComponent<PhotoUIScript>();
+
 			recoder.OnFileSaved = (int id, string filePath) =>
 			{
-				result_Script.OnFileSaved();
-			};
-			recoder.OnFileSaveProgress = (int id, float progress) =>
-			{
-				result_Script.OnFileSaveProgress(progress);
+				Debug.Log("GIF Saved!");
 			};
 
-			// start a logic loop
+			recoder.OnFileSaveProgress = (int id, float progress) =>
+			{
+				Debug.Log("GIF Save Progress..");
+			};
+
 			IEnumerable<FaceData> faces = null;
 			IEnumerable<HandData> hands = null;
 
@@ -158,13 +161,12 @@ namespace Alchera
 							}
 						} else if (posingTimer < 0)   // GIF 저장
 						{
-							// 결과 안내 멘트 출력
-							StartCoroutine(playAudioWaitSeconds(resultAudioKr, resultAudioEn, 3));
-
 							StartCoroutine(UtilsScript.playEffectAudio(pictureAudio));  // 찰칵 효과음 출력
 
 							isCapturing = false;
+
 							var frameCnt = 0;
+
 							Queue<Texture2D> mp4Frames = recoder.m_Frames;
 
 							foreach (Texture2D m_FramesTexture2D in mp4Frames)
@@ -204,6 +206,9 @@ namespace Alchera
 								//photo is saved in Save function   
 								videoCoroutine = StartCoroutine(PlayVideo());
 							}
+
+							ResultUIScript.photoProgressFinished = true;
+
 							FlowController.instance.ChangeFlow(FlowController.instance.resultCanvas);
 						}
 					} else

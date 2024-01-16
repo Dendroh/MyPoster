@@ -47,7 +47,6 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 	[SerializeField] Animation photoResultAnimation;
 	[SerializeField] RawImage JPGResult;
 	[SerializeField] RawImage GifResult;
-	[SerializeField] GameObject resultLoadingShield;
 	[SerializeField] AudioSource photoAudioKr;
 	[SerializeField] AudioSource photoAudioEn;
 	[SerializeField] AudioSource contentsClickAudio;
@@ -254,7 +253,6 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 	public void Dispose()
 	{
 		print("DisposePhoto");
-		resultLoadingShield.SetActive(false);
 		photoResultAnimation.Play();
 		isPhotoCanvas = false;
 		contentsClickAudio.enabled = false;

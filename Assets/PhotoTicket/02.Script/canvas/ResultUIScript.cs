@@ -11,44 +11,28 @@ public class ResultUIScript : MonoBehaviour, UIScript
 {
 	ReadWebcamInSequence camReader;
 	[SerializeField] MovieDownManager downManager;
-	[SerializeField] RectTransform progressbar;
-	[SerializeField] GameObject LoadingShield;
 	[SerializeField] GameObject cameraErrorPopup;
 	[SerializeField] AudioSource sendAudioKr;
 	[SerializeField] AudioSource sendAudioEn;
 	[SerializeField] AudioSource buttonAudio;
 
-	float progressvalue;
-	bool isProgressFinished = true;
+	public static bool photoProgressFinished = false;
 
 	void Start()
 	{
 		camReader = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<ReadWebcamInSequence>();
 	}
 
-	void Update()
-	{
-		progressbar.anchorMax = Vector2.Lerp(progressbar.anchorMax, new Vector2(progressvalue, 1), 0.1f);
-
-		if (isProgressFinished)
-		{
-			LoadingShield.SetActive(false);
-			isProgressFinished = false;
-
-			// 전송 안내 멘트 출력
-			StartCoroutine(UtilsScript.playAudio(sendAudioKr, sendAudioEn));
-		}
-	}
-
 	public void Init()
 	{
-		print("InitResult");
 		StartCoroutine(StopCameraAfterSeconds(1));
-		if (isProgressFinished)
-		{
-			// 전송 안내 멘트 출력
-			StartCoroutine(UtilsScript.playAudio(sendAudioKr, sendAudioEn));
-		}
+		StartCoroutine(DelayedPlayAudio(2));
+	}
+
+	private IEnumerator DelayedPlayAudio(float delay)
+	{
+		yield return new WaitForSeconds(delay);
+		StartCoroutine(UtilsScript.playAudio(sendAudioKr, sendAudioEn));
 	}
 
 	IEnumerator StopCameraAfterSeconds(float sec)
@@ -173,16 +157,6 @@ public class ResultUIScript : MonoBehaviour, UIScript
 		{
 			cameraErrorPopup.SetActive(true);
 		}
-	}
-
-	public void OnFileSaveProgress(float progress)
-	{
-		progressvalue = progress;
-	}
-
-	public void OnFileSaved()
-	{
-		isProgressFinished = true;
 	}
 
 	private bool isCameraConnected()
