@@ -303,9 +303,9 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 
 				meshRenderer.material.mainTexture = ccImage.texture;
 
-				Texture backGroundTexture = backGroundQuad.GetComponent<Renderer>().material.mainTexture;
+				backGroundQuad.transform.localRotation = Quaternion.Euler(0f, 0f, -90f);
 
-				AutoBackgroundQuad.SetQuadSize(backGroundQuad, backGroundTexture);
+				backGroundQuad.GetComponent<Renderer>().material.mainTextureScale = new Vector2(-1, 1);
 			} else
 			{    
 				VideoPlayer videoPlayer = backGroundQuad.GetComponent<VideoPlayer>();
@@ -321,7 +321,7 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 
 				videoPlayer.SetDirectAudioVolume(0, 0);
 
-				backGroundQuad.transform.localScale = new Vector3(-backGroundQuad.transform.localScale.x, backGroundQuad.transform.localScale.y, backGroundQuad.transform.localScale.z); //좌우반전
+				backGroundQuad.GetComponent<Renderer>().material.mainTextureScale = new Vector2(-1, 1);
 
 				videoPlayer.targetCamera = null;
 				videoPlayer.targetTexture = RenderTexture.GetTemporary(1080, 1440);

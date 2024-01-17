@@ -32,35 +32,6 @@ namespace Alchera
 			texture = new Texture2D(16, 16);
 		}
 
-		public static void SetQuadSize(GameObject quad, Texture texture)
-		{
-			var zScale = Mathf.Tan(Mathf.Deg2Rad * (Camera.main.fieldOfView / 2.0f)) * quad.transform.localPosition.z * 2.0f;
-
-			float w = texture.width;
-			float h = texture.height;
-			float screenRatio = (float)Screen.width / Screen.height;
-			if (screenRatio > 1)
-			{
-				if (screenRatio > (w / h))
-				{
-					float scaleRatio = screenRatio * h / w;
-					quad.transform.localScale = new Vector3(zScale * (w / h) * scaleRatio, zScale * scaleRatio, 1);
-				} else
-					quad.transform.localScale = new Vector3(zScale * (w / h), zScale, 1);
-			} else
-			{
-				if (screenRatio > (h / w))
-				{
-					float scaleRatio = screenRatio * w / h;
-					quad.transform.localScale = new Vector3(zScale * scaleRatio, zScale * scaleRatio * (h / w), 1);
-				} else
-					quad.transform.localScale = new Vector3(zScale, zScale * (h / w), 1);
-			}
-
-			quad.transform.localRotation = Quaternion.Euler(0, 0, -90f); // 이미지를 좌로 90도 회전
-			quad.transform.localScale = new Vector3(-quad.transform.localScale.x, quad.transform.localScale.y, quad.transform.localScale.z); //좌우반전
-		}
-
 		public void SetQuadMaterial(bool flag)
 		{
 			chromarkeyWebcamMaterial.mainTexture = flag ? texture : blackTexture;
@@ -86,10 +57,15 @@ namespace Alchera
 		{
 			if (texture.width < 20)
 				return;
-
-			SetQuadSize();
-			SetQuadMirror();
-			SetQuadRotation();
+			try
+			{
+				SetQuadSize();
+				SetQuadMirror();
+				SetQuadRotation();
+			} catch (System.Exception e)
+			{
+				Debug.Log(e);
+			}
 
 		}
 		void SetQuadSize()
