@@ -74,14 +74,12 @@ namespace Alchera
 		public void GetMirrorValue(out int mirrorX, out int mirrorY)
 		{
 			mirrorX = 1;
-			mirrorY = 1;
-			mirrorY *= -1;
-			if (!isCameraFront)
+			if (PlayerPrefs.GetString("mirror") == "true")
 			{
-				if (GetAdjustedVideoRotationAngle() % 180 == 0)
-					mirrorX *= -1;
-				else
-					mirrorY *= -1;
+				mirrorY = -1;
+			} else
+			{
+				mirrorY = 1;
 			}
 		}
 

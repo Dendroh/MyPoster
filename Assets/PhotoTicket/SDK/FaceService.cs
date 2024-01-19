@@ -97,15 +97,11 @@ namespace Alchera
 						centerY = quad.texture.width / 2;
 					}
 					ReadWebcam.instance.GetMirrorValue(out int mirrorX, out int mirrorY);
-#if UNITY_EDITOR || UNITY_STANDALONE
-#elif UNITY_IOS
-                    mirrorX *= -1;  //iOS만 카메라가 반대 방향으로 들어온다.
-#endif
+
 					fixed (FaceData* faces = storage)
 					{
 						for (int i = 0; i < count; ++i)
 						{
-
 							for (int j = 0; j < FaceData.NumLandmark; ++j)
 							{
 								var posX = -mirrorX * (faces[i].Landmark[j].x - centerX) * adjustment;

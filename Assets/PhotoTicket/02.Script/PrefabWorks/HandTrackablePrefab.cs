@@ -130,6 +130,13 @@ namespace Alchera
 
 			pivotPoses[0].localPosition = new Vector3(textPosX, textPosY, textPosZ);
 			pivotPoses[0].localScale = Vector3.one * ((box.width + box.height) / 2) * adjustment * ratio;
+			if(mirrorY ==  1)
+			{
+				pivotPoses[0].localRotation = new Quaternion(0, 0, 180, 0);
+			} else
+			{
+				pivotPoses[0].localRotation = new Quaternion(0, 0, 0, 0);
+			}
 
 		}
 

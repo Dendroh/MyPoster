@@ -92,11 +92,9 @@ public class StickerController : MonoBehaviour
 	private void SetFaceSticker(int movieNumber)
 	{
 		Debug.Log("movie info = " + downManager.jsonData.movieInfo);
-		//Movie Down Manager에서 스티커 정보 읽어옴
 		var stickerInfo = downManager.jsonData.movieInfo;
 		int pivotCount = 1;
 		GameObject[][] Stickers = new GameObject[pivotCount][];
-		// Stickers[0] = GetAllStickerPrefabs(stickerInfo[movieNumber].FaceCenters);
 		GetAllStickerPrefabs(stickerInfo[movieNumber].FaceCenters, ref Stickers[0]);
 		print(Stickers[0].Length + " DVsfe");
 		for (int i = 0; i < faceTrackablePrefab.Length; i++) // maxcount
@@ -105,6 +103,14 @@ public class StickerController : MonoBehaviour
 			{
 				for (int k = 0; k < Stickers[j].Length; k++)
 				{
+					ReadWebcam.instance.GetMirrorValue(out int mirrorX, out int mirrorY);
+					if (Stickers[j][k].GetComponent<SpriteRenderer>() != null)
+					{
+						if(mirrorY == 1)
+						{
+							Stickers[j][k].GetComponent<SpriteRenderer>().flipX = true;
+						}
+					}
 					faceTrackablePrefab[i].SetPivot(Stickers[j][k], j, movieNumber);
 				}
 			}

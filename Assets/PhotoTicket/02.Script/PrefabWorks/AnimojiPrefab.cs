@@ -150,8 +150,6 @@ namespace Alchera
 			var Y = -1;
 			var Z = 1;
 			var W = -1;
-			mirrorX = 1;
-			mirrorY = -1;
 
 			pose.position = new Vector3(mirrorX * pose.position.x, mirrorY * pose.position.y, pose.position.z);
 			pose.rotation = new Quaternion(X * pose.rotation.x, Y * pose.rotation.y, Z * pose.rotation.z, W * pose.rotation.w);
@@ -161,8 +159,6 @@ namespace Alchera
 			var tY = -1;
 			var tZ = -1;
 			transform.localScale = new Vector3(tX, tY, tZ) * 0.55f;
-			//face.GetEyeRotation(out left, out right);
-			//SetEyeRotation(ref left, ref right);
 
 			float* weights = stackalloc float[FaceData.NumAnimationWeights];
 			face.GetAnimation(weights);

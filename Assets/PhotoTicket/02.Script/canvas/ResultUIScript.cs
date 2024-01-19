@@ -146,7 +146,6 @@ public class ResultUIScript : MonoBehaviour, UIScript
 
 	public void RetakePhoto()
 	{
-
 		// 버튼 효과음 출력
 		StartCoroutine(UtilsScript.playEffectAudio(buttonAudio));
 
