@@ -91,49 +91,56 @@ public class StickerController : MonoBehaviour
 
 	private void SetFaceSticker(int movieNumber)
 	{
-		Debug.Log("movie info = " + downManager.jsonData.movieInfo);
 		var stickerInfo = downManager.jsonData.movieInfo;
 		int pivotCount = 1;
 		GameObject[][] Stickers = new GameObject[pivotCount][];
 		GetAllStickerPrefabs(stickerInfo[movieNumber].FaceCenters, ref Stickers[0]);
-		print(Stickers[0].Length + " DVsfe");
-		for (int i = 0; i < faceTrackablePrefab.Length; i++) // maxcount
+		for (int i = 0; i < faceTrackablePrefab.Length; i++) 
 		{
-			for (int j = 0; j < pivotCount; j++) // pivot 이 늘어날 것을 고려하여 for문으로 대체
+			for (int j = 0; j < pivotCount; j++) 
 			{
 				for (int k = 0; k < Stickers[j].Length; k++)
 				{
 					ReadWebcam.instance.GetMirrorValue(out int mirrorX, out int mirrorY);
-					if (Stickers[j][k].GetComponent<SpriteRenderer>() != null)
+					if (Stickers[j][k] != null)
 					{
-						if(mirrorY == 1)
+						if (Stickers[j][k].GetComponent<SpriteRenderer>() != null)
 						{
-							Stickers[j][k].GetComponent<SpriteRenderer>().flipX = true;
+							if (mirrorY == 1)
+							{
+								Stickers[j][k].GetComponent<SpriteRenderer>().flipX = true; // 좌우반전 적용시
+							}
 						}
-					}
-					faceTrackablePrefab[i].SetPivot(Stickers[j][k], j, movieNumber);
+						faceTrackablePrefab[i].SetPivot(Stickers[j][k], j, movieNumber);
+					} 
 				}
 			}
 		}
 	}
 	private void SetHandSticker(int movieNumber)
 	{
-		//Movie Down Manager에서 스티커 정보 읽어옴
 		var stickerInfo = downManager.jsonData.movieInfo;
 		int pivotCount = 1;
-		GameObject[][] Stickers = new GameObject[pivotCount][]; // 현재는 pivot이 1개지만, 언제 늘어날 지 모르니 일단 2차원으로 보류
-									// Stickers[0] = GetAllStickerPrefabs(stickerInfo[movieNumber].HandCenters);
+		GameObject[][] Stickers = new GameObject[pivotCount][];
 		GetAllStickerPrefabs(stickerInfo[movieNumber].HandCenters, ref Stickers[0]);
-		for (int i = 0; i < handTrackablePrefab.Length; i++) // maxcount
+		for (int i = 0; i < handTrackablePrefab.Length; i++) 
 		{
-			var isLeft = i < handTrackablePrefab.Length / 2 ? 0 : 1;//0 0 0 0 1 1 1 1
-
-			for (int j = 0; j < pivotCount; j++) // pivot 이 늘어날 것을 고려하여 for문으로 대체
+			for (int j = 0; j < pivotCount; j++) 
 			{
-				//왼손일 때 j 012345, 오른손일때 67891011
-				for (int k = 0; k < Stickers[j].Length; k++)    //pivot 하나 당 할당된 스티커 갯수
+				for (int k = 0; k < Stickers[j].Length; k++)
 				{
-					handTrackablePrefab[i].SetPivot(Stickers[j][k], j, movieNumber);
+					ReadWebcam.instance.GetMirrorValue(out int mirrorX, out int mirrorY);
+					if (Stickers[j][k] != null)
+					{
+						if (Stickers[j][k].GetComponent<SpriteRenderer>() != null)
+						{
+							if (mirrorY == 1)
+							{
+								Stickers[j][k].GetComponent<SpriteRenderer>().flipX = true; // 좌우반전 적용시
+							}
+						}
+						handTrackablePrefab[i].SetPivot(Stickers[j][k], j, movieNumber);
+					} 
 				}
 			}
 		}
@@ -146,24 +153,28 @@ public class StickerController : MonoBehaviour
 		GetAllStickerPrefabs(foregroundInfo, ref Foregrounds);
 		for (int i = 0; i < Foregrounds.Length; i++)
 		{
-			var frame = Instantiate(Foregrounds[i], framePos);
-			try
+			if (Foregrounds[i] != null)
 			{
-				var rt = frame.AddComponent<RectTransform>();
-				rt.anchorMax = new Vector2(1, 1);
-				rt.anchorMin = new Vector2(0, 0);
-				rt.offsetMax = new Vector2(0, 0);
-				rt.offsetMin = new Vector2(0, 0);
-				rt.localScale = new Vector3(100f, 100f, 100f);
-				frame.GetComponent<SpriteRenderer>().sortingOrder = i + 10;
-			} finally
-			{
-				Debug.LogWarning("다른 형식의 프리팹입니다.");
-			}
+				var frame = Instantiate(Foregrounds[i], framePos);
 
-			frame.tag = "sticker";
-			frame.AddComponent<Text>();
-			frame.GetComponent<Text>().text = movieNumber.ToString();
+				try
+				{
+					var rt = frame.AddComponent<RectTransform>();
+					rt.anchorMax = new Vector2(1, 1);
+					rt.anchorMin = new Vector2(0, 0);
+					rt.offsetMax = new Vector2(0, 0);
+					rt.offsetMin = new Vector2(0, 0);
+					rt.localScale = new Vector3(100f, 100f, 100f);
+					frame.GetComponent<SpriteRenderer>().sortingOrder = i + 10;
+				} finally
+				{
+					Debug.LogWarning("다른 형식의 프리팹입니다.");
+				}
+
+				frame.tag = "sticker";
+				frame.AddComponent<Text>();
+				frame.GetComponent<Text>().text = movieNumber.ToString();
+			}
 		}
 	}
 

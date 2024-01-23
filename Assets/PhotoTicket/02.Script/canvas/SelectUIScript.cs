@@ -136,8 +136,6 @@ public class SelectUIScript : MonoBehaviour, UIScript
 			moviePosters[i].anchorMin = new Vector2(posterPosition * (2 * i + 3), 0);
 			moviePosters[i].anchorMax = new Vector2(posterPosition * (2 * i + 3), 1);
 			moviePosters[i].GetComponentsInChildren<Image>()[1].gameObject.SetActive(!isFree[i]);
-			// 유료 이미지 설정
-			// moviePosters[i].GetComponentsInChildren<RectTransform>()[2].gameObject.SetActive(!isFree[i]);
 			posterButtons[i] = moviePosters[i].GetComponent<Button>();
 		}
 
@@ -213,11 +211,7 @@ public class SelectUIScript : MonoBehaviour, UIScript
 		scrollIndex = 0;
 
 		posterButtons[0].interactable = true;
-		//for (int i = 1; i < posterButtons.Length; i++) {
-		//    posterButtons[i].interactable = false;
-		//}
 
-		// 테마 선택 안내 멘트 출력
 		StartCoroutine(UtilsScript.playAudio(audioKr, audioEn));
 	}
 
