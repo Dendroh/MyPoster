@@ -27,6 +27,7 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 	// 일반, 크로마키 촬영화면 설정 관련
 	[SerializeField] GameObject chromarkeyWebcam;
 	[SerializeField] GameObject normalWebcam;
+	[SerializeField] VideoPlayer videoPlayer;
 
 	[SerializeField] MovieDownManager downManager;
 	[SerializeField] GameObject thumbnailPrefab;
@@ -61,6 +62,7 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 	StickerController sticker;
 	ComplexSceneBehavior detector;
 	bool isPhotoUIInitialized = false;
+	bool bSetQuadRotate = false;
 	static bool doneSetPoster = false;
 	static bool doneLoading = false;
 	bool isPhotoCanvas = true;
@@ -125,6 +127,8 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 		upArrow.onClick.AddListener(() => {
 			StartCoroutine(SmoothScroll(movieScroll.value + 1.5f * (1f / (moviePosters.Length / 5f))));
 		});
+
+		bSetQuadRotate = false;
 	}
 
 	void Update()
@@ -286,13 +290,16 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 		GameObject backGroundQuad = GameObject.Find("BackGroundQuad");
 
 		MeshRenderer meshRenderer = backGroundQuad.GetComponent<MeshRenderer>();
+		meshRenderer.material.mainTexture = null;
 
 		string filePath = Path.Combine(Application.persistentDataPath, "Assetbundles", downManager.jsonData.movieInfo[movieNumber].chromakeyBackground);
 
 		if (File.Exists(filePath))
 		{
 			if (type == "0")
-			{  
+			{
+				videoPlayer.Stop();
+
 				byte[] fileData = File.ReadAllBytes(filePath);
 
 				Texture2D loadedTexture = new Texture2D(1080, 1440);
@@ -301,19 +308,15 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 
 				Sprite ccImage = centerCrop(loadedTexture, 1080, 1440);
 
-				meshRenderer.material.mainTexture = ccImage.texture;
+				meshRenderer.material.mainTexture = loadedTexture;
 
 				backGroundQuad.transform.localRotation = Quaternion.Euler(0f, 0f, -90f);
 
 				backGroundQuad.GetComponent<Renderer>().material.mainTextureScale = new Vector2(-1, 1);
 			} else
-			{    
-				VideoPlayer videoPlayer = backGroundQuad.GetComponent<VideoPlayer>();
-				if (videoPlayer == null)
-				{
-					videoPlayer = backGroundQuad.AddComponent<VideoPlayer>();
-					videoPlayer.isLooping = true;
-				}
+			{
+
+				videoPlayer.isLooping = true;
 
 				videoPlayer.url = filePath;
 
@@ -321,15 +324,19 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 
 				videoPlayer.SetDirectAudioVolume(0, 0);
 
-				backGroundQuad.GetComponent<Renderer>().material.mainTextureScale = new Vector2(-1, 1);
-
-				videoPlayer.targetCamera = null;
-				videoPlayer.targetTexture = RenderTexture.GetTemporary(1080, 1440);
-				videoPlayer.aspectRatio = VideoAspectRatio.Stretch;
-				videoPlayer.transform.rotation = Quaternion.Euler(0f, 0f, 0f); 
-				videoPlayer.transform.Rotate(0f, 0f, -180f); 
+				SetQuadRotate(backGroundQuad);
 				videoPlayer.Play();
 			}
+		}
+	}
+
+	public void SetQuadRotate(GameObject quad)
+	{
+		if(!bSetQuadRotate)
+		{
+			quad.transform.localRotation = Quaternion.Euler(0f, 0f, -90f);
+			quad.transform.localScale = new Vector3(-quad.transform.localScale.x, quad.transform.localScale.y, quad.transform.localScale.z);
+			bSetQuadRotate = true;
 		}
 	}
 

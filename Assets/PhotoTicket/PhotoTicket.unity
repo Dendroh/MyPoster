@@ -12735,6 +12735,7 @@ GameObject:
   - component: {fileID: 540640695}
   - component: {fileID: 540640694}
   - component: {fileID: 540640693}
+  - component: {fileID: 540640696}
   m_Layer: 0
   m_Name: BackGroundQuad
   m_TagString: Untagged
@@ -12815,6 +12816,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 540640691}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!328 &540640696
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540640691}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 0}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 0}
+  m_TargetTexture: {fileID: 0}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: _MainTex
+  m_RenderMode: 3
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 2
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
+  m_Url: 
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
+  m_PlayOnAwake: 1
+  m_SkipOnDrop: 1
+  m_Looping: 0
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
 --- !u!1 &541416276
 GameObject:
   m_ObjectHideFlags: 0
@@ -25155,8 +25190,6 @@ MonoBehaviour:
   isCameraFront: 0
   chromarkeyQuad: {fileID: 1964260727}
   normalQuad: {fileID: 1050174509}
-  mirrorX: 1
-  mirrorY: -1
   needCamera: 0
 --- !u!114 &1016391939
 MonoBehaviour:
@@ -34258,7 +34291,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000023077391}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 958, y: 1267}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1377007701
@@ -54879,6 +54912,7 @@ MonoBehaviour:
   DownLoadProgressLabel: {fileID: 1850844267}
   chromarkeyWebcam: {fileID: 1964260722}
   normalWebcam: {fileID: 1050174506}
+  videoPlayer: {fileID: 540640696}
   downManager: {fileID: 1687650755}
   thumbnailPrefab: {fileID: 1256758732240006, guid: 91d138861f1c64520820c33bc5dd8fc4,
     type: 3}
@@ -55443,7 +55477,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000056261964}
+  m_AnchoredPosition: {x: 0, y: 0.00005687131}
   m_SizeDelta: {x: 0, y: -400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7642381961803278557
