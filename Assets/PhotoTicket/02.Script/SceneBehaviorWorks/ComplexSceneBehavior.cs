@@ -156,11 +156,18 @@ namespace Alchera
 						{
 							isPhotoTaken = true;
 
-							if (recoder != null) // photo/1.jpg
+							if (recoder != null)
 							{
 								StartCoroutine(recoder.SavePhoto(jpgResult.GetComponent<RawImage>(), photoCount.ToString()));
 
 								await textureSaver.SaveTexture(texture, photoCount.ToString() + "_raw");
+
+								if (photoCount == 4)
+								{
+									StartCoroutine(recoder.SavePhoto(jpgResult.GetComponent<RawImage>(), "0"));
+
+									await textureSaver.SaveTexture(texture, "0_raw");
+								}
 							}
 						} else if (posingTimer < 0)   // GIF 저장
 						{
