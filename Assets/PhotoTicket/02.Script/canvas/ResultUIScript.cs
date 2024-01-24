@@ -27,6 +27,13 @@ public class ResultUIScript : MonoBehaviour, UIScript
 	{
 		StartCoroutine(StopCameraAfterSeconds(1));
 		StartCoroutine(DelayedPlayAudio(2));
+		if(ComplexSceneBehavior.photoCount < 3)
+		{
+			StartCoroutine(RetakePhotoAfterSeconds(1));
+		} else
+		{
+			ComplexSceneBehavior.photoCount = 0;
+		}
 	}
 
 	private IEnumerator DelayedPlayAudio(float delay)
@@ -39,6 +46,20 @@ public class ResultUIScript : MonoBehaviour, UIScript
 	{
 		yield return new WaitForSeconds(sec);
 		camReader.changeCameraState(false);
+	}
+
+	IEnumerator RetakePhotoAfterSeconds(float sec)
+	{
+		yield return new WaitForSeconds(sec);
+		photoProgressFinished = false;
+		if (isCameraConnected())
+		{
+			ComplexSceneBehavior.photoCount++;
+			FlowController.instance.ChangeFlow(FlowController.instance.photoCanvas);
+		} else
+		{
+			cameraErrorPopup.SetActive(true);
+		}
 	}
 
 	public void Dispose()
