@@ -46,7 +46,7 @@ namespace NatCorder {
 				//SaveFolder = Application.persistentDataPath;
             var recordingDirectory = "photo";
 #endif
-            var recordingName = "1.mp4";
+            var recordingName = "0.mp4";
 
             if (width % 2 == 1 || height % 2 == 1)
                 Debug.LogWarning("NatCorder Warning: Odd resolution might cause recording to fail");

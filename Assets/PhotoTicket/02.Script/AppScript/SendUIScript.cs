@@ -370,10 +370,10 @@ public class SendUIScript : MonoBehaviour, UIScript
 
 		if (Application.isEditor)
 		{
-			filepath = Application.dataPath + "/1.jpg";
+			filepath = Application.dataPath + "/0.jpg";
 		} else
 		{
-			filepath = Path.GetFullPath(".") + "/photo/1.jpg";
+			filepath = Path.GetFullPath(".") + "/photo/0.jpg";
 		}
 
 		AgentSendData sendData = new AgentSendData();
@@ -512,24 +512,24 @@ public class SendUIScript : MonoBehaviour, UIScript
 			Debug.Log("printCount:" + printCount);
 		}
 
-		string filepath1 = Application.dataPath + "/1.mp4";
-		string filepath2 = Application.dataPath + "/1.jpg";
+		string filepath1 = Application.dataPath + "/4.mp4";
+		string filepath2 = Application.dataPath + "/4.jpg";
 
 		if (Application.isEditor)
 		{
-			filepath1 = Application.dataPath + "/1.mp4";
-			filepath2 = Application.dataPath + "/1.jpg";
+			filepath1 = Application.dataPath + "/4.mp4";
+			filepath2 = Application.dataPath + "/4.jpg";
 		} else
 		{
-			filepath1 = Path.GetFullPath(".") + "/photo/1.mp4";
-			filepath2 = Path.GetFullPath(".") + "/photo/1.jpg";
+			filepath1 = Path.GetFullPath(".") + "/photo/4.mp4";
+			filepath2 = Path.GetFullPath(".") + "/photo/4.jpg";
 		}
 
 		byte[] img1 = File.ReadAllBytes(filepath1);
 		byte[] img2 = File.ReadAllBytes(filepath2);
 
-		formData.Add(new MultipartFormFileSection("mp4", img1, "1.mp4", "video/mp4"));
-		formData.Add(new MultipartFormFileSection("jpg", img2, "1.jpg", "image/jpg"));
+		formData.Add(new MultipartFormFileSection("mp4", img1, "4.mp4", "video/mp4"));
+		formData.Add(new MultipartFormFileSection("jpg", img2, "4.jpg", "image/jpg"));
 
 		// UnityWebRequest www = UnityWebRequest.Post(ConstantsScript.OPERATE_URL + "/file/upload/", formData);
 		UnityWebRequest www = UnityWebRequest.Post(ConstantsScript.OPERATE_URL + "/file/upload/", formData);

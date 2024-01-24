@@ -68,7 +68,7 @@ namespace Alchera
 		IClock clock;
 		Color32[] pixelBuffer;
 
-		public static int photoCount = 0;
+		public static int photoCount = 1;
 
 		void Awake()
 		{
@@ -168,7 +168,7 @@ namespace Alchera
 
 							isCapturing = false;
 
-							if(photoCount == 3)
+							if(photoCount == 4)
 							{
 								var frameCnt = 0;
 
@@ -205,7 +205,7 @@ namespace Alchera
 
 								if (recoder != null)
 								{
-									recoder.Save("1");
+									recoder.Save("0");
 
 									videoCoroutine = StartCoroutine(PlayVideo());
 								}
