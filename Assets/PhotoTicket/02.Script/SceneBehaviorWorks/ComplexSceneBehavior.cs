@@ -51,6 +51,11 @@ namespace Alchera
 		[SerializeField] AudioSource[] countAudioKr;
 		[SerializeField] AudioSource[] countAudioEn;
 
+		[SerializeField] int MaxCount;
+
+		public static int photoCount = 1;
+		public static int photoCountMax = 4;
+
 		Moments.Recorder recoder; //화면 녹화용 레코더
 		SaveLastTexture textureSaver;
 		PhotoUIScript photoCanvas;
@@ -86,6 +91,8 @@ namespace Alchera
 
 		public async void Start()  //detect 로직 수행 중 
 		{
+			photoCountMax = MaxCount;
+
 			Debug.Log("ComplexSceneBehavior Start");
 
 			recoder = this.GetComponent<Moments.Recorder>();
@@ -150,14 +157,22 @@ namespace Alchera
 							}
 						}
 
-						if (posingTimer < 0.1f && isPhotoTaken == false)    //이미지 저장. 한번만 동작한다.
+						if (posingTimer < 0.1f && isPhotoTaken == false)    //이미지 저장. 여러번 동작한다.
 						{
 							isPhotoTaken = true;
 
-							if (recoder != null) // photo/1.jpg
+							if (recoder != null)
 							{
-								StartCoroutine(recoder.SavePhoto(jpgResult.GetComponent<RawImage>(), "1"));
-								await textureSaver.SaveTexture(texture, "1_raw");
+								StartCoroutine(recoder.SavePhoto(jpgResult.GetComponent<RawImage>(), photoCount.ToString()));
+
+								await textureSaver.SaveTexture(texture, photoCount.ToString() + "_raw");
+
+								if (photoCount == photoCountMax)
+								{
+									StartCoroutine(recoder.SavePhoto(jpgResult.GetComponent<RawImage>(), "0"));
+
+									await textureSaver.SaveTexture(texture, "0_raw");
+								}
 							}
 						} else if (posingTimer < 0)   // GIF 저장
 						{
@@ -165,46 +180,47 @@ namespace Alchera
 
 							isCapturing = false;
 
-							var frameCnt = 0;
-
-							Queue<Texture2D> mp4Frames = recoder.m_Frames;
-
-							foreach (Texture2D m_FramesTexture2D in mp4Frames)
+							if(photoCount == photoCountMax)
 							{
-								if (!isInitMP4Recorder)
-								{
-									isInitMP4Recorder = true;
-									clock = new RealtimeClock();
+								var frameCnt = 0;
 
-									videoRecorder = new MP4Recorder(
-									    m_FramesTexture2D.width,
-									    m_FramesTexture2D.height,
-									    20,
-									    0,
-									    0,
-									    recordingPath =>
-									    {
-										    Debug.Log($"Saved recording to: {recordingPath}");
-									    }
-									);
+								Queue<Texture2D> mp4Frames = recoder.m_Frames;
+
+								foreach (Texture2D m_FramesTexture2D in mp4Frames)
+								{
+									if (!isInitMP4Recorder)
+									{
+										isInitMP4Recorder = true;
+										clock = new RealtimeClock();
+
+										videoRecorder = new MP4Recorder(
+										    m_FramesTexture2D.width,
+										    m_FramesTexture2D.height,
+										    20,
+										    0,
+										    0,
+										    recordingPath =>
+										    {
+											    Debug.Log($"Saved recording to: {recordingPath}");
+										    }
+										);
+									}
+
+									pixelBuffer = m_FramesTexture2D.GetPixels32();
+									videoRecorder?.CommitFrame(pixelBuffer, clock.Timestamp + (50000000L * frameCnt));
+
+									frameCnt++;
 								}
 
-								pixelBuffer = m_FramesTexture2D.GetPixels32();
-								videoRecorder?.CommitFrame(pixelBuffer, clock.Timestamp + (50000000L * frameCnt));
+								videoRecorder.Dispose();
+								videoRecorder = null;
 
-								frameCnt++;
-							}
+								if (recoder != null)
+								{
+									recoder.Save("0");
 
-							videoRecorder.Dispose();
-							videoRecorder = null;
-
-							if (recoder != null)
-							{
-								// /photo/1.gif
-								recoder.Save("1");
-
-								//photo is saved in Save function   
-								videoCoroutine = StartCoroutine(PlayVideo());
+									videoCoroutine = StartCoroutine(PlayVideo());
+								}
 							}
 
 							ResultUIScript.photoProgressFinished = true;
@@ -222,9 +238,7 @@ namespace Alchera
 
 						if(isCapturing == true & isDetected == false)
 						{
-							posingTimer = posingWatingTime; //촬영 중 인식 실패 시 타이머 초기화
-														//Recorder가 Save호출하기 이전 최근의 Record Time 길이의
-														//영상 저장하므로 수동 flush는 불필요
+							posingTimer = posingWatingTime; //촬영 전 인식 실패 시 타이머 초기화
 						}
 					}
 
