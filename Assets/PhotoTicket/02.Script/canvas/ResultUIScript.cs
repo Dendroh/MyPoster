@@ -27,7 +27,7 @@ public class ResultUIScript : MonoBehaviour, UIScript
 	{
 		StartCoroutine(StopCameraAfterSeconds(1));
 		StartCoroutine(DelayedPlayAudio(2));
-		if(ComplexSceneBehavior.photoCount < 4)
+		if(ComplexSceneBehavior.photoCount < ComplexSceneBehavior.photoCountMax)
 		{
 			StartCoroutine(RetakePhotoAfterSeconds(1));
 		} else

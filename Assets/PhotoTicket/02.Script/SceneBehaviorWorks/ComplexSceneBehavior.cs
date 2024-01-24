@@ -51,6 +51,11 @@ namespace Alchera
 		[SerializeField] AudioSource[] countAudioKr;
 		[SerializeField] AudioSource[] countAudioEn;
 
+		[SerializeField] int MaxCount;
+
+		public static int photoCount = 1;
+		public static int photoCountMax = 4;
+
 		Moments.Recorder recoder; //화면 녹화용 레코더
 		SaveLastTexture textureSaver;
 		PhotoUIScript photoCanvas;
@@ -67,8 +72,6 @@ namespace Alchera
 		MP4Recorder videoRecorder;
 		IClock clock;
 		Color32[] pixelBuffer;
-
-		public static int photoCount = 1;
 
 		void Awake()
 		{
@@ -88,6 +91,8 @@ namespace Alchera
 
 		public async void Start()  //detect 로직 수행 중 
 		{
+			photoCountMax = MaxCount;
+
 			Debug.Log("ComplexSceneBehavior Start");
 
 			recoder = this.GetComponent<Moments.Recorder>();
@@ -162,7 +167,7 @@ namespace Alchera
 
 								await textureSaver.SaveTexture(texture, photoCount.ToString() + "_raw");
 
-								if (photoCount == 4)
+								if (photoCount == photoCountMax)
 								{
 									StartCoroutine(recoder.SavePhoto(jpgResult.GetComponent<RawImage>(), "0"));
 
@@ -175,7 +180,7 @@ namespace Alchera
 
 							isCapturing = false;
 
-							if(photoCount == 4)
+							if(photoCount == photoCountMax)
 							{
 								var frameCnt = 0;
 
