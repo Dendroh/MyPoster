@@ -95,6 +95,7 @@ namespace Alchera
 		}
 		void SetQuadMirror()
 		{
+			if (ReadWebcam.instance == null) return;
 			ReadWebcam.instance.GetMirrorValue(out int mirrorX, out int mirrorY);
 			transform.localScale = new Vector3(mirrorX * transform.localScale.x, mirrorY * transform.localScale.y, 1);
 		}
