@@ -198,7 +198,6 @@ public class SelectUIScript : MonoBehaviour, UIScript
 	{
 		if (PlayerPrefs.GetString("pay_mode").Equals("t") || PlayerPrefs.GetString("pay_mode").Equals("r"))
 		{
-			FlowController.instance.Loading(true);
 			bPhotoable = false;
 			checkPrint();
 		}
@@ -293,7 +292,6 @@ public class SelectUIScript : MonoBehaviour, UIScript
 						if (canvas.Equals("select"))
 						{
 							bPhotoable = true;
-							FlowController.instance.Loading(false);
 						} else if (canvas.Equals("send"))
 						{
 							sendUIScript.SuccessCheckPrint();
@@ -366,7 +364,6 @@ public class SelectUIScript : MonoBehaviour, UIScript
 				} else if (canvas.Equals("agreement"))
 				{    // 약관 동의 화면인 경우
 				     // UI 재구성
-					FlowController.instance.Loading(false);
 					agreementUIScript.SetLoadingProgress(false);
 					agreementUIScript.SetLoadingGuide(3);
 				}

@@ -30,8 +30,6 @@ public class QuizUIScript : MonoBehaviour, UIScript
     RectTransform[][] answerListByQuiz;
     ReadWebcamInSequence camReader;
 
-    string id;
-    string name;
     int categoryHeight = 369;
     int categorySpace = 76;
     int quizContentsSpace = 78;

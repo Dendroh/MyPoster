@@ -29,8 +29,6 @@ public class QuizResultUIScript : MonoBehaviour, UIScript
 
 	ReadWebcamInSequence camReader;
 
-	string id;
-	string name;
 	float timer = 6f;
 	bool isOnTimer = false;
 	bool result;

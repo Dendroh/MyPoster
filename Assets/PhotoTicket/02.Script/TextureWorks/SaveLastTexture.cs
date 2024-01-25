@@ -92,7 +92,7 @@ namespace Alchera
             // this might be heavy for foreground thread, 
             //   but WebCamTexture require this
             var target = Texture2D.blackTexture;
-            target.Resize(webcam.width, webcam.height);
+            target.Reinitialize(webcam.width, webcam.height);
             target.SetPixels32(webcam.GetPixels32());
 
             // To provide responsive experience, 
