@@ -505,10 +505,7 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 
 	public void GoToIntro()
 	{
-		if (UtilsScript.checkConfig() != "")
-		{
-			buttonAudio.Play();    // 버튼 효과음 출력
-		}
-		FlowController.instance.ChangeFlow(FlowController.instance.selectCanvas);
+		StartCoroutine(UtilsScript.playEffectAudio(buttonAudio));
+		FlowController.instance.ChangeFlow(FlowController.instance.introCanvas);
 	}
 }

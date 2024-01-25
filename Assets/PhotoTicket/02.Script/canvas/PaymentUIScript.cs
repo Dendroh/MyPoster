@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
-using SVGImporter;
 using UnityEngine.UI;
 using System;
 using System.Net;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
+using Unity.VectorGraphics;
 
 public class PaymentUIScript : MonoBehaviour, UIScript
 {
@@ -15,8 +15,8 @@ public class PaymentUIScript : MonoBehaviour, UIScript
 	[SerializeField] Text resultText;
 	[SerializeField] Scrollbar productScroll;
 	[SerializeField] Transform content;
-	[SerializeField] SVGAsset Check;//it will be used soon..
-	[SerializeField] SVGAsset unCheck;
+	[SerializeField] SVGImage check;
+	[SerializeField] SVGImage unCheck;
 	[SerializeField] Image payGuide;
 	[SerializeField] Image loadingGuide;
 	[SerializeField] GameObject confirmPopup;
@@ -46,7 +46,7 @@ public class PaymentUIScript : MonoBehaviour, UIScript
 	int PaymentType = 0;
 
 	static int price = 0;
-	string name;
+	string payment_name;
 	public static bool bChooseProduct = false;
 	public static bool bChoose = false;
 
@@ -195,7 +195,7 @@ public class PaymentUIScript : MonoBehaviour, UIScript
 
 	public void clickProduct(int i, int count)
 	{
-		name = productList[i].transform.Find("Text").GetComponent<Text>().text.ToString();
+		payment_name = productList[i].transform.Find("Text").GetComponent<Text>().text.ToString();
 		price = Convert.ToInt32(Regex.Replace(productList[i].transform.Find("Price").GetComponent<Text>().text.ToString(), @"[^0-9]", ""));
 
 		for (int j = 0; j < productList.Length; j++)
@@ -206,7 +206,7 @@ public class PaymentUIScript : MonoBehaviour, UIScript
 		// 체크 이미지 설정
 		checkList[i].gameObject.SetActive(true);
 
-		PlayerPrefs.SetString("name", name);
+		PlayerPrefs.SetString("name", payment_name);
 		PlayerPrefs.SetString("price", price.ToString());
 		PlayerPrefs.SetString("count", count.ToString());
 

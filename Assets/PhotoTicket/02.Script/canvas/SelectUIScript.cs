@@ -196,8 +196,6 @@ public class SelectUIScript : MonoBehaviour, UIScript
 
 	public void Init()
 	{
-		print("IntroSelect");
-		// 출력 모드일 경우 프린터 상태 체크
 		if (PlayerPrefs.GetString("pay_mode").Equals("t") || PlayerPrefs.GetString("pay_mode").Equals("r"))
 		{
 			bPhotoable = false;
@@ -205,21 +203,18 @@ public class SelectUIScript : MonoBehaviour, UIScript
 		}
 
 		FlowController.instance.currentMovieNumber = -1;
-		FlowController.instance.Loading(false);
 		isSelectCanvas = true;
 		movieScroll.value = thumbnailValues[0]; //movie 1으로 초기화
 		scrollIndex = 0;
 
-		posterButtons[0].interactable = true;
-
 		StartCoroutine(UtilsScript.playAudio(audioKr, audioEn));
+		posterButtons[0].interactable = true;
 	}
 
 	public void checkPrint()
 	{
 		if (_netClient.status == true)
-		{    // 정상 연결
-		     //큐 탐색 시작
+		{
 			StartCoroutine(CheckQueue());
 
 			sendType = "check_print";
@@ -237,7 +232,7 @@ public class SelectUIScript : MonoBehaviour, UIScript
 		{  // 재연결 시도중
 			reconnectPopup.SetActive(true);
 		} else if (_netClient.status == false && _netClient.isRetry == false)
-		{ // 재연결 실패
+		{  // 재연결 실패
 			netClientErrorCanvas.SetActive(true);
 			isReconnectPopup.SetActive(false);
 			failReconnectPopup.SetActive(true);
@@ -269,7 +264,7 @@ public class SelectUIScript : MonoBehaviour, UIScript
 				{  // 프린터 체크 데이터가 있는 경우
 				   // 스크립트 별 동작 구성
 					if (printStatus.Equals("disable"))
-					{    // 프린터 상태 에러
+					{     // 프린터 상태 에러
 						if (canvas.Equals("select"))
 						{
 							failCheckPrint();
@@ -284,7 +279,7 @@ public class SelectUIScript : MonoBehaviour, UIScript
 							endUIScript.FailCheckPrint();
 						}
 					} else if (printStatus.Equals("proceed"))
-					{ // 진행중
+					{     // 진행중
 						if (canvas.Equals("end"))
 						{
 							endUIScript.PrintInProgress();
@@ -293,7 +288,7 @@ public class SelectUIScript : MonoBehaviour, UIScript
 							PrintInProgress();
 						}
 					} else
-					{    // 정상
+					{     // 정상
 						if (canvas.Equals("select"))
 						{
 							bPhotoable = true;
@@ -317,7 +312,7 @@ public class SelectUIScript : MonoBehaviour, UIScript
 				{  // 결제데이터가 있는 경우
 				   // 스크립트 별 동작 구성
 					if (paymentProcess)
-					{   // 성공, 진행중
+					{     // 성공, 진행중
 						if (canvas.Equals("payment"))
 						{
 							paymentUIScript.Success();
@@ -326,7 +321,7 @@ public class SelectUIScript : MonoBehaviour, UIScript
 							agreementUIScript.SuccessCancel();
 						}
 					} else
-					{    // 실패
+					{     // 실패
 						if (canvas.Equals("payment"))
 						{
 							paymentUIScript.Fail();
@@ -345,14 +340,12 @@ public class SelectUIScript : MonoBehaviour, UIScript
 				if (canvas.Equals("payment"))
 				{ // 결제 화면인 경우
 				  // UI 재구성
-					FlowController.instance.Loading(false);
 					paymentUIScript.SetLoadingProgress(false);
 					paymentUIScript.SetPayGuide(0);
 					paymentUIScript.SetLoadingGuide(4);
 				} else if (canvas.Equals("agreement"))
 				{
 					// UI 재구성
-					FlowController.instance.Loading(false);
 					agreementUIScript.SetLoadingProgress(false);
 					agreementUIScript.SetLoadingGuide(3);
 				}
@@ -365,14 +358,12 @@ public class SelectUIScript : MonoBehaviour, UIScript
 				if (canvas.Equals("payment"))
 				{ // 결제 화면인 경우
 				  // UI 재구성
-					FlowController.instance.Loading(false);
 					paymentUIScript.SetLoadingProgress(false);
 					paymentUIScript.SetPayGuide(0);
 					paymentUIScript.SetLoadingGuide(4);
 				} else if (canvas.Equals("agreement"))
 				{    // 약관 동의 화면인 경우
 				     // UI 재구성
-					FlowController.instance.Loading(false);
 					agreementUIScript.SetLoadingProgress(false);
 					agreementUIScript.SetLoadingGuide(3);
 				}
@@ -491,6 +482,14 @@ public class SelectUIScript : MonoBehaviour, UIScript
 	{
 		WebCamDevice[] devices = WebCamTexture.devices;
 		return devices.Length > 0;
+	}
+
+	// 프린트 에러 버튼 클릭 이벤트 (참조가 없지만 버튼에 연결되어 있음)
+	public void cancelPopup (GameObject popup)
+	{
+		StartCoroutine(UtilsScript.playEffectAudio(buttonAudio));
+		popup.SetActive(false);
+		FlowController.instance.ChangeFlow(FlowController.instance.introCanvas);
 	}
 }
 

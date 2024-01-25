@@ -142,7 +142,7 @@ namespace Alchera
 					}
 					handTranslator.Dispose();
 
-					if (detectCount > 0 || isDetected == true)    //1개라도 인식하면 진행
+					if (true)    //1개라도 인식하면 진행
 					{
 						isDetected = true;
 						FlowController.instance.timer = 0; //처음 화면으로 되돌아가지 않음
