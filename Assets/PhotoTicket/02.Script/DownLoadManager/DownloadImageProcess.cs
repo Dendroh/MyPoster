@@ -48,6 +48,7 @@ public class DownloadImageProcess : MonoBehaviour
 			// using이 종료 후 파일 접근 권한 해제
 		} catch (Exception e)
 		{ // 오류가 발생한 경우 오류 화면 전환
+			Debug.LogWarning(e.ToString());
 			FlowController.instance.ChangeFlow(FlowController.instance.networkCheckCanvas);
 		}
 	}
@@ -76,6 +77,7 @@ public class DownloadImageProcess : MonoBehaviour
 			// using이 종료 후 파일 접근 권한 해제
 		} catch (Exception e)
 		{ // 오류가 발생한 경우 오류 화면 전환
+			Debug.LogWarning(e.ToString());
 			FlowController.instance.ChangeFlow(FlowController.instance.networkCheckCanvas);
 		}
 	}

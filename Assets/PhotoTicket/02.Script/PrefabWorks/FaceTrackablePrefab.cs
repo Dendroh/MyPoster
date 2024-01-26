@@ -140,6 +140,7 @@ namespace Alchera
 			if (animator != null)
 				motionDetector.AddAnimator(prefab.GetComponent<Animator>(), (int)animator.motionType);
 		}
+
 		/**
 		FaceData를 이용하여 xyz축을 그리고 pivot의 transform 을 조절합니다.
 		@param  face facedata 데이터값 

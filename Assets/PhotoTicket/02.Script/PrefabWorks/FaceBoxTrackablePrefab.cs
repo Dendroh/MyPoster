@@ -7,9 +7,7 @@ namespace Alchera
     {
         Transform DebugDrawingAnchor;
         Transform[] debugPrefabs;
-        //Vector3[] initScale;
 
-        int debugCounter = 0;
         void Start()
         {
             DebugDrawingAnchor = transform.GetChild(0);

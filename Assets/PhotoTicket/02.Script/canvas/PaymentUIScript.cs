@@ -61,7 +61,7 @@ public class PaymentUIScript : MonoBehaviour, UIScript
 	private string _paymentDate = "";   // 결제 취소 용 날짜
 	private string _price = "";
 
-	private string reqPayment = "{\"Command\":\"payment\",\"Amount\": {0}\"}";
+	//private string reqPayment = "{\"Command\":\"payment\",\"Amount\": {0}\"}";
 
 	void Start()
 	{

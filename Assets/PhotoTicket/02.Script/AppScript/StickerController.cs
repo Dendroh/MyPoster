@@ -22,7 +22,6 @@ public class StickerController : MonoBehaviour
 	HandMotionDetector[] handMotionDetectors;
 
 	List<int> isGuideNeed = new List<int>();
-	float guideDelayTimer = 2.3f;
 	float delayTime;
 
 	void Start()
@@ -166,9 +165,10 @@ public class StickerController : MonoBehaviour
 					rt.offsetMin = new Vector2(0, 0);
 					rt.localScale = new Vector3(100f, 100f, 100f);
 					frame.GetComponent<SpriteRenderer>().sortingOrder = i + 10;
-				} finally
+				} 
+				catch (Exception e)
 				{
-					Debug.LogWarning("다른 형식의 프리팹입니다.");
+					Debug.Log(e);
 				}
 
 				frame.tag = "sticker";

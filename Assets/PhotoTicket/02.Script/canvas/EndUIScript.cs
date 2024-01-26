@@ -36,7 +36,6 @@ public class EndUIScript : MonoBehaviour, UIScript
 	[SerializeField] SelectUIScript selectUIScript;
 
 	int printCount = 0;
-	private string sendType = "";
 
 	void Start()
 	{
@@ -215,9 +214,6 @@ public class EndUIScript : MonoBehaviour, UIScript
 
 		// QR 코드 Url 초기화
 		PlayerPrefs.SetString("down_url", "");
-
-		// 서버 전송 타입 초기화
-		sendType = "";
 
 		FlowController.instance.ChangeFlow(FlowController.instance.introCanvas);
 	}

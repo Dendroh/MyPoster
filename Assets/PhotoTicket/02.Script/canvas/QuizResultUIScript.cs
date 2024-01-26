@@ -32,11 +32,7 @@ public class QuizResultUIScript : MonoBehaviour, UIScript
 	float timer = 6f;
 	bool isOnTimer = false;
 	bool result;
-	static int count;
-	static int quizCount;
 	int resultImageSpace = 50;
-	// string operateUrl = "http://192.168.1.22";
-	string operateUrl = "http://myposter.kr";
 
 	void Start()
 	{
@@ -190,40 +186,6 @@ public class QuizResultUIScript : MonoBehaviour, UIScript
 		yield break;
 	}
 
-	///**
-	// * 퀴즈 종료하기
-	// */
-	//public void endQuiz() {
-	//    // 버튼 효과음 출력
-	//    StartCoroutine(playEffectAudio(buttonAudio));
-
-	//    // 사이트별 설정 동작 수행
-	//    string buttonType = PlayerPrefs.GetString("done_button_type");
-	//    if (buttonType.Equals(ConstantsScript.URL)) {
-	//        string url = PlayerPrefs.GetString("done_url");
-	//        // http or https 프로토콜 없을 시 추가
-	//        if (!url.StartsWith("http://") && !url.StartsWith("https://")) {
-	//            url = "http://" + url;
-	//        }
-
-	//        if (validUrl(url)) {    // 유효성 검사 통과
-	//            Application.OpenURL(url);
-	//        }
-	//    } else {
-	//        // FlowController.instance.ChangeFlow(FlowController.instance.quizSendCanvas);
-	//    }
-	//}
-
-	///**
-	// * URL 유효성 검사 - 검토 필요
-	// * @param url
-	// * @return boolean
-	// */
-	//public static bool validUrl(string url) {
-	//    Uri uriResult;
-	//    return Uri.TryCreate(url, UriKind.Absolute, out uriResult) && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
-	//}
-
 	/**
 	 * 게임 오브젝트 종료
 	 * @param gameObject
@@ -304,7 +266,7 @@ public class QuizResultUIScript : MonoBehaviour, UIScript
 	{
 		UnityWebRequest request = UnityWebRequest.Get(url);
 		yield return request.SendWebRequest();
-		if (request.isNetworkError || request.isHttpError)
+		if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
 		{
 			Debug.LogError("Failed to load web page: " + request.error);
 		} else

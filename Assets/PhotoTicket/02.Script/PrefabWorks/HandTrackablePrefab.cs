@@ -19,7 +19,6 @@ namespace Alchera
 		TextMesh tm;
 		//Vector3[] initScale;
 		AutoBackgroundQuad quad;
-		int debugCounter = 0;
 		float handPosZ = -300;
 		void Start()
 		{

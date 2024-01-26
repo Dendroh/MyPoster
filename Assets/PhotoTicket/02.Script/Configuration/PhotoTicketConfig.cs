@@ -75,19 +75,19 @@ public class PhotoTicketConfig : MonoBehaviour
 		    param1 = s;
 		});
 		*/
-		param2input.onValueChange.AddListener((s) =>
+		param2input.onValueChanged.AddListener((s) =>
 		{
 			param2 = s;
 		});
-		param3input.onValueChange.AddListener((s) =>
+		param3input.onValueChanged.AddListener((s) =>
 		{
 			param3 = s;
 		});
-		param4input.onValueChange.AddListener((s) =>
+		param4input.onValueChanged.AddListener((s) =>
 		{
 			param4 = s;
 		});
-		param5input.onValueChange.AddListener((s) =>
+		param5input.onValueChanged.AddListener((s) =>
 		{
 			param5 = s;
 		});

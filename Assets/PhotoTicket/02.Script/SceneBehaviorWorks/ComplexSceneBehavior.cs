@@ -142,7 +142,7 @@ namespace Alchera
 					}
 					handTranslator.Dispose();
 
-					if (true)    //1개라도 인식하면 진행
+					if (detectCount > 0 || isDetected == true)    //1개라도 인식하면 진행
 					{
 						isDetected = true;
 						FlowController.instance.timer = 0; //처음 화면으로 되돌아가지 않음
@@ -323,10 +323,6 @@ namespace Alchera
 
 		void OnDestroy()
 		{
-			// ensure disposal
-			//sequence.Dispose();
-			//handService.Dispose();
-
 			Debug.LogWarning("ComplexSceneBehavior");
 		}
 
