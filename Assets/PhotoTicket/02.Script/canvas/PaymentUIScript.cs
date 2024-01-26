@@ -101,7 +101,7 @@ public class PaymentUIScript : MonoBehaviour, UIScript
 		JArray array = new JArray();
 
 		string paymode = PlayerPrefs.GetString("pay_mode");
-		if (paymode.Equals("r"))
+		if (paymode.Equals("r") || paymode.Equals("p"))
 		{
 			array = JArray.Parse(obj["list"].ToString());   // 결제모드 r인 경우에만 상품 목록 사용
 		} else
@@ -121,7 +121,7 @@ public class PaymentUIScript : MonoBehaviour, UIScript
 			productList[i].GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
 			productList[i].GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1);
 
-			if (paymode.Equals("r"))
+			if (paymode.Equals("r") || paymode.Equals("p"))
 			{
 				productList[i].GetComponent<ProductController>().count = (int)array[i]["count"];
 				productList[i].Find("Text").GetComponent<Text>().text = array[i]["name"].ToString();
