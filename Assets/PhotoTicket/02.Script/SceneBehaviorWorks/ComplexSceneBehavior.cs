@@ -251,8 +251,6 @@ namespace Alchera
 				sequence.Dispose();
 				faceService.Dispose();
 				handService.Dispose();
-
-				// For now, there is NO way to recover for this kind of exception ...
 			} catch (Exception e)
 			{
 				Debug.LogError(e.ToString());

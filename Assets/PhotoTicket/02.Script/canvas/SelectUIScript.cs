@@ -29,7 +29,6 @@ public class SelectUIScript : MonoBehaviour, UIScript
 	bool bPhotoable = true; // 촬영 가능 여부
 	RectTransform[] moviePosters;
 	public string filePath; // 가져올 파일 경로
-	private Texture2D loadedTexture; // 가져온 파일을 저장할 Texture2D
 	bool[] isFree;
 	bool isSelectUIInitialized = false;
 	bool isSelectCanvas = false;
