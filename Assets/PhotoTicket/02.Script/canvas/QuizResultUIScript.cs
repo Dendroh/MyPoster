@@ -208,12 +208,12 @@ public class QuizResultUIScript : MonoBehaviour, UIScript
 
 		for (int i = 0; i < filePathList.Count(); i++)
 		{
-			using (WWW www = new WWW(filePathList[i]))
+			using (UnityWebRequest unityWebRequest = UnityWebRequestTexture.GetTexture(filePathList[i]))
 			{    // 서버로부터 이미지 정보 가져오기
-				yield return www;
-				if (string.IsNullOrEmpty(www.error))
+				yield return unityWebRequest.SendWebRequest();
+				if (unityWebRequest.result != UnityWebRequest.Result.ConnectionError)
 				{  // 성공
-					Texture2D texture = www.texture;
+					Texture2D texture = DownloadHandlerTexture.GetContent(unityWebRequest);
 
 					float cropWidth;
 					float cropHeight;
@@ -256,7 +256,7 @@ public class QuizResultUIScript : MonoBehaviour, UIScript
 					image.rectTransform.sizeDelta = new Vector2(cropWidth, cropHeight);
 				} else
 				{
-					Debug.LogError("Failed to load image from server: " + www.error);
+					Debug.LogError("Failed to load image from server: " + unityWebRequest.error);
 				}
 			}
 		}

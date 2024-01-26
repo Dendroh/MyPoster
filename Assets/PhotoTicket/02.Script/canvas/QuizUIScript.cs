@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 using System.Linq;
 using System;
 using Alchera;
+using UnityEngine.Networking;
 
 public class QuizUIScript : MonoBehaviour, UIScript
 {
@@ -551,12 +552,12 @@ public class QuizUIScript : MonoBehaviour, UIScript
 
 		for (int i = 0; i < filePathList.Count(); i++)
 		{
-			using (WWW www = new WWW(filePathList[i]))
+			using (UnityWebRequest unityWebRequest = UnityWebRequestTexture.GetTexture(filePathList[i]))
 			{    // 서버로부터 이미지 정보 가져오기
-				yield return www;
-				if (string.IsNullOrEmpty(www.error))
+				yield return unityWebRequest.SendWebRequest();
+				if (unityWebRequest.result != UnityWebRequest.Result.ConnectionError)
 				{  // 성공
-					Texture2D texture = www.texture;
+					Texture2D texture = DownloadHandlerTexture.GetContent(unityWebRequest);
 
 					float cropWidth;
 					float cropHeight;
@@ -597,7 +598,7 @@ public class QuizUIScript : MonoBehaviour, UIScript
 					image.sprite = sprite;
 				} else
 				{
-					Debug.LogError("Failed to load image from server: " + www.error);
+					Debug.LogError("Failed to load image from server: " + unityWebRequest.error);
 				}
 			}
 		}
