@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.IO;
+using System;
 
 
 public class IMG2Sprite : MonoBehaviour
@@ -37,16 +38,27 @@ public class IMG2Sprite : MonoBehaviour
 
 	public Texture2D LoadTexture(string FilePath)
 	{
-		Texture2D Tex2D;
+		Texture2D Tex2D = null;
 		byte[] FileData;
 
-		if (File.Exists(FilePath))
+		try
 		{
-			FileData = File.ReadAllBytes(FilePath);
-			Tex2D = new Texture2D(2, 2);           // Create new "empty" texture
-			if (Tex2D.LoadImage(FileData))           // Load the imagedata into the texture (size is set automatically)
-				return Tex2D;                 // If data = readable -> return texture
+			if (File.Exists(FilePath))
+			{
+				FileData = File.ReadAllBytes(FilePath);
+				Tex2D = new Texture2D(2, 2);           // Create new "empty" texture
+				if (!Tex2D.LoadImage(FileData))           // Load the imagedata into the texture (size is set automatically)
+					return null;                 // If data = readable -> return texture
+			} else
+			{
+				return null; // Return null if load failed
+			}                  
+		} catch (Exception e)
+		{
+			Debug.LogError("텍스처 로딩 중 예외발생");
+			return null;
 		}
-		return null;                     // Return null if load failed
+
+		return Tex2D;
 	}
 }

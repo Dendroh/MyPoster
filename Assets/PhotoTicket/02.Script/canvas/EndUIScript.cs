@@ -97,12 +97,6 @@ public class EndUIScript : MonoBehaviour, UIScript
 			receiveMessage.SetActive(false);
 			contactMessage.SetActive(false);
 
-			// UI 재구성
-			RectTransform guideRect = guide.GetComponent<RectTransform>();
-			RectTransform qrCodeRect = qrCode.GetComponent<RectTransform>();
-
-			guideRect.anchoredPosition = new Vector2(guideRect.anchoredPosition.x, guideRect.anchoredPosition.y + 70);
-			qrCodeRect.anchoredPosition = new Vector2(qrCodeRect.anchoredPosition.x, qrCodeRect.anchoredPosition.y - 70);
 
 			StartCoroutine(UtilsScript.playAudio(rePrintAudioKr, rePrintAudioEn));
 		} else
@@ -121,19 +115,7 @@ public class EndUIScript : MonoBehaviour, UIScript
 		StartCoroutine(UtilsScript.stopAudio(rePrintAudioKr));
 		StartCoroutine(UtilsScript.stopAudio(rePrintAudioEn));
 
-		// UI 재구성
-		if (PlayerPrefs.GetString("pay_mode").Equals("t") && PlayerPrefs.GetString("rePrint").Equals("true"))
-		{
-			rePrintText.text = "";
-
-			RectTransform guideRect = guide.GetComponent<RectTransform>();
-			RectTransform qrCodeRect = qrCode.GetComponent<RectTransform>();
-
-			guideRect.anchoredPosition = new Vector2(guideRect.anchoredPosition.x, guideRect.anchoredPosition.y - 70);
-			qrCodeRect.anchoredPosition = new Vector2(qrCodeRect.anchoredPosition.x, qrCodeRect.anchoredPosition.y + 70);
-		}
-
-		print("DisposeEnd");
+		rePrintText.text = "";
 	}
 
 	public void RePrintPoster()

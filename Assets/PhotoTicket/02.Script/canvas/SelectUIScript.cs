@@ -386,7 +386,7 @@ public class SelectUIScript : MonoBehaviour, UIScript
 		if (sendType.Equals("check_print"))
 		{   // 프린터 상태 체크
 			checkPrintResult = printResponse.Result;
-			if (checkPrintResult.Equals("1"))
+			if (checkPrintResult.Equals("0") || checkPrintResult.Equals("1"))
 			{ // 사용 가능
 				printStatus = "able";
 			} else if (checkPrintResult.Equals("2"))

@@ -15,8 +15,6 @@ public class PaymentUIScript : MonoBehaviour, UIScript
 	[SerializeField] Text resultText;
 	[SerializeField] Scrollbar productScroll;
 	[SerializeField] Transform content;
-	[SerializeField] SVGImage check;
-	[SerializeField] SVGImage unCheck;
 	[SerializeField] Image payGuide;
 	[SerializeField] Image loadingGuide;
 	[SerializeField] GameObject confirmPopup;
@@ -103,7 +101,7 @@ public class PaymentUIScript : MonoBehaviour, UIScript
 		string paymode = PlayerPrefs.GetString("pay_mode");
 		if (paymode.Equals("r") || paymode.Equals("p"))
 		{
-			array = JArray.Parse(obj["list"].ToString());   // 결제모드 r인 경우에만 상품 목록 사용
+			array = JArray.Parse(obj["list"].ToString());   // 결제모드 r, p인 경우에만 상품 목록 사용
 		} else
 		{
 			array.Add(obj["default_price"]);    // Default 상품 사용
