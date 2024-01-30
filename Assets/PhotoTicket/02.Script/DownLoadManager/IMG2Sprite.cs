@@ -55,7 +55,7 @@ public class IMG2Sprite : MonoBehaviour
 			}                  
 		} catch (Exception e)
 		{
-			Debug.LogError("텍스처 로딩 중 예외발생");
+			Debug.LogError("텍스처 로딩 중 예외발생 : " + e);
 			return null;
 		}
 
