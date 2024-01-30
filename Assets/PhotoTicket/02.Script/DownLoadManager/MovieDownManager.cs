@@ -219,36 +219,36 @@ public class MovieDownManager : MonoBehaviour
 		for (int i = 0; i < jsonData.IdlePoster.Length; i++)
 		{
 			yield return new WaitForSeconds(waitingTime);
-			downloadImageProcess.DownloadPosterImage(siteId, jsonData.IdlePoster[i], jsonData.IdlePosterSize[i]);
+			StartCoroutine(downloadImageProcess.DownloadPosterImageCoroutine(siteId, jsonData.IdlePoster[i], jsonData.IdlePosterSize[i]));
 		}
 
 		foreach (var tempMovieInfo in jsonData.movieInfo)
 		{
 			yield return new WaitForSeconds(waitingTime);
-			downloadImageProcess.DownloadPosterImage(siteId, tempMovieInfo.MoviePoster, tempMovieInfo.MoviePosterSize);
+			StartCoroutine(downloadImageProcess.DownloadPosterImageCoroutine(siteId, tempMovieInfo.MoviePoster, tempMovieInfo.MoviePosterSize));
 
 			for (int i = 0; i < tempMovieInfo.FaceCenters.Length; i++)
 			{
 				yield return new WaitForSeconds(waitingTime);
-				downloadImageProcess.DownloadStickerImage(siteId, tempMovieInfo.FaceCenters[i], tempMovieInfo.FaceCentersSize[i]);
+				StartCoroutine(downloadImageProcess.DownloadStickerImage(siteId, tempMovieInfo.FaceCenters[i], tempMovieInfo.FaceCentersSize[i]));
 			}
 
 			for (int i = 0; i < tempMovieInfo.HandCenters.Length; i++)
 			{
 				yield return new WaitForSeconds(waitingTime);
-				downloadImageProcess.DownloadStickerImage(siteId, tempMovieInfo.HandCenters[i], tempMovieInfo.HandCentersSize[i]);
+				StartCoroutine(downloadImageProcess.DownloadStickerImage(siteId, tempMovieInfo.HandCenters[i], tempMovieInfo.HandCentersSize[i]));
 			}
 
 			for (int i = 0; i < tempMovieInfo.Foregrounds.Length; i++)
 			{
 				yield return new WaitForSeconds(waitingTime);
-				downloadImageProcess.DownloadStickerImage(siteId, tempMovieInfo.Foregrounds[i], tempMovieInfo.ForegroundsSize[i]);
+				StartCoroutine(downloadImageProcess.DownloadStickerImage(siteId, tempMovieInfo.Foregrounds[i], tempMovieInfo.ForegroundsSize[i]));
 			}
 
 			if (tempMovieInfo.chromakeyBackground != null && tempMovieInfo.isChromakey == true)
 			{
 				yield return new WaitForSeconds(waitingTime);
-				downloadImageProcess.DownloadStickerImage(siteId, tempMovieInfo.chromakeyBackground, tempMovieInfo.chromakeySize);
+				StartCoroutine(downloadImageProcess.DownloadStickerImage(siteId, tempMovieInfo.chromakeyBackground, tempMovieInfo.chromakeySize));
 			}
 		}
 

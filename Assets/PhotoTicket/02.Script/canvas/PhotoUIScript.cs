@@ -133,12 +133,22 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 
 	void Update()
 	{
+		if (!doneSetPoster)
+		{
+			int posterTotalCount = downManager.jsonData.movieInfo.Count;
+			percent = (int)((float)posterPrepabProgress / posterTotalCount * 100);
+			sliderValue = (float)posterPrepabProgress / posterTotalCount;
+
+			UpdateProgressUI(percent, sliderValue);
+		} else
+		{
+			doneLoading = true;
+		}
+
 		//포스터 프리팹 설정
 		if (MovieDownManager.completeDownload)
 		{    // 포스터 다운로드가 완료된 경우
 			MovieDownManager.completeDownload = false;
-
-			Loading();  // PosterPrefab Loding 활성화
 
 			// 포스터 프리팹 설정
 			StartCoroutine(SetPoster());
@@ -377,7 +387,7 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 		return sprite;
 	}
 
-	public async void Loading()
+	private void UpdateProgressUI(float percent, float sliderValue)
 	{
 		// 포스터 다운로드 Progress UI 비활성화
 		posterProgressText.gameObject.SetActive(false);
@@ -392,22 +402,6 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 		posterPrefabProgressLabel.gameObject.SetActive(true);
 		posterPrefabProgressSlider.gameObject.SetActive(true);
 		DownLoadProgressLabel.text = "포스터 스티커 이미지 설정중...";
-
-		await Task.Run(async () =>
-		{
-			while (!doneSetPoster)
-			{    // 완료 안된 경우
-				int posterTotalCount = downManager.jsonData.movieInfo.Count;
-
-				// 로딩바,  퍼센티지 반영
-				percent = (int)((float)posterPrepabProgress / posterTotalCount * 100);
-				sliderValue = (float)posterPrepabProgress / posterTotalCount;
-
-				await Task.Delay(50); // 1초마다 동작
-			}
-
-			doneLoading = true;
-		});
 	}
 
 	public void selectPoster(int movieNumber)
