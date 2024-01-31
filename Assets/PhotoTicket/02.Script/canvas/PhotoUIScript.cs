@@ -406,7 +406,7 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 			posterPrefabProgressSlider.gameObject.SetActive(true);
 		} else
 		{
-			DownLoadProgressLabel.text = "새로운 사이트에 접속했습니다. \n 콘텐츠의 다운로드가 완료되면 자동으로 종료됩니다. \n 프로그램을 다시 시작해주세요.";
+			DownLoadProgressLabel.text = "새로운 컨텐츠가 업데이트 되었습니다 \n 컨텐츠의 다운로드가 완료되면 자동으로 종료됩니다 \n 프로그램을 다시 시작해주세요";
 			posterPrefabProgressText.gameObject.SetActive(false);
 			posterPrefabProgressLabel.gameObject.SetActive(false);
 			posterPrefabProgressSlider.gameObject.SetActive(false);
