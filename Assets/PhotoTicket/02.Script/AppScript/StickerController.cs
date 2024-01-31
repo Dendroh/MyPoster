@@ -62,28 +62,31 @@ public class StickerController : MonoBehaviour
 	void GetAllStickerPrefabs(string[] assetArray, ref GameObject[] stickerPrefabs)
 	{
 		stickerPrefabs = new GameObject[assetArray.Length];
-		print("array Length: " + assetArray.Length);
 		for (int i = 0; i < assetArray.Length; i++)
 		{
-			print("bundle path: " + Path.Combine(Application.persistentDataPath + "/Assetbundles", assetArray[i]));
-
 			string filePath = Path.Combine(Application.persistentDataPath, "Assetbundles", assetArray[i]);
-			if (File.Exists(filePath))
+			try
 			{
-				// 파일이 존재하면 접근할 수 있음
-				var myLoadedPrefabBundle = AssetBundle.LoadFromFile(filePath);
-				if (myLoadedPrefabBundle == null)
+				if (File.Exists(filePath))
 				{
-					Debug.Log("Failed to load AssetBundle!");
+					var myLoadedPrefabBundle = AssetBundle.LoadFromFile(filePath);
+					if (myLoadedPrefabBundle == null)
+					{
+						print("포스터 스티커 파일로드 중 예외발생 filePath :" + filePath);
+						return;
+					}
+					var downloadRequest = myLoadedPrefabBundle.LoadAsset<GameObject>(assetArray[i]);
+					stickerPrefabs[i] = downloadRequest;
+					myLoadedPrefabBundle.Unload(false);
+				} else
+				{
+					print("포스터 스티커 파일이 존재하지 않는 예외발생 filePath : " + filePath);
 					return;
 				}
-				var downloadRequest = myLoadedPrefabBundle.LoadAsset<GameObject>(assetArray[i]);
-				stickerPrefabs[i] = downloadRequest;
-				myLoadedPrefabBundle.Unload(false);
-			} else
+			} catch
 			{
-				Debug.Log("File does not exist: " + filePath);
-				// 파일이 존재하지 않을 경우 처리할 내용 추가
+				print("포스터 스티커 로딩 중 예외발생 filePath :" + filePath);
+				return;
 			}
 		}
 	}
@@ -94,9 +97,9 @@ public class StickerController : MonoBehaviour
 		int pivotCount = 1;
 		GameObject[][] Stickers = new GameObject[pivotCount][];
 		GetAllStickerPrefabs(stickerInfo[movieNumber].FaceCenters, ref Stickers[0]);
-		for (int i = 0; i < faceTrackablePrefab.Length; i++) 
+		for (int i = 0; i < faceTrackablePrefab.Length; i++)
 		{
-			for (int j = 0; j < pivotCount; j++) 
+			for (int j = 0; j < pivotCount; j++)
 			{
 				for (int k = 0; k < Stickers[j].Length; k++)
 				{
@@ -111,7 +114,7 @@ public class StickerController : MonoBehaviour
 							}
 						}
 						faceTrackablePrefab[i].SetPivot(Stickers[j][k], j, movieNumber);
-					} 
+					}
 				}
 			}
 		}
@@ -122,9 +125,9 @@ public class StickerController : MonoBehaviour
 		int pivotCount = 1;
 		GameObject[][] Stickers = new GameObject[pivotCount][];
 		GetAllStickerPrefabs(stickerInfo[movieNumber].HandCenters, ref Stickers[0]);
-		for (int i = 0; i < handTrackablePrefab.Length; i++) 
+		for (int i = 0; i < handTrackablePrefab.Length; i++)
 		{
-			for (int j = 0; j < pivotCount; j++) 
+			for (int j = 0; j < pivotCount; j++)
 			{
 				for (int k = 0; k < Stickers[j].Length; k++)
 				{
@@ -139,7 +142,7 @@ public class StickerController : MonoBehaviour
 							}
 						}
 						handTrackablePrefab[i].SetPivot(Stickers[j][k], j, movieNumber);
-					} 
+					}
 				}
 			}
 		}
@@ -165,8 +168,7 @@ public class StickerController : MonoBehaviour
 					rt.offsetMin = new Vector2(0, 0);
 					rt.localScale = new Vector3(100f, 100f, 100f);
 					frame.GetComponent<SpriteRenderer>().sortingOrder = i + 10;
-				} 
-				catch (Exception e)
+				} catch (Exception e)
 				{
 					Debug.Log(e);
 				}

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 using AWSSDK.Examples;
 using System.Net;
 using System.Threading.Tasks;
+using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class MovieDownManager : MonoBehaviour
 {
@@ -36,8 +38,8 @@ public class MovieDownManager : MonoBehaviour
 	public int posterPrefabProgress;
 	int imageTotalCount;
 	int idlePosterProgress;
+	public static bool initialRun = false;
 	public static bool completeDownload = false;
-	// bool[] thumbnailFinish;
 
 	DownloadImageProcess downloadImageProcess;
 
@@ -111,11 +113,13 @@ public class MovieDownManager : MonoBehaviour
 		} else
 		{
 			StartCoroutine(DownloadImage());
+			initialRun = true;
 		}
 
-		PlayerPrefs.SetString("latestSiteId", siteId);
+		FinishEverything();
 
-		StartCoroutine(CheckProcess());
+		PlayerPrefs.SetString("latestSiteId", siteId);
+		PlayerPrefs.SetString("version", jsonData.Version);
 	}
 
 	void CreateFolderIfNeed()
@@ -133,13 +137,12 @@ public class MovieDownManager : MonoBehaviour
 			var count = 0;
 			yield return new WaitForSeconds(1.0f);
 
-			if (posterProgress < posterTotalCount ||
-			    stickerProgress < stickerTotalCount)
+			if (posterProgress < posterTotalCount || stickerProgress < stickerTotalCount)
 			{
 				count++;
 			}
 
-			print("다운로드 완료 검사중 : " + (count > 0 ? "다운중.." : "다운완료!"));
+			print("다운로드 완료 검사중 : " + (count > 0 ? "다운중.. : " + count : "다운완료!"));
 			posterProgressText.text = (int)((float)posterProgress / posterTotalCount * 100) + "%";
 			stickerProgressText.text = (int)((float)stickerProgress / stickerTotalCount * 100) + "%";
 
@@ -154,17 +157,24 @@ public class MovieDownManager : MonoBehaviour
 
 		FinishEverything();
 	}
+
+
+
 	void FinishEverything()
 	{
-		PlayerPrefs.SetString("version", jsonData.Version);
+		if(initialRun == false)
+		{
+			print("모든 다운로드 완료됨, Instantiate 시작");
 
-		print("모든 다운로드 완료됨, Instantiate 시작");
+			GameObject.Find("0.Intro Canvas").GetComponent<IntroUIScript>().InstantiatePoster();
+			GameObject.Find("1.Select Canvas").GetComponent<SelectUIScript>().InstantiatePoster();
+			GameObject.Find("2.Photo Canvas").GetComponent<PhotoUIScript>().InstantiateThumbnail();
 
-		GameObject.Find("0.Intro Canvas").GetComponent<IntroUIScript>().InstantiatePoster();
-		GameObject.Find("1.Select Canvas").GetComponent<SelectUIScript>().InstantiatePoster();
-		GameObject.Find("2.Photo Canvas").GetComponent<PhotoUIScript>().InstantiateThumbnail();
-
-		completeDownload = true;
+			completeDownload = true;
+		} else
+		{
+			print("최초 사이트 접속중..");
+		}
 	}
 
 	int GetStickerCount(string[] stickerNames)
@@ -174,10 +184,25 @@ public class MovieDownManager : MonoBehaviour
 		return stickerNames.Length;
 	}
 
-	public void InitSticker(string assetName)
+	public void InitPosterImage()
 	{
-		stickerProgress++;
+		string savePath = Application.persistentDataPath + "/Assetbundles/";
+
+		for (int i = 0; i < jsonData.IdlePoster.Length; i++)
+		{
+			idlePosterSprites[i] = IMG2Sprite.instance.LoadNewSprite(savePath + jsonData.IdlePoster[i]);
+		}
+
+		int movieInfoCount = 0;
+
+		foreach (var tempMovieInfo in jsonData.movieInfo)
+		{
+			posterSprites[movieInfoCount] = IMG2Sprite.instance.LoadNewSprite(savePath + tempMovieInfo.MoviePoster);
+
+			movieInfoCount++;
+		}
 	}
+
 
 	public void InitPoster(string assetName)
 	{
@@ -206,71 +231,55 @@ public class MovieDownManager : MonoBehaviour
 
 	public void InitImage(string assetName)
 	{
-		//assetname, sprite
 		string path = Application.persistentDataPath + "/Assetbundles/" + assetName;
 		imageSprite[assetName] = IMG2Sprite.instance.LoadNewSprite(path);
+	}
+
+	public void InitSticker(string assetName)
+	{
+		stickerProgress++;
 	}
 
 	IEnumerator DownloadImage()
 	{
 		float waitingTime = 0.05f;
-		string savePath = Application.persistentDataPath + "/Assetbundles/";
 
 		for (int i = 0; i < jsonData.IdlePoster.Length; i++)
 		{
 			yield return new WaitForSeconds(waitingTime);
-			StartCoroutine(downloadImageProcess.DownloadPosterImageCoroutine(siteId, jsonData.IdlePoster[i], jsonData.IdlePosterSize[i]));
+			yield return StartCoroutine(downloadImageProcess.DownloadPosterImageCoroutine(siteId, jsonData.IdlePoster[i], jsonData.IdlePosterSize[i]));
 		}
 
 		foreach (var tempMovieInfo in jsonData.movieInfo)
 		{
 			yield return new WaitForSeconds(waitingTime);
-			StartCoroutine(downloadImageProcess.DownloadPosterImageCoroutine(siteId, tempMovieInfo.MoviePoster, tempMovieInfo.MoviePosterSize));
+			yield return StartCoroutine(downloadImageProcess.DownloadPosterImageCoroutine(siteId, tempMovieInfo.MoviePoster, tempMovieInfo.MoviePosterSize));
 
 			for (int i = 0; i < tempMovieInfo.FaceCenters.Length; i++)
 			{
 				yield return new WaitForSeconds(waitingTime);
-				StartCoroutine(downloadImageProcess.DownloadStickerImage(siteId, tempMovieInfo.FaceCenters[i], tempMovieInfo.FaceCentersSize[i]));
+				yield return StartCoroutine(downloadImageProcess.DownloadStickerImageCoroutine(siteId, tempMovieInfo.FaceCenters[i], tempMovieInfo.FaceCentersSize[i]));
 			}
 
 			for (int i = 0; i < tempMovieInfo.HandCenters.Length; i++)
 			{
 				yield return new WaitForSeconds(waitingTime);
-				StartCoroutine(downloadImageProcess.DownloadStickerImage(siteId, tempMovieInfo.HandCenters[i], tempMovieInfo.HandCentersSize[i]));
+				yield return StartCoroutine(downloadImageProcess.DownloadStickerImageCoroutine(siteId, tempMovieInfo.HandCenters[i], tempMovieInfo.HandCentersSize[i]));
 			}
 
 			for (int i = 0; i < tempMovieInfo.Foregrounds.Length; i++)
 			{
 				yield return new WaitForSeconds(waitingTime);
-				StartCoroutine(downloadImageProcess.DownloadStickerImage(siteId, tempMovieInfo.Foregrounds[i], tempMovieInfo.ForegroundsSize[i]));
+				yield return StartCoroutine(downloadImageProcess.DownloadStickerImageCoroutine(siteId, tempMovieInfo.Foregrounds[i], tempMovieInfo.ForegroundsSize[i]));
 			}
 
 			if (tempMovieInfo.chromakeyBackground != null && tempMovieInfo.isChromakey == true)
 			{
 				yield return new WaitForSeconds(waitingTime);
-				StartCoroutine(downloadImageProcess.DownloadStickerImage(siteId, tempMovieInfo.chromakeyBackground, tempMovieInfo.chromakeySize));
+				yield return StartCoroutine(downloadImageProcess.DownloadStickerImageCoroutine(siteId, tempMovieInfo.chromakeyBackground, tempMovieInfo.chromakeySize));
 			}
 		}
 
-		InitPosterImage();
-	}
-
-	public void InitPosterImage()
-	{
-		string savePath = Application.persistentDataPath + "/Assetbundles/";
-
-		for (int i = 0; i < jsonData.IdlePoster.Length; i++)
-		{
-			idlePosterSprites[i] = IMG2Sprite.instance.LoadNewSprite(savePath + jsonData.IdlePoster[i]);
-		}
-
-		int movieInfoCount = 0;
-
-		foreach (var tempMovieInfo in jsonData.movieInfo)
-		{
-			posterSprites[movieInfoCount] = IMG2Sprite.instance.LoadNewSprite(savePath + tempMovieInfo.MoviePoster);
-
-			movieInfoCount++;
-		}
+		Application.Quit();
 	}
 }

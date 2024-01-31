@@ -123,6 +123,7 @@ public class MovieJsonData : MonoBehaviour
 		foreach (var movie in movieInfo)
 		{
 			movieDownManager.InitPoster(movie.MoviePoster);
+
 			foreach (var face in movie.FaceCenters)
 				movieDownManager.InitSticker(face);
 

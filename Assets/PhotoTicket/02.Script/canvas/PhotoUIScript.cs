@@ -398,10 +398,19 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 		stickerProgressSlider.gameObject.SetActive(false);
 
 		// 포스터 Set Prefab Progress UI 활성화
-		posterPrefabProgressText.gameObject.SetActive(true);
-		posterPrefabProgressLabel.gameObject.SetActive(true);
-		posterPrefabProgressSlider.gameObject.SetActive(true);
-		DownLoadProgressLabel.text = "포스터 스티커 이미지 설정중...";
+		if(MovieDownManager.initialRun == false)
+		{
+			DownLoadProgressLabel.text = "포스터 스티커 이미지 설정중...";
+			posterPrefabProgressText.gameObject.SetActive(true);
+			posterPrefabProgressLabel.gameObject.SetActive(true);
+			posterPrefabProgressSlider.gameObject.SetActive(true);
+		} else
+		{
+			DownLoadProgressLabel.text = "새로운 사이트에 접속했습니다. \n 콘텐츠의 다운로드가 완료되면 자동으로 종료됩니다. \n 프로그램을 다시 시작해주세요.";
+			posterPrefabProgressText.gameObject.SetActive(false);
+			posterPrefabProgressLabel.gameObject.SetActive(false);
+			posterPrefabProgressSlider.gameObject.SetActive(false);
+		}
 	}
 
 	public void selectPoster(int movieNumber)
