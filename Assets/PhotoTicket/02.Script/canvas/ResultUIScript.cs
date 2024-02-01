@@ -88,40 +88,46 @@ public class ResultUIScript : MonoBehaviour, UIScript
 			string url = ConstantsScript.OPERATE_URL + "/site/" + siteId + "/product/get_price_list/" + productId;
 
 			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-			HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
-			Stream stream = response.GetResponseStream();
-			StreamReader reader = new StreamReader(stream);
-
-			string text = reader.ReadToEnd();
-
-			JObject obj = JObject.Parse(text);
-
-			if (paymode.Equals("p"))
-			{  // 결제모드 - p 유료 데이터 전송
-				if (obj["default_price"] != null && Convert.ToInt32(Regex.Replace(obj["default_price"].ToString(), @"[^0-9]", "")) > 0)
+			using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+			{
+				using (Stream stream = response.GetResponseStream())
 				{
-					GotoPayment();
-				} else
-				{
-					GotoSend();
+					using (StreamReader reader = new StreamReader(stream))
+					{
+						string text = reader.ReadToEnd();
+
+						JObject obj = JObject.Parse(text);
+
+						if (paymode.Equals("p"))
+						{  // 결제모드 - p 유료 데이터 전송
+							if (obj["default_price"] != null && Convert.ToInt32(Regex.Replace(obj["default_price"].ToString(), @"[^0-9]", "")) > 0)
+							{
+								GotoPayment();
+							} else
+							{
+								GotoSend();
+							}
+						} else if (paymode.Equals("r"))
+						{    // 결제모드 - r 유료 프린터
+							JArray array = new JArray();
+							array = JArray.Parse(obj["list"].ToString());
+							if (array != null && array.Count > 0)
+							{
+								GotoPayment();
+							} else
+							{
+								GotoSend();
+							}
+						} else
+						{    // 결제모드 - n, t 무료
+							GotoSend();
+						}
+					}
 				}
-			} else if (paymode.Equals("r"))
-			{    // 결제모드 - r 유료 프린터
-				JArray array = new JArray();
-				array = JArray.Parse(obj["list"].ToString());
-				if (array != null && array.Count > 0)
-				{
-					GotoPayment();
-				} else
-				{
-					GotoSend();
-				}
-			} else
-			{    // 결제모드 - n, t 무료
-				GotoSend();
 			}
-		} else
+		} 
+		else
 		{    // 영화가 무료인 경우
 			GotoSend();
 		}

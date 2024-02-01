@@ -280,6 +280,7 @@ public class MovieDownManager : MonoBehaviour
 			}
 		}
 
+		Debug.LogWarning("모든 이미지 다운로드 완료");
 		Application.Quit();
 	}
 }

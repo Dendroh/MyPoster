@@ -146,18 +146,23 @@ public class AgreementUIScript : MonoBehaviour, UIScript
 		string url = ConstantsScript.OPERATE_URL + "/site/get_terms?id=" + siteId + "&type=" + type;
 
 		HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-		HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+		using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+		{
+			using (Stream stream = response.GetResponseStream())
+			{
+				using (StreamReader reader = new StreamReader(stream))
+				{
+					string text = reader.ReadToEnd();
 
-		Stream stream = response.GetResponseStream();
-		StreamReader reader = new StreamReader(stream);
+					JObject obj = JObject.Parse(text);
 
-		string text = reader.ReadToEnd();
+					string terms = obj["terms"].ToString();
 
-		JObject obj = JObject.Parse(text);
-
-		string terms = obj["terms"].ToString();
-
-		return terms;
+					return terms;
+					// 나머지 코드 처리
+				}
+			}
+		}
 	}
 
 	public void Cancel()
@@ -197,9 +202,9 @@ public class AgreementUIScript : MonoBehaviour, UIScript
 			AgentSendData sendData = new AgentSendData();
 
 			sendData.Command = "payment_cancel";
-			sendData.Amount = price.ToString();
-			sendData.PaymentDate = PlayerPrefs.GetString("payment_time");
-			sendData.PaymentAuthNum = PlayerPrefs.GetString("approval_num");
+			sendData.Amount = PlayerPrefs.GetString("price").ToString();
+			sendData.PaymentDate = DateTime.Now.ToString("yyMMdd");
+			sendData.PaymentAuthNum = PlayerPrefs.GetString("approval_num").ToString();
 
 			string payMessage = JsonUtility.ToJson(sendData);
 
@@ -207,6 +212,8 @@ public class AgreementUIScript : MonoBehaviour, UIScript
 
 			//출력 명령 전송
 			SelectUIScript._netClient.SendMessage(payMessage);
+
+			StartCoroutine(SuccessCoroutineCancel());
 		}
 	}
 
@@ -283,7 +290,7 @@ public class AgreementUIScript : MonoBehaviour, UIScript
 	{
 		StartCoroutine(UtilsScript.playAudio(cancelPaymentAudioKr, cancelPaymentAudioEn));
 		SetLoadingGuide(1);
-		StartCoroutine(SuccessCoroutineCancel());
+		//StartCoroutine(SuccessCoroutineCancel());
 	}
 
 	public void FailCancel()
@@ -313,10 +320,11 @@ public class AgreementUIScript : MonoBehaviour, UIScript
 		PlayerPrefs.SetString("b_payment", "false");
 
 		loadingProgress.SetActive(false);
-		yield return new WaitForSeconds(2.2f);
+		yield return new WaitForSeconds(6f);
 
 		FlowController.instance.ChangeFlow(FlowController.instance.selectCanvas);
 
+		FlowController.instance.Loading(false);
 		yield break;
 	}
 

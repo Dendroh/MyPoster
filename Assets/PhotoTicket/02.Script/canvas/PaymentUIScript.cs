@@ -41,7 +41,6 @@ public class PaymentUIScript : MonoBehaviour, UIScript
 	RectTransform defaultProduct;
 
 	// 결제 종류 선택
-	int PaymentType = 0;
 
 	static int price = 0;
 	string payment_name;
@@ -52,12 +51,7 @@ public class PaymentUIScript : MonoBehaviour, UIScript
 	public static string checkPrintResult = "";
 	public static string sendType = "";
 	public static string canvas = "";
-	public static bool paymentProcess;
 	public static string paymentResult = "";
-	private string _approvalNum = "";
-	private string _approvalDate = "";  // 서버 전달 용 날짜
-	private string _paymentDate = "";   // 결제 취소 용 날짜
-	private string _price = "";
 
 	//private string reqPayment = "{\"Command\":\"payment\",\"Amount\": {0}\"}";
 
@@ -86,61 +80,67 @@ public class PaymentUIScript : MonoBehaviour, UIScript
 		string productId = PlayerPrefs.GetString("productId");
 		string url = ConstantsScript.OPERATE_URL + "/site/" + siteId + "/product/get_price_list/" + productId;
 
-		HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-		HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-		Stream stream = response.GetResponseStream();
-		StreamReader reader = new StreamReader(stream);
-
-		string text = reader.ReadToEnd();
-
-		JObject obj = JObject.Parse(text);
-
-		JArray array = new JArray();
-
-		string paymode = PlayerPrefs.GetString("pay_mode");
-		if (paymode.Equals("r") || paymode.Equals("p"))
+		HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url); 
+		
+		using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
 		{
-			array = JArray.Parse(obj["list"].ToString());   // 결제모드 r, p인 경우에만 상품 목록 사용
-		} else
-		{
-			array.Add(obj["default_price"]);    // Default 상품 사용
-		}
-
-		productList = new RectTransform[array.Count];
-		checkList = new RectTransform[array.Count];
-
-		for (int i = 0; i < array.Count; i++)
-		{
-			// 상품 prefabs 설정
-			productList[i] = Instantiate(priceObject, Vector3.zero, Quaternion.identity).GetComponent<RectTransform>();
-			productList[i].transform.SetParent(content);
-
-			productList[i].GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
-			productList[i].GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1);
-
-			if (paymode.Equals("r") || paymode.Equals("p"))
+			using (Stream stream = response.GetResponseStream())
 			{
-				productList[i].GetComponent<ProductController>().count = (int)array[i]["count"];
-				productList[i].Find("Text").GetComponent<Text>().text = array[i]["name"].ToString();
-				productList[i].Find("Price").GetComponent<Text>().text = array[i]["price"].ToString() + " 원";
-			} else
-			{
-				productList[i].GetComponent<ProductController>().count = 0;
-				productList[i].Find("Text").GetComponent<Text>().text = "마이포스터 다운로드";
-				productList[i].Find("Price").GetComponent<Text>().text = obj["default_price"].ToString() + " 원";
+				using (StreamReader reader = new StreamReader(stream))
+				{
+					string text = reader.ReadToEnd();
+
+					JObject obj = JObject.Parse(text);
+					JArray array = new JArray();
+
+					string paymode = PlayerPrefs.GetString("pay_mode");
+					if (paymode.Equals("r") || paymode.Equals("p"))
+					{
+						array = JArray.Parse(obj["list"].ToString());   // 결제모드 r, p인 경우에만 상품 목록 사용
+					} else
+					{
+						array.Add(obj["default_price"]);    // Default 상품 사용
+					}
+
+					productList = new RectTransform[array.Count];
+					checkList = new RectTransform[array.Count];
+
+					for (int i = 0; i < array.Count; i++)
+					{
+						// 상품 prefabs 설정
+						productList[i] = Instantiate(priceObject, Vector3.zero, Quaternion.identity).GetComponent<RectTransform>();
+						productList[i].transform.SetParent(content);
+
+						productList[i].GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
+						productList[i].GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1);
+
+						if (paymode.Equals("r") || paymode.Equals("p"))
+						{
+							productList[i].GetComponent<ProductController>().count = (int)array[i]["count"];
+							productList[i].Find("Text").GetComponent<Text>().text = array[i]["name"].ToString();
+							productList[i].Find("Price").GetComponent<Text>().text = array[i]["price"].ToString() + " 원";
+						} else
+						{
+							productList[i].GetComponent<ProductController>().count = 0;
+							productList[i].Find("Text").GetComponent<Text>().text = "마이포스터 다운로드";
+							productList[i].Find("Price").GetComponent<Text>().text = obj["default_price"].ToString() + " 원";
+						}
+
+						// 버튼 이벤트 설정
+						productList[i].GetComponent<ProductController>().id = i;
+						productList[i].GetComponent<ProductController>().init();
+
+						checkList[i] = productList[i].GetComponentsInChildren<RectTransform>()[3]; // 체크박스
+						checkList[i].gameObject.SetActive(false);
+					}
+
+					// Scroll View Size 설정
+					content.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 170 * productList.Length);
+				}
 			}
-
-			// 버튼 이벤트 설정
-			productList[i].GetComponent<ProductController>().id = i;
-			productList[i].GetComponent<ProductController>().init();
-
-			checkList[i] = productList[i].GetComponentsInChildren<RectTransform>()[3]; // 체크박스
-			checkList[i].gameObject.SetActive(false);
 		}
 
-		// Scroll View Size 설정
-		content.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 170 * productList.Length);
+
 	}
 
 	public void confirm()
@@ -221,7 +221,6 @@ public class PaymentUIScript : MonoBehaviour, UIScript
 		productScroll.value = 1;
 
 		paymentResult = "";
-		paymentProcess = false;
 		print("IntroPayment");
 
 		// 결제 정보 안내 멘트 출력
@@ -242,7 +241,6 @@ public class PaymentUIScript : MonoBehaviour, UIScript
 		confirmPopup.SetActive(false);
 		bChooseProduct = false;
 		resultText.text = "0원";
-		paymentProcess = false;
 
 		for (int i = 0; i < productList.Length; i++)
 		{  // prefab 중복 처리를 위한 오브젝트 제거
@@ -294,6 +292,7 @@ public class PaymentUIScript : MonoBehaviour, UIScript
 
 			Debug.Log("SENDMESSAGE:" + payMessage);
 			SelectUIScript._netClient.SendMessage(payMessage);
+
 		} else
 		{
 			FlowController.instance.ChangeFlow(FlowController.instance.AgreementCanvas);
@@ -351,16 +350,9 @@ public class PaymentUIScript : MonoBehaviour, UIScript
 		//로딩바숨김
 		Debug.Log("SuccessCoroutine:");
 
-		PlayerPrefs.SetString("approval_num", _approvalNum);
-		PlayerPrefs.SetString("approval_time", _approvalDate);
-		// PlayerPrefs.SetString("price", _price);
-		PlayerPrefs.SetString("price", price.ToString());
-		PlayerPrefs.SetString("payment_time", _paymentDate);
-		PlayerPrefs.SetInt("payment_type", PaymentType);
-
-		Debug.Log("SuccessCoroutine : approval_num:" + _approvalNum);
-		Debug.Log("SuccessCoroutine : approval_time:" + _approvalDate);
-		Debug.Log("SuccessCoroutine : price:" + _price);
+		Debug.Log("SuccessCoroutine : approval_num:" + PlayerPrefs.GetString("approval_num").ToString());
+		Debug.Log("SuccessCoroutine : approval_time:" + PlayerPrefs.GetString("approval_time").ToString());
+		Debug.Log("SuccessCoroutine : price:" + PlayerPrefs.GetString("price"));
 
 		loadingProgress.SetActive(false);
 		yield return new WaitForSeconds(1.0f);

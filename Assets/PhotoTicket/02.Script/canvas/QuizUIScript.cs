@@ -94,54 +94,61 @@ public class QuizUIScript : MonoBehaviour, UIScript
 		// 서버로부터 카테고리 정보 가져오기
 		string url = operateUrl + "/kiosk/quiz_category/get_list?site_id=" + siteId;
 
-		HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-		HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-		Stream stream = response.GetResponseStream();
-		StreamReader reader = new StreamReader(stream);
-
-		string text = reader.ReadToEnd();
-
-		JObject obj = JObject.Parse(text);
-
-		JArray array = new JArray();
-
-		array = JArray.Parse(obj["list"].ToString());
-
-		categorytList = new RectTransform[array.Count];
-
-		// 카테고리 영역 화면 구성
-		if (array.Count > 4)
-		{  // 카테고리가 4개보다 많은 경우
-			int indexCount = array.Count % 2 > 0 ? array.Count / 2 + 1 : array.Count / 2;
-			// categoryContent.GetComponent<GridLayoutGroup>().padding.top = 60;
-			categoryContent.GetComponent<RectTransform>().sizeDelta = new Vector2(928, categoryHeight * indexCount + categorySpace * (indexCount - 1));
-		}
-
-		for (int i = 0; i < array.Count; i++)
+		HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url); 
+		
+		using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
 		{
-			// 카테고리 prefabs 설정
-			categorytList[i] = Instantiate(categoryPrefab, Vector3.zero, Quaternion.identity).GetComponent<RectTransform>();
-			categorytList[i].transform.SetParent(categoryContent);
+			using (Stream stream = response.GetResponseStream())
+			{
+				using (StreamReader reader = new StreamReader(stream))
+				{
+					string text = reader.ReadToEnd();
 
-			categorytList[i].GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
-			categorytList[i].GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1);
-			categorytList[i].Find("Text").GetComponent<Text>().text = array[i]["name"].ToString();
+					JObject obj = JObject.Parse(text);
 
-			string imageTexture = array[i]["pic"].ToString();
-			string imageFilePath = operateUrl + obj["file_path"].ToString() + "/" + imageTexture;
+					JArray array = new JArray();
 
-			// 이미지 추가
-			List<string> fileList = new List<string>();
-			fileList.Add(imageFilePath);
-			StartCoroutine(addImages(fileList, categorytList[i].Find("Image").GetComponent<RectTransform>()));  // 이미지 파일 생성
+					array = JArray.Parse(obj["list"].ToString());
 
-			// 버튼 이벤트 설정
-			categorytList[i].GetComponent<CategoryController>().id = (int)array[i]["id"];
-			categorytList[i].GetComponent<CategoryController>().init();
+					categorytList = new RectTransform[array.Count];
+
+					// 카테고리 영역 화면 구성
+					if (array.Count > 4)
+					{  // 카테고리가 4개보다 많은 경우
+						int indexCount = array.Count % 2 > 0 ? array.Count / 2 + 1 : array.Count / 2;
+						// categoryContent.GetComponent<GridLayoutGroup>().padding.top = 60;
+						categoryContent.GetComponent<RectTransform>().sizeDelta = new Vector2(928, categoryHeight * indexCount + categorySpace * (indexCount - 1));
+					}
+
+					for (int i = 0; i < array.Count; i++)
+					{
+						// 카테고리 prefabs 설정
+						categorytList[i] = Instantiate(categoryPrefab, Vector3.zero, Quaternion.identity).GetComponent<RectTransform>();
+						categorytList[i].transform.SetParent(categoryContent);
+
+						categorytList[i].GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
+						categorytList[i].GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1);
+						categorytList[i].Find("Text").GetComponent<Text>().text = array[i]["name"].ToString();
+
+						string imageTexture = array[i]["pic"].ToString();
+						string imageFilePath = operateUrl + obj["file_path"].ToString() + "/" + imageTexture;
+
+						// 이미지 추가
+						List<string> fileList = new List<string>();
+						fileList.Add(imageFilePath);
+						StartCoroutine(addImages(fileList, categorytList[i].Find("Image").GetComponent<RectTransform>()));  // 이미지 파일 생성
+
+						// 버튼 이벤트 설정
+						categorytList[i].GetComponent<CategoryController>().id = (int)array[i]["id"];
+						categorytList[i].GetComponent<CategoryController>().init();
+					}
+
+					yield break;
+				}
+			}
 		}
 
-		yield break;
+
 	}
 
 	/**
@@ -152,192 +159,199 @@ public class QuizUIScript : MonoBehaviour, UIScript
 		// 서버로부터 퀴즈 정보 가져오기
 		string url = operateUrl + "/kiosk/quiz/get_list?site_id=" + PlayerPrefs.GetString("site_id");
 
-		HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-		HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-		Stream stream = response.GetResponseStream();
-		StreamReader reader = new StreamReader(stream);
-
-		string text = reader.ReadToEnd();
-
-		JObject obj = JObject.Parse(text);
-		JArray array = new JArray();
-
-		if (obj["done"].ToString() == null || obj["done"].ToString().Equals(""))
-		{    // 완료 설정이 없는 경우
-			errorPopup.SetActive(true);
-			errorText.text = "완료 화면 설정을 해주세요.";
-			yield break;
-		}
-
-		if (obj["file_path"].ToString() == null || obj["file_path"].ToString().Equals(""))
-		{    // 파일 경로 없는 경우
-			errorPopup.SetActive(true);
-			errorText.text = "파일 경로를 확인해 주세요.";
-			yield break;
-		}
-
-		JObject doneArray = JObject.Parse(obj["done"].ToString());
-
-		// 완료 화면 문구 또는 이미지 설정을 하지 않은 경우
-		if (!(doneArray["desc"] != null && doneArray["desc"].ToString() != "")
-		    || !(doneArray["pic"] != null && doneArray["pic"].ToString() != ""))
+		HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url); 
+		
+		using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
 		{
-			errorPopup.SetActive(true);
-			errorText.text = "완료 화면 설정을 해주세요.";
-			yield break;
-		}
-
-
-		// Quiz 결과 정보 구성
-		PlayerPrefs.SetString("doneDesc", doneArray["desc"].ToString());
-		PlayerPrefs.SetString("donePic", doneArray["pic"].ToString());
-		PlayerPrefs.SetString("quizFilePath", obj["file_path"].ToString());
-		PlayerPrefs.SetInt("criteria", doneArray["criteria"] != null && doneArray["criteria"].ToString() != "" ? (int)doneArray["criteria"] : 0);
-		PlayerPrefs.SetString("successContent", doneArray["success_content"] != null && doneArray["success_content"].ToString() != "" ? doneArray["success_content"].ToString() : "0");
-		PlayerPrefs.SetString("failureContent", doneArray["failure_content"] != null && doneArray["failure_content"].ToString() != "" ? doneArray["failure_content"].ToString() : "0");
-
-		array = JArray.Parse(obj["list"].ToString());
-
-		quizList = new RectTransform[array.Count];
-		answerListByQuiz = new RectTransform[array.Count][];
-
-		for (int j = 0; j < array.Count; j++)
-		{
-			addQuizContentLine = 0;
-
-			// Quiz prefabs 설정
-			quizList[j] = Instantiate(quizPrefab, Vector3.zero, Quaternion.identity).GetComponent<RectTransform>();
-			quizList[j].transform.SetParent(quizContent);
-
-			// Quiz UI 구성
-			quizList[j].GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
-			quizList[j].GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1);
-			quizList[j].GetComponent<QuizController>().categoryId = (int)array[j]["category_id"];
-			quizList[j].GetComponent<QuizController>().quizIndex = j;
-			quizList[j].Find("Quiz Contents").GetComponentInChildren<Text>().text = array[j]["contents"].ToString();
-
-			// Quiz UI RectTransform
-			RectTransform quizContentsRectTransform = quizList[j].Find("Quiz Contents").Find("Text").GetComponent<RectTransform>();
-			RectTransform quizContentsTextRectTransform = quizList[j].Find("Quiz Contents").GetComponent<RectTransform>();
-			RectTransform quizImageRectTransform = quizList[j].Find("Quiz Image").GetComponent<RectTransform>();
-			RectTransform OButtonRectTransform = quizList[j].Find("O Button").GetComponent<RectTransform>();
-			RectTransform XButtonRectTransform = quizList[j].Find("X Button").GetComponent<RectTransform>();
-			RectTransform OButtonClickRectTransform = quizList[j].Find("O Button Click").GetComponent<RectTransform>();
-			RectTransform XButtonClickRectTransform = quizList[j].Find("X Button Click").GetComponent<RectTransform>();
-			RectTransform answerItemRectTransform = quizList[j].Find("Answer Item").GetComponent<RectTransform>();
-
-			if (array[j]["contents"].ToString().Length > 26)
+			using (Stream stream = response.GetResponseStream())
 			{
-				addQuizContentLine = 1;
-			}
-
-			// 퀴즈 Contents 길이에 따라 UI 재설정
-			quizContentsRectTransform.sizeDelta = new Vector2(quizContentsRectTransform.sizeDelta.x, quizContentsRectTransform.sizeDelta.y + quizContentsSpace * addQuizContentLine);
-			quizContentsTextRectTransform.sizeDelta = new Vector2(quizContentsTextRectTransform.sizeDelta.x, quizContentsTextRectTransform.sizeDelta.y + quizContentsSpace * addQuizContentLine);
-			quizImageRectTransform.anchoredPosition = new Vector2(quizImageRectTransform.anchoredPosition.x, quizImageRectTransform.anchoredPosition.y - quizContentsSpace * addQuizContentLine);
-			OButtonRectTransform.anchoredPosition = new Vector2(OButtonRectTransform.anchoredPosition.x, OButtonRectTransform.anchoredPosition.y - quizContentsSpace * addQuizContentLine);
-			XButtonRectTransform.anchoredPosition = new Vector2(XButtonRectTransform.anchoredPosition.x, XButtonRectTransform.anchoredPosition.y - quizContentsSpace * addQuizContentLine);
-			OButtonClickRectTransform.anchoredPosition = new Vector2(OButtonClickRectTransform.anchoredPosition.x, OButtonClickRectTransform.anchoredPosition.y - quizContentsSpace * addQuizContentLine);
-			XButtonClickRectTransform.anchoredPosition = new Vector2(XButtonClickRectTransform.anchoredPosition.x, XButtonClickRectTransform.anchoredPosition.y - quizContentsSpace * addQuizContentLine);
-			answerItemRectTransform.anchoredPosition = new Vector2(answerItemRectTransform.anchoredPosition.x, answerItemRectTransform.anchoredPosition.y - quizContentsSpace * addQuizContentLine);
-
-			// 정답 팝업 UI 구성
-			quizList[j].Find("Answer Popup").GetChild(0).Find("Answer Desc").GetComponentInChildren<Text>().text = array[j]["answer_desc"].ToString();
-
-			// 다음 퀴즈 버튼 이벤트 설정
-			quizList[j].Find("Answer Popup").GetChild(0).Find("Exit").GetComponent<QuizController>().exit();
-			quizList[j].Find("Answer Popup").GetChild(0).Find("Next Quiz").GetComponent<QuizController>().quizIndex = j;
-			quizList[j].Find("Answer Popup").GetChild(0).Find("Next Quiz").GetComponent<QuizController>().init();
-			quizList[j].Find("Answer Popup").gameObject.SetActive(false);
-
-			if (array[j]["file_list"] != null && array[j]["file_list"].Count() > 0)
-			{    // 설정된 이미지 파일이 있으면 추가
-				List<string> fileList = new List<string>();
-				for (int i = 0; i < array[j]["file_list"].Count(); i++)
-				{   // 파일 목록이 존재하는 경우
-					string imageTexture = array[j]["file_list"][i]["name"].ToString();
-					string imageFilePath = operateUrl + PlayerPrefs.GetString("quizFilePath") + "/" + imageTexture;
-					fileList.Add(imageFilePath);
-				}
-
-				RectTransform rectTransform = quizList[j].Find("Quiz Image").GetComponent<RectTransform>();
-				StartCoroutine(addImages(fileList, rectTransform));  // 이미지 파일 생성
-			}
-
-			if (array[j]["type"].ToString().Equals("0"))
-			{  // O,X 퀴즈
-				quizList[j].Find("Answer Item").gameObject.SetActive(false);
-				quizList[j].Find("O Button").gameObject.SetActive(true);
-				quizList[j].Find("X Button").gameObject.SetActive(true);
-
-				// OX 버튼 이벤트 설정
-				quizList[j].Find("O Button").GetComponent<AnswerController>().quizIndex = j;
-				quizList[j].Find("O Button").GetComponent<AnswerController>().type = ConstantsScript.OX;
-				quizList[j].Find("O Button").GetComponent<AnswerController>().ox = ConstantsScript.O;
-				quizList[j].Find("X Button").GetComponent<AnswerController>().quizIndex = j;
-				quizList[j].Find("X Button").GetComponent<AnswerController>().type = ConstantsScript.OX;
-				quizList[j].Find("X Button").GetComponent<AnswerController>().ox = ConstantsScript.X;
-
-				if (array[j]["answer"].ToString().Equals(ConstantsScript.WRONG_ANSWER))
-				{   // 정답이 X인 경우
-					quizList[j].Find("O Button").GetComponent<AnswerController>().isAnswer = ConstantsScript.WRONG_ANSWER;
-					quizList[j].Find("X Button").GetComponent<AnswerController>().isAnswer = ConstantsScript.CORRECT_ANSWER;
-				} else
-				{    // 정답이 O인 경우
-					quizList[j].Find("O Button").GetComponent<AnswerController>().isAnswer = ConstantsScript.CORRECT_ANSWER;
-					quizList[j].Find("X Button").GetComponent<AnswerController>().isAnswer = ConstantsScript.WRONG_ANSWER;
-				}
-
-				quizList[j].Find("O Button").GetComponent<AnswerController>().init();
-				quizList[j].Find("X Button").GetComponent<AnswerController>().init();
-			} else
-			{    // 객관식 퀴즈
-				quizList[j].Find("Answer Item").gameObject.SetActive(true);
-				quizList[j].Find("O Button").gameObject.SetActive(false);
-				quizList[j].Find("X Button").gameObject.SetActive(false);
-
-				if (array[j]["item_list"].Count() > 0)
-				{    // 보기 목록이 있는 경우
-					answerList = new RectTransform[array[j]["item_list"].Count()];
-					answerListByQuiz[j] = new RectTransform[array[j]["item_list"].Count()];
-
-					for (int k = 0; k < array[j]["item_list"].Count(); k++)
-					{
-						// 보기 prefabs 설정
-						answerList[k] = Instantiate(answerPrefab, Vector3.zero, Quaternion.identity).GetComponent<RectTransform>();
-						answerList[k].transform.SetParent(quizList[j].Find("Answer Item").GetChild(0));
-						answerList[k].GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
-						answerList[k].GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1);
-
-						answerList[k].Find("Circle Image").Find("Number").GetComponent<Text>().text = k + 1 + "";
-						answerList[k].Find("Content").GetComponent<Text>().text = array[j]["item_list"][k]["contents"].ToString();
-
-						// 보기 버튼 이벤트 설정
-						answerList[k].GetComponent<AnswerController>().quizIndex = j;
-						answerList[k].GetComponent<AnswerController>().answerIndex = k;
-						answerList[k].GetComponent<AnswerController>().isAnswer = array[j]["item_list"][k]["is_answer"].ToString();
-						if (array[j]["item_list"][k]["is_answer"].ToString().Equals(ConstantsScript.CORRECT_ANSWER))
-						{
-							quizList[j].GetComponent<QuizController>().answerNumber.Add(k + 1);
-						}
-						answerList[k].GetComponent<AnswerController>().type = ConstantsScript.MULTIPLE_CHOICE;
-						answerList[k].GetComponent<AnswerController>().answerCount = array[j]["answer_count"].ToString();
-						answerList[k].GetComponent<AnswerController>().init();
-
-						answerListByQuiz[j][k] = new RectTransform();
-						answerListByQuiz[j][k] = answerList[k];
-					}
-				} else
+				using (StreamReader reader = new StreamReader(stream))
 				{
+					string text = reader.ReadToEnd();
 
+
+					JObject obj = JObject.Parse(text);
+					JArray array = new JArray();
+
+					if (obj["done"].ToString() == null || obj["done"].ToString().Equals(""))
+					{    // 완료 설정이 없는 경우
+						errorPopup.SetActive(true);
+						errorText.text = "완료 화면 설정을 해주세요.";
+						yield break;
+					}
+
+					if (obj["file_path"].ToString() == null || obj["file_path"].ToString().Equals(""))
+					{    // 파일 경로 없는 경우
+						errorPopup.SetActive(true);
+						errorText.text = "파일 경로를 확인해 주세요.";
+						yield break;
+					}
+
+					JObject doneArray = JObject.Parse(obj["done"].ToString());
+
+					// 완료 화면 문구 또는 이미지 설정을 하지 않은 경우
+					if (!(doneArray["desc"] != null && doneArray["desc"].ToString() != "")
+					    || !(doneArray["pic"] != null && doneArray["pic"].ToString() != ""))
+					{
+						errorPopup.SetActive(true);
+						errorText.text = "완료 화면 설정을 해주세요.";
+						yield break;
+					}
+
+					// Quiz 결과 정보 구성
+					PlayerPrefs.SetString("doneDesc", doneArray["desc"].ToString());
+					PlayerPrefs.SetString("donePic", doneArray["pic"].ToString());
+					PlayerPrefs.SetString("quizFilePath", obj["file_path"].ToString());
+					PlayerPrefs.SetInt("criteria", doneArray["criteria"] != null && doneArray["criteria"].ToString() != "" ? (int)doneArray["criteria"] : 0);
+					PlayerPrefs.SetString("successContent", doneArray["success_content"] != null && doneArray["success_content"].ToString() != "" ? doneArray["success_content"].ToString() : "0");
+					PlayerPrefs.SetString("failureContent", doneArray["failure_content"] != null && doneArray["failure_content"].ToString() != "" ? doneArray["failure_content"].ToString() : "0");
+
+					array = JArray.Parse(obj["list"].ToString());
+
+					quizList = new RectTransform[array.Count];
+					answerListByQuiz = new RectTransform[array.Count][];
+
+					for (int j = 0; j < array.Count; j++)
+					{
+						addQuizContentLine = 0;
+
+						// Quiz prefabs 설정
+						quizList[j] = Instantiate(quizPrefab, Vector3.zero, Quaternion.identity).GetComponent<RectTransform>();
+						quizList[j].transform.SetParent(quizContent);
+
+						// Quiz UI 구성
+						quizList[j].GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
+						quizList[j].GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1);
+						quizList[j].GetComponent<QuizController>().categoryId = (int)array[j]["category_id"];
+						quizList[j].GetComponent<QuizController>().quizIndex = j;
+						quizList[j].Find("Quiz Contents").GetComponentInChildren<Text>().text = array[j]["contents"].ToString();
+
+						// Quiz UI RectTransform
+						RectTransform quizContentsRectTransform = quizList[j].Find("Quiz Contents").Find("Text").GetComponent<RectTransform>();
+						RectTransform quizContentsTextRectTransform = quizList[j].Find("Quiz Contents").GetComponent<RectTransform>();
+						RectTransform quizImageRectTransform = quizList[j].Find("Quiz Image").GetComponent<RectTransform>();
+						RectTransform OButtonRectTransform = quizList[j].Find("O Button").GetComponent<RectTransform>();
+						RectTransform XButtonRectTransform = quizList[j].Find("X Button").GetComponent<RectTransform>();
+						RectTransform OButtonClickRectTransform = quizList[j].Find("O Button Click").GetComponent<RectTransform>();
+						RectTransform XButtonClickRectTransform = quizList[j].Find("X Button Click").GetComponent<RectTransform>();
+						RectTransform answerItemRectTransform = quizList[j].Find("Answer Item").GetComponent<RectTransform>();
+
+						if (array[j]["contents"].ToString().Length > 26)
+						{
+							addQuizContentLine = 1;
+						}
+
+						// 퀴즈 Contents 길이에 따라 UI 재설정
+						quizContentsRectTransform.sizeDelta = new Vector2(quizContentsRectTransform.sizeDelta.x, quizContentsRectTransform.sizeDelta.y + quizContentsSpace * addQuizContentLine);
+						quizContentsTextRectTransform.sizeDelta = new Vector2(quizContentsTextRectTransform.sizeDelta.x, quizContentsTextRectTransform.sizeDelta.y + quizContentsSpace * addQuizContentLine);
+						quizImageRectTransform.anchoredPosition = new Vector2(quizImageRectTransform.anchoredPosition.x, quizImageRectTransform.anchoredPosition.y - quizContentsSpace * addQuizContentLine);
+						OButtonRectTransform.anchoredPosition = new Vector2(OButtonRectTransform.anchoredPosition.x, OButtonRectTransform.anchoredPosition.y - quizContentsSpace * addQuizContentLine);
+						XButtonRectTransform.anchoredPosition = new Vector2(XButtonRectTransform.anchoredPosition.x, XButtonRectTransform.anchoredPosition.y - quizContentsSpace * addQuizContentLine);
+						OButtonClickRectTransform.anchoredPosition = new Vector2(OButtonClickRectTransform.anchoredPosition.x, OButtonClickRectTransform.anchoredPosition.y - quizContentsSpace * addQuizContentLine);
+						XButtonClickRectTransform.anchoredPosition = new Vector2(XButtonClickRectTransform.anchoredPosition.x, XButtonClickRectTransform.anchoredPosition.y - quizContentsSpace * addQuizContentLine);
+						answerItemRectTransform.anchoredPosition = new Vector2(answerItemRectTransform.anchoredPosition.x, answerItemRectTransform.anchoredPosition.y - quizContentsSpace * addQuizContentLine);
+
+						// 정답 팝업 UI 구성
+						quizList[j].Find("Answer Popup").GetChild(0).Find("Answer Desc").GetComponentInChildren<Text>().text = array[j]["answer_desc"].ToString();
+
+						// 다음 퀴즈 버튼 이벤트 설정
+						quizList[j].Find("Answer Popup").GetChild(0).Find("Exit").GetComponent<QuizController>().exit();
+						quizList[j].Find("Answer Popup").GetChild(0).Find("Next Quiz").GetComponent<QuizController>().quizIndex = j;
+						quizList[j].Find("Answer Popup").GetChild(0).Find("Next Quiz").GetComponent<QuizController>().init();
+						quizList[j].Find("Answer Popup").gameObject.SetActive(false);
+
+						if (array[j]["file_list"] != null && array[j]["file_list"].Count() > 0)
+						{    // 설정된 이미지 파일이 있으면 추가
+							List<string> fileList = new List<string>();
+							for (int i = 0; i < array[j]["file_list"].Count(); i++)
+							{   // 파일 목록이 존재하는 경우
+								string imageTexture = array[j]["file_list"][i]["name"].ToString();
+								string imageFilePath = operateUrl + PlayerPrefs.GetString("quizFilePath") + "/" + imageTexture;
+								fileList.Add(imageFilePath);
+							}
+
+							RectTransform rectTransform = quizList[j].Find("Quiz Image").GetComponent<RectTransform>();
+							StartCoroutine(addImages(fileList, rectTransform));  // 이미지 파일 생성
+						}
+
+						if (array[j]["type"].ToString().Equals("0"))
+						{  // O,X 퀴즈
+							quizList[j].Find("Answer Item").gameObject.SetActive(false);
+							quizList[j].Find("O Button").gameObject.SetActive(true);
+							quizList[j].Find("X Button").gameObject.SetActive(true);
+
+							// OX 버튼 이벤트 설정
+							quizList[j].Find("O Button").GetComponent<AnswerController>().quizIndex = j;
+							quizList[j].Find("O Button").GetComponent<AnswerController>().type = ConstantsScript.OX;
+							quizList[j].Find("O Button").GetComponent<AnswerController>().ox = ConstantsScript.O;
+							quizList[j].Find("X Button").GetComponent<AnswerController>().quizIndex = j;
+							quizList[j].Find("X Button").GetComponent<AnswerController>().type = ConstantsScript.OX;
+							quizList[j].Find("X Button").GetComponent<AnswerController>().ox = ConstantsScript.X;
+
+							if (array[j]["answer"].ToString().Equals(ConstantsScript.WRONG_ANSWER))
+							{   // 정답이 X인 경우
+								quizList[j].Find("O Button").GetComponent<AnswerController>().isAnswer = ConstantsScript.WRONG_ANSWER;
+								quizList[j].Find("X Button").GetComponent<AnswerController>().isAnswer = ConstantsScript.CORRECT_ANSWER;
+							} else
+							{    // 정답이 O인 경우
+								quizList[j].Find("O Button").GetComponent<AnswerController>().isAnswer = ConstantsScript.CORRECT_ANSWER;
+								quizList[j].Find("X Button").GetComponent<AnswerController>().isAnswer = ConstantsScript.WRONG_ANSWER;
+							}
+
+							quizList[j].Find("O Button").GetComponent<AnswerController>().init();
+							quizList[j].Find("X Button").GetComponent<AnswerController>().init();
+						} else
+						{    // 객관식 퀴즈
+							quizList[j].Find("Answer Item").gameObject.SetActive(true);
+							quizList[j].Find("O Button").gameObject.SetActive(false);
+							quizList[j].Find("X Button").gameObject.SetActive(false);
+
+							if (array[j]["item_list"].Count() > 0)
+							{    // 보기 목록이 있는 경우
+								answerList = new RectTransform[array[j]["item_list"].Count()];
+								answerListByQuiz[j] = new RectTransform[array[j]["item_list"].Count()];
+
+								for (int k = 0; k < array[j]["item_list"].Count(); k++)
+								{
+									// 보기 prefabs 설정
+									answerList[k] = Instantiate(answerPrefab, Vector3.zero, Quaternion.identity).GetComponent<RectTransform>();
+									answerList[k].transform.SetParent(quizList[j].Find("Answer Item").GetChild(0));
+									answerList[k].GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
+									answerList[k].GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1);
+
+									answerList[k].Find("Circle Image").Find("Number").GetComponent<Text>().text = k + 1 + "";
+									answerList[k].Find("Content").GetComponent<Text>().text = array[j]["item_list"][k]["contents"].ToString();
+
+									// 보기 버튼 이벤트 설정
+									answerList[k].GetComponent<AnswerController>().quizIndex = j;
+									answerList[k].GetComponent<AnswerController>().answerIndex = k;
+									answerList[k].GetComponent<AnswerController>().isAnswer = array[j]["item_list"][k]["is_answer"].ToString();
+									if (array[j]["item_list"][k]["is_answer"].ToString().Equals(ConstantsScript.CORRECT_ANSWER))
+									{
+										quizList[j].GetComponent<QuizController>().answerNumber.Add(k + 1);
+									}
+									answerList[k].GetComponent<AnswerController>().type = ConstantsScript.MULTIPLE_CHOICE;
+									answerList[k].GetComponent<AnswerController>().answerCount = array[j]["answer_count"].ToString();
+									answerList[k].GetComponent<AnswerController>().init();
+
+									answerListByQuiz[j][k] = new RectTransform();
+									answerListByQuiz[j][k] = answerList[k];
+								}
+							} else
+							{
+
+							}
+						}
+					}
+
+					bSetQuiz = true;
+
+					yield break;
 				}
 			}
 		}
 
-		bSetQuiz = true;
 
-		yield break;
 	}
 
 	/**

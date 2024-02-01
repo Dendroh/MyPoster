@@ -1,6 +1,9 @@
 ﻿using Alchera;
+using Amazon.Runtime.Internal;
+using PimDeWitte.UnityMainThreadDispatcher;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Purchasing;
 using UnityEngine.UI;
 
 public class SelectUIScript : MonoBehaviour, UIScript
@@ -386,6 +389,8 @@ public class SelectUIScript : MonoBehaviour, UIScript
 		if (sendType.Equals("check_print"))
 		{   // 프린터 상태 체크
 			checkPrintResult = printResponse.Result;
+			Debug.Log("printResponse : " + printResponse.Result);
+			Debug.Log("printResponse : " + response.Result);
 			if (checkPrintResult.Equals("0") || checkPrintResult.Equals("1"))
 			{ // 사용 가능
 				printStatus = "able";
@@ -398,28 +403,44 @@ public class SelectUIScript : MonoBehaviour, UIScript
 			}
 		} else
 		{    // 결제 관련
-			paymentResult = response.Result;
-			if (response.Result.Equals("True"))
+			PimDeWitte.UnityMainThreadDispatcher.UnityMainThreadDispatcher.Instance().Enqueue(() =>
 			{
-				System.DateTime CurrentTime = System.DateTime.Now;
+				ProcessMessage(message);
+			});
+		}
+	}
 
-				paymentProcess = true;
-				_approvalNum = response.ApprovalNum;
-				_approvalDate = CurrentTime.ToString("yyyy-MM-dd HH:mm:ss");
-				_price = response.Price;
-				_paymentDate = response.ApprovalDate;
+	private void ProcessMessage(string message)
+	{
+		PaymentResponse response = JsonUtility.FromJson<PaymentResponse>(message);
 
-				Debug.Log("approval_num:" + response.Result);
-				Debug.Log("approval_num:" + response.ApprovalNum);
-				Debug.Log("approval_time:" + response.ApprovalDate);
-				Debug.Log("price:" + response.Price);
-			} else
-			{
-				paymentProcess = false;
-				_approvalNum = "";
-				_approvalDate = "";
-				_price = "";
-			}
+		paymentResult = response.Result;
+		Debug.Log(response.Result + " / " + response.Price + " / " + response.ApprovalDate + " / " + response.ApprovalNum);
+		if (response.Result == "True")
+		{
+			System.DateTime CurrentTime = System.DateTime.Now;
+
+			paymentProcess = true;
+			_approvalNum = response.ApprovalNum;
+			_approvalDate = CurrentTime.ToString("yyyy-MM-dd HH:mm:ss");
+			_price = response.Price;
+			_paymentDate = response.ApprovalDate;
+
+			PlayerPrefs.SetString("payment_result", response.Result);
+			PlayerPrefs.SetString("price", response.Price);
+			PlayerPrefs.SetString("approval_time", response.ApprovalDate);
+			PlayerPrefs.SetString("approval_num", response.ApprovalNum);
+
+			Debug.Log("payment_result:" + response.Result);
+			Debug.Log("price:" + response.Price);
+			Debug.Log("approval_time:" + response.ApprovalDate);
+			Debug.Log("approval_num:" + response.ApprovalNum);
+		} else
+		{
+			paymentProcess = false;
+			_approvalNum = "";
+			_approvalDate = "";
+			_price = "";
 		}
 	}
 

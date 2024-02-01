@@ -50,7 +50,6 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 	[SerializeField] RawImage GifResult;
 	[SerializeField] AudioSource photoAudioKr;
 	[SerializeField] AudioSource photoAudioEn;
-	[SerializeField] AudioSource contentsClickAudio;
 	[SerializeField] AudioSource buttonAudio;
 	[SerializeField] GameObject DownloadLoadingShield;
 
@@ -251,7 +250,6 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 		detector.Init();
 		movieScroll.value = 1;
 		selectPoster(FlowController.instance.currentMovieNumber);
-		contentsClickAudio.enabled = true;
 		carousel.GetComponent<RectTransform>().sizeDelta = new Vector2(1080, 610);
 
 		if (PlayerPrefs.GetString("quiz") == "true")
@@ -269,7 +267,6 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 		print("DisposePhoto");
 		photoResultAnimation.Play();
 		isPhotoCanvas = false;
-		contentsClickAudio.enabled = false;
 		ReadWebcamInSequence.bUpdateQuad = false;
 		ReadWebcamInSequence.bSendTexture = false;
 
@@ -415,10 +412,6 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 
 	public void selectPoster(int movieNumber)
 	{
-		if (UtilsScript.checkConfig() != "")
-		{
-			contentsClickAudio.Play();    // 컨텐츠 클릭 효과음 출력
-		}
 
 		for (int i = 0; i < posterButtons.Length; i++)
 		{
