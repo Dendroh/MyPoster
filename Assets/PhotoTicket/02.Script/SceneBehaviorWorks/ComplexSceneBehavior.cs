@@ -248,12 +248,12 @@ namespace Alchera
 			{
 				Debug.LogWarning(e.ToString());
 
-				sequence.Dispose();
-				faceService.Dispose();
-				handService.Dispose();
+				Application.Quit();
+
 			} catch (Exception e)
 			{
 				Debug.LogError(e.ToString());
+
 				Application.Quit();
 			}
 		}
