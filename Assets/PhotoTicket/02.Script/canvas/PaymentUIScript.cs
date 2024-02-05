@@ -80,8 +80,8 @@ public class PaymentUIScript : MonoBehaviour, UIScript
 		string productId = PlayerPrefs.GetString("productId");
 		string url = ConstantsScript.OPERATE_URL + "/site/" + siteId + "/product/get_price_list/" + productId;
 
-		HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url); 
-		
+		HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+
 		using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
 		{
 			using (Stream stream = response.GetResponseStream())
@@ -170,7 +170,6 @@ public class PaymentUIScript : MonoBehaviour, UIScript
 
 			//큐 탐색 시작
 			StartCoroutine(selectUIScript.CheckQueue());
-
 
 			AgentSendData sendData = new AgentSendData();
 			sendData.Command = "print_status";
@@ -306,12 +305,18 @@ public class PaymentUIScript : MonoBehaviour, UIScript
 
 	public void SetPayGuide(int i)
 	{
-		payGuide.sprite = payGuideSprites[i];
+		if (payGuide.sprite != payGuideSprites[i])
+		{
+			payGuide.sprite = payGuideSprites[i];
+		}
 	}
 
 	public void SetLoadingGuide(int i)
 	{
-		loadingGuide.sprite = payGuideSprites[i];
+		if (loadingGuide.sprite != payGuideSprites[i])
+		{
+			loadingGuide.sprite = payGuideSprites[i];
+		}
 	}
 
 	public void Success()

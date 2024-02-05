@@ -436,6 +436,8 @@ public class SelectUIScript : MonoBehaviour, UIScript
 			Debug.Log("price:" + response.Price);
 			Debug.Log("approval_time:" + response.ApprovalDate);
 			Debug.Log("approval_num:" + response.ApprovalNum);
+
+			StartCoroutine(CheckQueue());
 		} else
 		{
 			paymentProcess = false;

@@ -212,8 +212,6 @@ public class AgreementUIScript : MonoBehaviour, UIScript
 
 			//출력 명령 전송
 			SelectUIScript._netClient.SendMessage(payMessage);
-
-			StartCoroutine(SuccessCoroutineCancel());
 		}
 	}
 
@@ -290,7 +288,7 @@ public class AgreementUIScript : MonoBehaviour, UIScript
 	{
 		StartCoroutine(UtilsScript.playAudio(cancelPaymentAudioKr, cancelPaymentAudioEn));
 		SetLoadingGuide(1);
-		//StartCoroutine(SuccessCoroutineCancel());
+		StartCoroutine(SuccessCoroutineCancel());
 	}
 
 	public void FailCancel()
@@ -320,7 +318,7 @@ public class AgreementUIScript : MonoBehaviour, UIScript
 		PlayerPrefs.SetString("b_payment", "false");
 
 		loadingProgress.SetActive(false);
-		yield return new WaitForSeconds(6f);
+		yield return new WaitForSeconds(5f);
 
 		FlowController.instance.ChangeFlow(FlowController.instance.selectCanvas);
 
