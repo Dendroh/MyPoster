@@ -248,6 +248,7 @@ public class SelectUIScript : MonoBehaviour, UIScript
 		WaitForSeconds waitSec = new WaitForSeconds(1);
 
 		int count = 0;
+		Debug.LogWarning("CheckQueue");
 
 		while (count < maxLoopCount)
 		{
