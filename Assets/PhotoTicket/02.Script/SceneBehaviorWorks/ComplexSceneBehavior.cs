@@ -73,6 +73,9 @@ namespace Alchera
 		IClock clock;
 		Color32[] pixelBuffer;
 
+		static CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+		CancellationToken cancellationToken = cancellationTokenSource.Token;
+
 		void Awake()
 		{
 			Debug.Log("ComplexSceneBehavior Awake");
@@ -116,6 +119,8 @@ namespace Alchera
 			{
 				foreach (Task<Texture> request in sequence.RepeatAsync())
 				{
+					cancellationToken.ThrowIfCancellationRequested();
+
 					int detectCount = 0;
 					var texture = await request;
 
@@ -244,18 +249,23 @@ namespace Alchera
 
 					photoCanvas.SetPhotoCountText(posingTimer, posingWatingTime); //화면에 보여지는 3,2,1, 카운터
 				}
-			} catch (TaskCanceledException e)
+			} 
+			catch (TaskCanceledException e)
 			{
 				Debug.LogWarning(e.ToString());
 
-				Application.Quit();
-
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
 				Debug.LogError(e.ToString());
 
 				Application.Quit();
 			}
+		}
+
+		void OnApplicationQuit()
+		{
+			cancellationTokenSource.Cancel();
 		}
 		/**
 		PhotoCanvas 일때 값을 초기화합니다.
