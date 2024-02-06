@@ -291,8 +291,8 @@ public class PaymentUIScript : MonoBehaviour, UIScript
 
 			Debug.Log("SENDMESSAGE:" + payMessage);
 			SelectUIScript._netClient.SendMessage(payMessage);
-
-		} else
+		} 
+		else
 		{
 			FlowController.instance.ChangeFlow(FlowController.instance.AgreementCanvas);
 		}

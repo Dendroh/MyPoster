@@ -60,6 +60,8 @@ public class PhotoTicketConfig : MonoBehaviour
 
 	[SerializeField] GameObject waitPopup;
 
+	private bool isClicked = false;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -291,6 +293,32 @@ public class PhotoTicketConfig : MonoBehaviour
 		{
 			toggleChange(trueMirror, ref param16);
 		});
+
+		StartCoroutine(CheckUserInput());
+	}
+	private void Update()
+	{
+		if (Input.GetMouseButtonDown(0))
+		{
+			isClicked = true;
+		}
+		
+	}
+
+	private IEnumerator CheckUserInput()
+	{
+		while (true)
+		{
+			if (isClicked)
+			{
+				isClicked = false;
+			} else
+			{
+				yield return new WaitForSeconds(30);
+
+				StartPhotoTicket();
+			}
+		}
 	}
 
 	public void setToggle(string toggleName, Toggle trueToggle, Toggle falseToggle)
