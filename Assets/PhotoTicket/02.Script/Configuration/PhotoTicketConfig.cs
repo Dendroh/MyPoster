@@ -61,6 +61,7 @@ public class PhotoTicketConfig : MonoBehaviour
 	[SerializeField] GameObject waitPopup;
 
 	private bool isClicked = false;
+	private bool isStarted = false;
 
 	// Start is called before the first frame update
 	void Start()
@@ -293,7 +294,6 @@ public class PhotoTicketConfig : MonoBehaviour
 		{
 			toggleChange(trueMirror, ref param16);
 		});
-
 		StartCoroutine(CheckUserInput());
 	}
 	private void Update()
@@ -302,7 +302,7 @@ public class PhotoTicketConfig : MonoBehaviour
 		{
 			isClicked = true;
 		}
-		
+
 	}
 
 	private IEnumerator CheckUserInput()
@@ -315,8 +315,10 @@ public class PhotoTicketConfig : MonoBehaviour
 			} else
 			{
 				yield return new WaitForSeconds(30);
-
-				StartPhotoTicket();
+				if (isStarted == false)
+				{
+					StartPhotoTicket();
+				}
 			}
 		}
 	}
@@ -385,6 +387,8 @@ public class PhotoTicketConfig : MonoBehaviour
 
 	public void StartPhotoTicket()
 	{
+		isStarted = true;
+
 		if (IsAllInputFilled() == false) //입력창이 공란으로 남아있을 경우
 		{
 			Debug.LogError("모든 값을 입력하세요");
