@@ -6,6 +6,7 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Text.RegularExpressions;
+using UnityEngine.UIElements;
 
 public class ResultUIScript : MonoBehaviour, UIScript
 {
@@ -21,6 +22,33 @@ public class ResultUIScript : MonoBehaviour, UIScript
 	void Start()
 	{
 		camReader = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<ReadWebcamInSequence>();
+	}
+
+	void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.KeypadEnter))
+		{
+			if (FlowController.instance.currentCanvas == FlowController.instance.resultCanvas)
+			{
+				SendPoster();
+			}
+		}
+
+		if (Input.GetKeyDown(KeyCode.KeypadMinus))
+		{
+			if (FlowController.instance.currentCanvas == FlowController.instance.resultCanvas)
+			{
+				RetakePhoto();
+			}
+		}
+
+		if (Input.GetKeyDown(KeyCode.KeypadMultiply))
+		{
+			if (FlowController.instance.currentCanvas == FlowController.instance.resultCanvas)
+			{
+				GoToIntro();
+			}
+		}
 	}
 
 	public void Init()

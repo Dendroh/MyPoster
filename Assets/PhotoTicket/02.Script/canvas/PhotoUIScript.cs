@@ -120,10 +120,12 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 
 	void Start()
 	{
-		downArrow.onClick.AddListener(() => {
+		downArrow.onClick.AddListener(() =>
+		{
 			StartCoroutine(SmoothScroll(movieScroll.value - 1.5f * (1f / (moviePosters.Length / 5f))));
 		});
-		upArrow.onClick.AddListener(() => {
+		upArrow.onClick.AddListener(() =>
+		{
 			StartCoroutine(SmoothScroll(movieScroll.value + 1.5f * (1f / (moviePosters.Length / 5f))));
 		});
 
@@ -175,60 +177,92 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 
 
 		// 스크롤 윗 방향 리모컨
-		if (Input.GetKeyDown(KeyCode.UpArrow))
+		if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.KeypadMinus))
 		{
-			StartCoroutine(SmoothScroll(movieScroll.value + 1.5f * (1f / (moviePosters.Length / 5f))));
+			if (FlowController.instance.currentCanvas == FlowController.instance.photoCanvas)
+			{
+				StartCoroutine(SmoothScroll(movieScroll.value + 1.5f * (1f / (moviePosters.Length / 5f))));
+			}
 		}
 
 		// 스크롤 아래 방향 리모컨
-		if (Input.GetKeyDown(KeyCode.DownArrow))
+		if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.KeypadPlus))
 		{
-			StartCoroutine(SmoothScroll(movieScroll.value - 1.5f * (1f / (moviePosters.Length / 5f))));
+			if (FlowController.instance.currentCanvas == FlowController.instance.photoCanvas)
+			{
+				StartCoroutine(SmoothScroll(movieScroll.value - 1.5f * (1f / (moviePosters.Length / 5f))));
+			}
 		}
 
 		// 포스터 위 방향 리모컨
-		if (Input.GetKeyDown(KeyCode.W))
+		if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Keypad8))
 		{
-			if (FlowController.instance.currentMovieNumber - 5 >= 0)
+			if (FlowController.instance.currentCanvas == FlowController.instance.photoCanvas)
 			{
-				selectPoster(FlowController.instance.currentMovieNumber - 5);
+				if (FlowController.instance.currentMovieNumber - 5 >= 0)
+				{
+					selectPoster(FlowController.instance.currentMovieNumber - 5);
+				}
 			}
 		}
 
 		// 포스터 아래 방향 리모컨
-		if (Input.GetKeyDown(KeyCode.S))
+		if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.Keypad2))
 		{
-			if (FlowController.instance.currentMovieNumber + 5 <= moviePosters.Length - 1)
+			if (FlowController.instance.currentCanvas == FlowController.instance.photoCanvas)
 			{
-				selectPoster(FlowController.instance.currentMovieNumber + 5);
+				if (FlowController.instance.currentMovieNumber + 5 <= moviePosters.Length - 1)
+				{
+					selectPoster(FlowController.instance.currentMovieNumber + 5);
+				}
 			}
 		}
 
 		// 포스터 왼쪽 방향 리모컨
-		if (Input.GetKeyDown(KeyCode.A))
-		{	
-			if(FlowController.instance.currentMovieNumber > 0)
+		if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Keypad4))
+		{
+			if (FlowController.instance.currentCanvas == FlowController.instance.photoCanvas)
 			{
-				selectPoster(FlowController.instance.currentMovieNumber - 1);
+				if (FlowController.instance.currentMovieNumber > 0)
+				{
+					selectPoster(FlowController.instance.currentMovieNumber - 1);
+				}
 			}
 		}
 
 		// 포스터 오른쪽 방향 리모컨
-		if (Input.GetKeyDown(KeyCode.D))
+		if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.Keypad6))
 		{
-			if(FlowController.instance.currentMovieNumber < moviePosters.Length - 1)
+			if (FlowController.instance.currentCanvas == FlowController.instance.photoCanvas)
 			{
-				selectPoster(FlowController.instance.currentMovieNumber + 1);
+				if (FlowController.instance.currentMovieNumber < moviePosters.Length - 1)
+				{
+					selectPoster(FlowController.instance.currentMovieNumber + 1);
+				}
 			}
 		}
 
 		// 풋 스위치 클릭시 촬영
-		if (Input.GetKeyDown(KeyCode.F3))
+		if (Input.GetKeyDown(KeyCode.F3) || Input.GetKeyDown(KeyCode.KeypadEnter))
 		{
-			if (redButton.activeSelf)
+			if (FlowController.instance.currentCanvas == FlowController.instance.photoCanvas)
 			{
-				Debug.Log("F3 key was pressed.");
-				ClickRedButton();
+				if (redButton.activeSelf)
+				{
+					ClickRedButton();
+				}
+			}
+		}
+
+		// 풋 스위치 클릭시 촬영
+		if (Input.GetKeyDown(KeyCode.KeypadMultiply))
+		{
+			if (FlowController.instance.currentCanvas == FlowController.instance.photoCanvas)
+			{
+				if (redButton.activeSelf)
+				{
+					GoToIntro();
+				}
 			}
 		}
 	}
@@ -339,7 +373,7 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 
 	public void SetQuadRotate(GameObject quad)
 	{
-		if(!bSetQuadRotate)
+		if (!bSetQuadRotate)
 		{
 			quad.transform.localRotation = Quaternion.Euler(0f, 0f, -90f);
 			quad.transform.localScale = new Vector3(-quad.transform.localScale.x, quad.transform.localScale.y, quad.transform.localScale.z);
@@ -395,7 +429,7 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 		stickerProgressSlider.gameObject.SetActive(false);
 
 		// 포스터 Set Prefab Progress UI 활성화
-		if(MovieDownManager.initialRun == false)
+		if (MovieDownManager.initialRun == false)
 		{
 			DownLoadProgressLabel.text = "포스터 스티커 이미지 설정중...";
 			posterPrefabProgressText.gameObject.SetActive(true);
@@ -485,7 +519,7 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 
 	IEnumerator SmoothScroll(float targetValue)
 	{
-		float duration = 0.1f; 
+		float duration = 0.1f;
 		float startValue = movieScroll.value;
 		float time = 0;
 
@@ -496,7 +530,7 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 			yield return null;
 		}
 
-		movieScroll.value = targetValue; 
+		movieScroll.value = targetValue;
 	}
 
 	public void GoToIntro()

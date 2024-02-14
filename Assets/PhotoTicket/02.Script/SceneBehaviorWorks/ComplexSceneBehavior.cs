@@ -254,6 +254,8 @@ namespace Alchera
 			{
 				Debug.LogWarning(e.ToString());
 
+				Application.Quit();
+
 			}
 			catch (Exception e)
 			{

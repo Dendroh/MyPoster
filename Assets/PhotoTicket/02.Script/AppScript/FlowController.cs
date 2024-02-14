@@ -103,6 +103,8 @@ public class FlowController : MonoBehaviour
 				timer = 0;
 			}
 		}
+
+
 	}
 
 	public void Loading(bool flag)  //로딩 창 필요시에 생성하여 터치를 막는다.

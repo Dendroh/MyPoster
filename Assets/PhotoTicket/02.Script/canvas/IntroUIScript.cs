@@ -95,6 +95,21 @@ public class IntroUIScript : MonoBehaviour, UIScript
 				timerAudio = 0; // 타이머 초기화
 			}
 		}
+
+		// 포스터 오른쪽 방향 리모컨
+		if (Input.GetKeyDown(KeyCode.KeypadEnter))
+		{
+			if (FlowController.instance.currentCanvas == FlowController.instance.introCanvas)
+			{
+				if (PlayerPrefs.GetString("quiz") == "true")
+				{
+					FlowController.instance.ChangeFlow(FlowController.instance.quizCanvas);
+				} else
+				{
+					FlowController.instance.ChangeFlow(FlowController.instance.selectCanvas);
+				}
+			}
+		}
 	}
 
 	public void Init()

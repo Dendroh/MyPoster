@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PosterController : MonoBehaviour
 {
-    public int id;
-    SelectUIScript script;
+	public int id;
+	SelectUIScript script;
 
-    public void init()
-    {
-        script = GameObject.Find("1.Select Canvas").GetComponent<SelectUIScript>();
-        GetComponent<Button>().onClick.AddListener(delegate { script.StartPhoto(id); });
-    }
+	public void init()
+	{
+		script = GameObject.Find("1.Select Canvas").GetComponent<SelectUIScript>();
+		GetComponent<Button>().onClick.AddListener(delegate { script.StartPhoto(id); });
+	}
 }

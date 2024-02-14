@@ -295,6 +295,7 @@ public class PaymentUIScript : MonoBehaviour, UIScript
 		else
 		{
 			FlowController.instance.ChangeFlow(FlowController.instance.AgreementCanvas);
+			StartCoroutine(selectUIScript.CheckQueue());
 		}
 	}
 

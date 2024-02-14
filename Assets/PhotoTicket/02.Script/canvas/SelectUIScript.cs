@@ -105,6 +105,34 @@ public class SelectUIScript : MonoBehaviour, UIScript
 			else
 				posterButtons[i].interactable = false;
 		}
+
+
+		// 포스터 왼쪽 방향 리모컨
+		if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Keypad4))
+		{
+			if (FlowController.instance.currentCanvas == FlowController.instance.selectCanvas)
+			{
+				moveLeft();
+			}
+		}
+
+		// 포스터 오른쪽 방향 리모컨
+		if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.Keypad6))
+		{
+			if (FlowController.instance.currentCanvas == FlowController.instance.selectCanvas)
+			{
+				moveRight();
+			}
+		}
+
+		// 포스터 오른쪽 방향 리모컨
+		if (Input.GetKeyDown(KeyCode.KeypadEnter))
+		{
+			if (FlowController.instance.currentCanvas == FlowController.instance.selectCanvas)
+			{
+				StartPhoto(scrollIndex);
+			}
+		}
 	}
 
 	public void InstantiatePoster()

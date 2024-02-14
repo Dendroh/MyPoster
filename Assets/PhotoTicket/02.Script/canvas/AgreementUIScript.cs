@@ -51,7 +51,28 @@ public class AgreementUIScript : MonoBehaviour, UIScript
 	// Update is called once per frame
 	void Update()
 	{
+		if (Input.GetKeyDown(KeyCode.KeypadEnter))
+		{
+			if (FlowController.instance.currentCanvas == FlowController.instance.AgreementCanvas)
+			{
+				if (!terms.isOn)
+				{
+					terms.isOn = true;
+				} else
+				{
+					agree();
+				}
+				
+			}
+		}
 
+		if (Input.GetKeyDown(KeyCode.KeypadMultiply))
+		{
+			if (FlowController.instance.currentCanvas == FlowController.instance.AgreementCanvas)
+			{
+				Cancel();
+			}
+		}
 	}
 
 	public void agreeValueChanged(Toggle toggle)

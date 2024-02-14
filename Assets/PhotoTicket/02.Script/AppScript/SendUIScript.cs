@@ -77,7 +77,34 @@ public class SendUIScript : MonoBehaviour, UIScript
 
 	void Update()
 	{
+		if (Input.GetKeyDown(KeyCode.KeypadEnter))
+		{
+			if (FlowController.instance.currentCanvas == FlowController.instance.sendCanvas)
+			{
+				if (sendButtonClickFlag == true && sendButtonEmail.gameObject.activeSelf)
+				{
+					SendPoster("email");
+				}
 
+				if (sendButtonClickFlag == true && sendButtonPhone.gameObject.activeSelf)
+				{
+					SendPoster("phone");
+				}
+
+				if (sendButtonClickFlag == true && sendButtonQR.gameObject.activeSelf)
+				{
+					SendPoster("qr");
+				}
+			}
+		}
+
+		if (Input.GetKeyDown(KeyCode.KeypadMultiply))
+		{
+			if (FlowController.instance.currentCanvas == FlowController.instance.sendCanvas)
+			{
+				Cancel();
+			}
+		}
 	}
 
 	public void Init()
@@ -194,7 +221,7 @@ public class SendUIScript : MonoBehaviour, UIScript
 			emailTab.SetActive(false);
 			phoneTab.SetActive(false);
 			qrTab.SetActive(true);
-			ReType("email");
+			ReType("qr");
 		}
 
 		tab.SetActive(true);
@@ -256,7 +283,6 @@ public class SendUIScript : MonoBehaviour, UIScript
 
 		if (type == "phone")
 		{
-			//PlayerPrefs.SetString("PHONE_NUMBER", Numberpanel.phoneNumberText.text);
 			PlayerPrefs.SetString("PHONE_NUMBER", Numberpanel.phoneNumber);
 			PlayerPrefs.SetString("EMAIL_ADDRESS", "");
 
