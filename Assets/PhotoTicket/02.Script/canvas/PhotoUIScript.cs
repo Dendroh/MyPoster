@@ -176,88 +176,59 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 			return;
 
 
-		// 스크롤 윗 방향 리모컨
-		if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.KeypadMinus))
+		if (FlowController.instance.currentCanvas == FlowController.instance.photoCanvas)
 		{
-			if (FlowController.instance.currentCanvas == FlowController.instance.photoCanvas)
+			if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.KeypadMinus))
 			{
 				StartCoroutine(SmoothScroll(movieScroll.value + 1.5f * (1f / (moviePosters.Length / 5f))));
 			}
-		}
 
-		// 스크롤 아래 방향 리모컨
-		if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.KeypadPlus))
-		{
-			if (FlowController.instance.currentCanvas == FlowController.instance.photoCanvas)
+			if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.KeypadPlus))
 			{
 				StartCoroutine(SmoothScroll(movieScroll.value - 1.5f * (1f / (moviePosters.Length / 5f))));
 			}
-		}
 
-		// 포스터 위 방향 리모컨
-		if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Keypad8))
-		{
-			if (FlowController.instance.currentCanvas == FlowController.instance.photoCanvas)
+			if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Keypad8))
 			{
 				if (FlowController.instance.currentMovieNumber - 5 >= 0)
 				{
 					selectPoster(FlowController.instance.currentMovieNumber - 5);
 				}
 			}
-		}
 
-		// 포스터 아래 방향 리모컨
-		if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.Keypad2))
-		{
-			if (FlowController.instance.currentCanvas == FlowController.instance.photoCanvas)
+			if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.Keypad2))
 			{
 				if (FlowController.instance.currentMovieNumber + 5 <= moviePosters.Length - 1)
 				{
 					selectPoster(FlowController.instance.currentMovieNumber + 5);
 				}
 			}
-		}
 
-		// 포스터 왼쪽 방향 리모컨
-		if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Keypad4))
-		{
-			if (FlowController.instance.currentCanvas == FlowController.instance.photoCanvas)
+			if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Keypad4))
 			{
 				if (FlowController.instance.currentMovieNumber > 0)
 				{
 					selectPoster(FlowController.instance.currentMovieNumber - 1);
 				}
 			}
-		}
 
-		// 포스터 오른쪽 방향 리모컨
-		if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.Keypad6))
-		{
-			if (FlowController.instance.currentCanvas == FlowController.instance.photoCanvas)
+			if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.Keypad6))
 			{
 				if (FlowController.instance.currentMovieNumber < moviePosters.Length - 1)
 				{
 					selectPoster(FlowController.instance.currentMovieNumber + 1);
 				}
 			}
-		}
 
-		// 풋 스위치 클릭시 촬영
-		if (Input.GetKeyDown(KeyCode.F3) || Input.GetKeyDown(KeyCode.KeypadEnter))
-		{
-			if (FlowController.instance.currentCanvas == FlowController.instance.photoCanvas)
+			if (Input.GetKeyDown(KeyCode.F3) || Input.GetKeyDown(KeyCode.KeypadEnter))
 			{
 				if (redButton.activeSelf)
 				{
 					ClickRedButton();
 				}
 			}
-		}
 
-		// 풋 스위치 클릭시 촬영
-		if (Input.GetKeyDown(KeyCode.KeypadMultiply))
-		{
-			if (FlowController.instance.currentCanvas == FlowController.instance.photoCanvas)
+			if (Input.GetKeyDown(KeyCode.KeypadMultiply))
 			{
 				if (redButton.activeSelf)
 				{

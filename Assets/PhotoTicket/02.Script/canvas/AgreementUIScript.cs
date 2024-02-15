@@ -48,12 +48,11 @@ public class AgreementUIScript : MonoBehaviour, UIScript
 		PlayerPrefs.SetString("b_payment", "false");
 	}
 
-	// Update is called once per frame
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.KeypadEnter))
+		if (FlowController.instance.currentCanvas == FlowController.instance.AgreementCanvas)
 		{
-			if (FlowController.instance.currentCanvas == FlowController.instance.AgreementCanvas)
+			if (Input.GetKeyDown(KeyCode.KeypadEnter))
 			{
 				if (!terms.isOn)
 				{
@@ -62,13 +61,9 @@ public class AgreementUIScript : MonoBehaviour, UIScript
 				{
 					agree();
 				}
-				
 			}
-		}
 
-		if (Input.GetKeyDown(KeyCode.KeypadMultiply))
-		{
-			if (FlowController.instance.currentCanvas == FlowController.instance.AgreementCanvas)
+			if (Input.GetKeyDown(KeyCode.KeypadMultiply))
 			{
 				Cancel();
 			}

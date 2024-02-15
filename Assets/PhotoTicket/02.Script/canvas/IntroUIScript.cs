@@ -96,10 +96,10 @@ public class IntroUIScript : MonoBehaviour, UIScript
 			}
 		}
 
-		// 포스터 오른쪽 방향 리모컨
-		if (Input.GetKeyDown(KeyCode.KeypadEnter))
+
+		if (FlowController.instance.currentCanvas == FlowController.instance.introCanvas)
 		{
-			if (FlowController.instance.currentCanvas == FlowController.instance.introCanvas)
+			if (Input.GetKeyDown(KeyCode.KeypadEnter))
 			{
 				if (PlayerPrefs.GetString("quiz") == "true")
 				{

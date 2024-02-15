@@ -26,25 +26,19 @@ public class ResultUIScript : MonoBehaviour, UIScript
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.KeypadEnter))
+		if (FlowController.instance.currentCanvas == FlowController.instance.resultCanvas)
 		{
-			if (FlowController.instance.currentCanvas == FlowController.instance.resultCanvas)
+			if (Input.GetKeyDown(KeyCode.KeypadEnter))
 			{
 				SendPoster();
 			}
-		}
 
-		if (Input.GetKeyDown(KeyCode.KeypadMinus))
-		{
-			if (FlowController.instance.currentCanvas == FlowController.instance.resultCanvas)
+			if (Input.GetKeyDown(KeyCode.KeypadMinus))
 			{
 				RetakePhoto();
 			}
-		}
 
-		if (Input.GetKeyDown(KeyCode.KeypadMultiply))
-		{
-			if (FlowController.instance.currentCanvas == FlowController.instance.resultCanvas)
+			if (Input.GetKeyDown(KeyCode.KeypadMultiply))
 			{
 				GoToIntro();
 			}
@@ -55,7 +49,7 @@ public class ResultUIScript : MonoBehaviour, UIScript
 	{
 		StartCoroutine(StopCameraAfterSeconds(1));
 		StartCoroutine(DelayedPlayAudio(2));
-		if(ComplexSceneBehavior.photoCount < ComplexSceneBehavior.photoCountMax)
+		if (ComplexSceneBehavior.photoCount < ComplexSceneBehavior.photoCountMax)
 		{
 			StartCoroutine(RetakePhotoAfterSeconds(1));
 		} else
@@ -154,8 +148,7 @@ public class ResultUIScript : MonoBehaviour, UIScript
 					}
 				}
 			}
-		} 
-		else
+		} else
 		{    // 영화가 무료인 경우
 			GotoSend();
 		}

@@ -75,38 +75,6 @@ public class SendUIScript : MonoBehaviour, UIScript
 		StartCoroutine(SendSetting());
 	}
 
-	void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.KeypadEnter))
-		{
-			if (FlowController.instance.currentCanvas == FlowController.instance.sendCanvas)
-			{
-				if (sendButtonClickFlag == true && sendButtonEmail.gameObject.activeSelf)
-				{
-					SendPoster("email");
-				}
-
-				if (sendButtonClickFlag == true && sendButtonPhone.gameObject.activeSelf)
-				{
-					SendPoster("phone");
-				}
-
-				if (sendButtonClickFlag == true && sendButtonQR.gameObject.activeSelf)
-				{
-					SendPoster("qr");
-				}
-			}
-		}
-
-		if (Input.GetKeyDown(KeyCode.KeypadMultiply))
-		{
-			if (FlowController.instance.currentCanvas == FlowController.instance.sendCanvas)
-			{
-				Cancel();
-			}
-		}
-	}
-
 	public void Init()
 	{
 		// 전송 안내 멘트 출력
