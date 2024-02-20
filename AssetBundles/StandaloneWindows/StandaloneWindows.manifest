@@ -1,10 +1,7 @@
 ManifestFileVersion: 0
-CRC: 1773718381
+CRC: 2512110184
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: skin
-      Dependencies: {}
-    Info_1:
-      Name: tooth
+      Name: fg_rabbit
       Dependencies: {}
