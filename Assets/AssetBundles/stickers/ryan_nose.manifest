@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 1561966427
+CRC: 1053559893
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 0f73ffdf79f6b26a00968c68a604d8e8
+    Hash: df3969b9dcf4f7baa2de97ad54b91fc5
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: df3969b9dcf4f7baa2de97ad54b91fc5
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/Kakao/ryan_nose.prefab
 Dependencies: []

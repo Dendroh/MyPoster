@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 354938020
+CRC: 2415140306
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: fe4567a389cf117d6e5e1775bddd4bd6
+    Hash: e5d116f5c57f6531aa1e78536d911bb3
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 77083b8abc6cd7552f5297b486c4419b
+    Hash: e4bd41b59bf9304de39afede0e2dc179
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: e5d116f5c57f6531aa1e78536d911bb3
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -25,6 +28,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/Pengsu/peng.prefab
 Dependencies: []

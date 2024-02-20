@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 779168766
+CRC: 2159685463
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 72157fa689fab5e37529941707afb863
+    Hash: 09d8894ce5fdfaa70a895d921d992491
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 09d8894ce5fdfaa70a895d921d992491
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/40.thesnowqueen/thesnowqueen_tiara.prefab
 Dependencies: []

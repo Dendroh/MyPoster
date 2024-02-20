@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 2111492299
+CRC: 957382856
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 12d1d601ed166cfbe3555a3dfd761166
+    Hash: fd9eb0f0fa52e21e254bd6fab2e92392
   TypeTreeHash:
     serializedVersion: 2
-    Hash: fb2b6d7e7b75168ca0d1af0e1b576d22
+    Hash: bf4646c5fbd7b8e28dbfcdacf1fb3ba9
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: fd9eb0f0fa52e21e254bd6fab2e92392
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -25,6 +28,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 328
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/CaptainAmerica/fg_captain.prefab
 Dependencies: []

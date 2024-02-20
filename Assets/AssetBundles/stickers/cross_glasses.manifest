@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 4264954906
+CRC: 1864206097
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d39bacc24f398df3945c75755a8dfeed
+    Hash: 2c34d74f09c9ffb87d47fa6827a79fd6
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 2c34d74f09c9ffb87d47fa6827a79fd6
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/26.Cross/cross_glasses.prefab
 Dependencies: []

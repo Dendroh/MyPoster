@@ -303,6 +303,10 @@ public class PhotoTicketConfig : MonoBehaviour
 			isClicked = true;
 		}
 
+		if(Input.GetKeyDown(KeyCode.KeypadEnter))
+		{
+			StartPhotoTicket();
+		}
 	}
 
 	private IEnumerator CheckUserInput()

@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 315807903
+CRC: 1653636760
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 93ded42bd2bcdcb94ce2548e19ef7a3b
+    Hash: eb9504514d6d2b31b658226aaa79030c
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 94d7998c63942d111f749c9a227ee820
+    Hash: 3cf5d19c67766f5f9c935ac0cd5944b5
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: eb9504514d6d2b31b658226aaa79030c
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -33,6 +36,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/2.Rabbit/rabbit_handSticker.prefab
 Dependencies: []

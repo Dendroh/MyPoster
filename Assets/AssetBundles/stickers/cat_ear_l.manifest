@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 694892197
+CRC: 2156802302
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 2611a92726cda852028536f856a7de45
+    Hash: 7243c5f3ad0a1355cd40bcc44285b614
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 7243c5f3ad0a1355cd40bcc44285b614
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/7.Cat/cat_ear_l.prefab
 Dependencies: []

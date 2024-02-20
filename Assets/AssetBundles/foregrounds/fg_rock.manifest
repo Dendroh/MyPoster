@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 632441331
+CRC: 4131183247
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 50bf03960a795472f60d969b14bcbde3
+    Hash: ecce6800b0fd59ef7e34fe44e89054ba
   TypeTreeHash:
     serializedVersion: 2
-    Hash: ec4436b66a5abab9bdd9110e03e29c18
+    Hash: 18aa665146f3800b4962b1a200572e09
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: ecce6800b0fd59ef7e34fe44e89054ba
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -29,6 +32,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/9.Rock/fg_rock.prefab
 Dependencies: []

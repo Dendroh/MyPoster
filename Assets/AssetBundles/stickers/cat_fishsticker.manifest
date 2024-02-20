@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 3852824753
+CRC: 3069641478
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 551d76fa2bf9bd3b906db91264bee4e8
+    Hash: 638b69722cce0a26d01064b6799d6353
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 94d7998c63942d111f749c9a227ee820
+    Hash: 3cf5d19c67766f5f9c935ac0cd5944b5
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 638b69722cce0a26d01064b6799d6353
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -33,6 +36,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/7.Cat/cat_fishSticker.prefab
 Dependencies: []

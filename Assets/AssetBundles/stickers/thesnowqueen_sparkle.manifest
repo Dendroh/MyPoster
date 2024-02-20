@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 1802447483
+CRC: 3744077747
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 256ca960e14bc5ed0e41e8b93ac4a864
+    Hash: 43cb0e4861864fdec2f1e24c500ceec5
   TypeTreeHash:
     serializedVersion: 2
-    Hash: ec4436b66a5abab9bdd9110e03e29c18
+    Hash: 18aa665146f3800b4962b1a200572e09
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 43cb0e4861864fdec2f1e24c500ceec5
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -29,6 +32,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/40.thesnowqueen/thesnowqueen_sparkle.prefab
 Dependencies: []

@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 3824840572
+CRC: 824423386
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 8231f3091699fa0aa6fc08caae84acb3
+    Hash: ddbfccf2846eb83eda4c7b939bfed0a9
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: ddbfccf2846eb83eda4c7b939bfed0a9
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/Temiorae/7.Friends/fg_friends.prefab
 Dependencies: []

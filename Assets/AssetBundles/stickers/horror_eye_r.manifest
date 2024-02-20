@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 1844192243
+CRC: 2687126682
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a288057c0e20b25b810bdf1b98f89fb4
+    Hash: 18cc9c2745f1309e1061189e2b3345b0
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 18cc9c2745f1309e1061189e2b3345b0
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/5.Horror/horror_eye_r.prefab
 Dependencies: []

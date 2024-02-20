@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 3994385379
+CRC: 945877793
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 896c146a8ee37e18b8ff67b0c8b14cd2
+    Hash: cbc947e35f79f4513f255b8adb5d2302
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 425efafa516e7d2b081bdbc134bc76cb
+    Hash: b717ed912c25138dd7536962738fb255
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: cbc947e35f79f4513f255b8adb5d2302
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -35,6 +38,7 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 35579223a39f34613a44851cec6a626d, type: 3}
 - Class: 115
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/0.AnimatorStickerSample/sampleHand/Box_OK/SampleBoxOKSticker.prefab
 Dependencies: []

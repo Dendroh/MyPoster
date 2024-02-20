@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 583488111
+CRC: 4232938454
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 04c9d5a57a80e1054601bfc71b2a62c3
+    Hash: 62e6172e213510f8f8b621e9db3ca35e
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 587c0aa3cc480f4742d71ae5bc362577
+    Hash: 11ef5f3484b32dd509b1f31709a5894c
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 62e6172e213510f8f8b621e9db3ca35e
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -33,6 +36,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 137
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/39.Animoji_test/animoji_test_3.prefab
 Dependencies: []

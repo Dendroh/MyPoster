@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 2101717998
+CRC: 1285181276
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: f4a0899411aa72982363d0bd0af120e8
+    Hash: 222229664832a918acd9d32f1909a9d7
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 222229664832a918acd9d32f1909a9d7
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/6.Dog/dog_nose.prefab
 Dependencies: []

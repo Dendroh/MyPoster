@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 365006910
+CRC: 1205923499
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 587f6edb11feecd38e2cf92a66037097
+    Hash: 3653312b9affecaf675bc8ab75fd6e00
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 3653312b9affecaf675bc8ab75fd6e00
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/Temiorae/8.Travel/travel_luggage.prefab
 Dependencies: []

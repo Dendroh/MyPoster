@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 390329181
+CRC: 2826189281
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 85a116eed163ed20e5119fc3475375eb
+    Hash: 7b03cdb2471c73b4133534b0bbe1d933
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 7b03cdb2471c73b4133534b0bbe1d933
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/Masterpiece/vandana.prefab
 Dependencies: []

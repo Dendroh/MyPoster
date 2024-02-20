@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 1508296422
+CRC: 615242610
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 9c2de4fbeefd584eb9eac8c6346295d1
+    Hash: 65856af56ec5ae4968c5050ffbee550e
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 65856af56ec5ae4968c5050ffbee550e
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/16.Angel/fg_Angel.prefab
 Dependencies: []

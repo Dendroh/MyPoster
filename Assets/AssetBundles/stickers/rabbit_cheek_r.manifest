@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 3983545703
+CRC: 3404466908
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 6b225b7faf379033fc69b4170ea23199
+    Hash: 7bee838f1481ab90762956b3d675ec3b
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 7bee838f1481ab90762956b3d675ec3b
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/2.Rabbit/rabbit_cheek_r.prefab
 Dependencies: []

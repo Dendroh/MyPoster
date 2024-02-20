@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 170004783
+CRC: 844715511
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 48bdd175ce7f41af90fd609986bba375
+    Hash: 9ea2f9f4db1e9cd5877dc8ad648eb244
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 9ea2f9f4db1e9cd5877dc8ad648eb244
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/7.Cat/cat_nose.prefab
 Dependencies: []

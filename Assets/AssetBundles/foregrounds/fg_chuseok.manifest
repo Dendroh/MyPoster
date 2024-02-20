@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 559365187
+CRC: 336883213
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 51dca428aeb4cd5a73ec5a63be2cd589
+    Hash: e9695fbd4a365c8e41380b4cac6b894e
   TypeTreeHash:
     serializedVersion: 2
-    Hash: ec4436b66a5abab9bdd9110e03e29c18
+    Hash: 18aa665146f3800b4962b1a200572e09
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: e9695fbd4a365c8e41380b4cac6b894e
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -29,6 +32,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/27.Chuseok/fg_chuseok.prefab
 Dependencies: []

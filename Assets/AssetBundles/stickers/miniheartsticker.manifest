@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 429595701
+CRC: 808714350
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 88e5fdc14e286162c3a2b9aad8e37746
+    Hash: 65f797174f25c625f02318c6e4fe7a3e
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 94d7998c63942d111f749c9a227ee820
+    Hash: 3cf5d19c67766f5f9c935ac0cd5944b5
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 65f797174f25c625f02318c6e4fe7a3e
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -33,6 +36,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/3.Birthday/mini_heart/MiniHeartSticker.prefab
 Dependencies: []

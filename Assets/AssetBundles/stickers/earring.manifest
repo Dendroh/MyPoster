@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 1446853576
+CRC: 3168348934
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 9132bd8e98c8a5192eb6831f2801d28e
+    Hash: 8423481902fbe7493d968ab5e182cf4c
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 8423481902fbe7493d968ab5e182cf4c
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,7 +26,8 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/Stickers/Sticker/Masterpiece/earring.png
 - Assets/Stickers/StickerPrefabs/Masterpiece/earring.prefab
+- Assets/Stickers/Sticker/Masterpiece/earring.png
 Dependencies: []

@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 4238281515
+CRC: 134010435
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 40298d0e106041edb5b9887bec646566
+    Hash: 6b8a9d30a111925e2e2e39bf5bfe8143
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 425efafa516e7d2b081bdbc134bc76cb
+    Hash: b717ed912c25138dd7536962738fb255
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 6b8a9d30a111925e2e2e39bf5bfe8143
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -35,6 +38,7 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 35579223a39f34613a44851cec6a626d, type: 3}
 - Class: 115
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/0.AnimatorStickerSample/sampleHand/Box_MiniHeart/SampleBoxMiniHeartSticker.prefab
 Dependencies: []

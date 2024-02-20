@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 2150779145
+CRC: 151689357
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 65e958b617296469fcf16c4aa6df10d5
+    Hash: fe014ed34390e191dc8e7485e52fe4fc
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: fe014ed34390e191dc8e7485e52fe4fc
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/Parasite/fg_parasite.prefab
 Dependencies: []

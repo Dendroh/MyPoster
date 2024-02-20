@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 877279574
+CRC: 4160993281
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: e39ff136053fc01d56730d42bdfb8a7a
+    Hash: 24abf8c20b4b701b843b58debc952aca
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 24abf8c20b4b701b843b58debc952aca
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/5.Horror/horror_nose.prefab
 Dependencies: []

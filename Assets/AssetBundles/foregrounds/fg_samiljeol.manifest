@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 2606875399
+CRC: 2890630098
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 39a29a0d639a50ac1574a1a01ef2be4c
+    Hash: 2bd730f33f6ba7aea0d1d2e605bc28fb
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 2bd730f33f6ba7aea0d1d2e605bc28fb
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/12.SamIlJeol/fg_samIlJeol.prefab
 Dependencies: []

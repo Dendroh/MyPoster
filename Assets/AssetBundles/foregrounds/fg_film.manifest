@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 1899320024
+CRC: 3163257954
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 3121e39d6825491ef37c3d3f1b87a7d4
+    Hash: 36de37f23515e649a79f1533d03a6765
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 36de37f23515e649a79f1533d03a6765
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/8.Film/fg_film.prefab
 Dependencies: []

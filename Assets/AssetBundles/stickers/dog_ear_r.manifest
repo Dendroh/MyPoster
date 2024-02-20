@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 4218617734
+CRC: 1462511452
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: baf379d543c511896ec6117c313c37ce
+    Hash: 48a7fec406c39d6e39e7fee38c0e119c
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 48a7fec406c39d6e39e7fee38c0e119c
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/6.Dog/dog_ear_r.prefab
 Dependencies: []

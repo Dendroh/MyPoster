@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 1006214579
+CRC: 4219337815
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: e44f25c69002100f470b285859c70239
+    Hash: 6f56310e10179b96fcddc250e61b04cd
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 6f56310e10179b96fcddc250e61b04cd
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/39.Animoji_test/fg_dog_2.prefab
 Dependencies: []

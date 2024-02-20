@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 1314281601
+CRC: 1742925168
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a6f71542d00004ebf4d2bf8f608b68bc
+    Hash: 992c021dbe253a782ca21a219685816a
   TypeTreeHash:
     serializedVersion: 2
-    Hash: ec4436b66a5abab9bdd9110e03e29c18
+    Hash: 18aa665146f3800b4962b1a200572e09
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 992c021dbe253a782ca21a219685816a
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -29,6 +32,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/Dream/dream_ring.prefab
 Dependencies: []

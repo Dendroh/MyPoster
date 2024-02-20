@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 427122843
+CRC: 738515157
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d18abd00109923cb8c3ca695ecdff10e
+    Hash: 15a6d5e218e737e4fe8310a438101ba7
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 94d7998c63942d111f749c9a227ee820
+    Hash: 3cf5d19c67766f5f9c935ac0cd5944b5
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 15a6d5e218e737e4fe8310a438101ba7
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -33,6 +36,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/6.Dog/dog_hotdogSticker.prefab
 Dependencies: []

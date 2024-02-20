@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 1492286448
+CRC: 1995152813
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: bdce64bb5454601e42d6a021b4bd02c4
+    Hash: ff83037d62e4d63e8dae41130ac95508
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: ff83037d62e4d63e8dae41130ac95508
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/Temiorae/9.Busking/busking_hat.prefab
 Dependencies: []

@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 1049753045
+CRC: 1289698931
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 96372f69e097b6afdee73d6ee6a910f7
+    Hash: 0b9b138ec2b1b4786d5c0e3c3d0c3fc2
   TypeTreeHash:
     serializedVersion: 2
-    Hash: ec4436b66a5abab9bdd9110e03e29c18
+    Hash: 18aa665146f3800b4962b1a200572e09
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 0b9b138ec2b1b4786d5c0e3c3d0c3fc2
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -29,6 +32,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/15.Strawberry/strawberry_mask.prefab
 Dependencies: []

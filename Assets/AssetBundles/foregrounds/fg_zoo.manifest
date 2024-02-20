@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 799471681
+CRC: 3510257349
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: bbc1b9244a4186fa1110bbb279ba4f62
+    Hash: 1abab6e1584d4d35d23b2d97c3d07983
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 1abab6e1584d4d35d23b2d97c3d07983
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/Oworld/fg_zoo.prefab
 Dependencies: []

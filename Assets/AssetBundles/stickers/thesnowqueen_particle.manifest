@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 1130529576
+CRC: 2820703280
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 03c2e509f6f89067b00293461cb4984f
+    Hash: a35b2a85b4848fa833b93cb14e269061
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 46ffaa66f2b2234dedaec37f4bc5639c
+    Hash: f0a668381dc17a677d754b103d1bca9c
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: a35b2a85b4848fa833b93cb14e269061
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -25,6 +28,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 199
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/40.thesnowqueen/thesnowqueen_particle.prefab
 Dependencies: []

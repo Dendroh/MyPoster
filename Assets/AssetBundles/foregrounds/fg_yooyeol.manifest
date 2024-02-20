@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 2662478257
+CRC: 1741383870
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 60b52e169da3ca093d1eb685d8615c87
+    Hash: 9aa4ba3477ba8f71b2860f51b6a7213b
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 9aa4ba3477ba8f71b2860f51b6a7213b
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/21.Yooyeol/fg_yooyeol.prefab
 Dependencies: []

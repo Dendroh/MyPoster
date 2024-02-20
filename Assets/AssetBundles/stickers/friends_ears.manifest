@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 2254750845
+CRC: 3170300007
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 439098aa3e5aa6b3fa212aa92081e30f
+    Hash: 901cc80b5dd237290444447d1dcf066d
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 901cc80b5dd237290444447d1dcf066d
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/Temiorae/7.Friends/friends_ears.prefab
 Dependencies: []

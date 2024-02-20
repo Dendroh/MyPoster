@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 4189929509
+CRC: 892313574
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: b9552fe6ca86495eb03205aa90d47179
+    Hash: 5c162919602ef41cfccd924c4894a913
   TypeTreeHash:
     serializedVersion: 2
-    Hash: ec4436b66a5abab9bdd9110e03e29c18
+    Hash: 18aa665146f3800b4962b1a200572e09
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 5c162919602ef41cfccd924c4894a913
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -29,6 +32,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/22.Floral/fg_floral.prefab
 Dependencies: []

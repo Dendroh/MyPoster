@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 870434756
+CRC: 2483788804
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 22ff8325657fb0f46b09f4f571775fc2
+    Hash: ba754fbc53a1509343520b6995341f67
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: ba754fbc53a1509343520b6995341f67
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/Dream/dream_spaceship.prefab
 Dependencies: []

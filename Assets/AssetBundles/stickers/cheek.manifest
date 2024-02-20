@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 3976253844
+CRC: 2866823389
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 8663ad04ae5b769b0acbe23fc1b5a1ef
+    Hash: d6cff88c7d58162cf4088dcf6fe6fd23
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: d6cff88c7d58162cf4088dcf6fe6fd23
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/Pengsu/cheek.prefab
 Dependencies: []

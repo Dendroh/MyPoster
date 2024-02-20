@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 3078350026
+CRC: 3191546447
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 51465146db394ce6aeba2dcaf4ba6f17
+    Hash: 8527b7ac0ed94927e1e58ba8053ecb5c
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 8527b7ac0ed94927e1e58ba8053ecb5c
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/5.Horror/horror_mouth.prefab
 Dependencies: []

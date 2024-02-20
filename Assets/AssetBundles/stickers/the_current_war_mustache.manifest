@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 1368651492
+CRC: 1372829086
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 6daf010a5698e9b03b2f4cc92a1fcc38
+    Hash: 792820607c6ddc72cce73f09a1f73fce
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 792820607c6ddc72cce73f09a1f73fce
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/20.TheCurrentWar/the_current_war_mustache.prefab
 Dependencies: []

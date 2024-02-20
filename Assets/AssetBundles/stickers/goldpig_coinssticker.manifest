@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 705180684
+CRC: 2315997030
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 773d152e9763ba7e39349431b8977ef8
+    Hash: 36f330455d83c7a3b2b76444570974f9
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 94d7998c63942d111f749c9a227ee820
+    Hash: 3cf5d19c67766f5f9c935ac0cd5944b5
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 36f330455d83c7a3b2b76444570974f9
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -33,6 +36,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/4.GoldPig/goldpig_coinsSticker.prefab
 Dependencies: []

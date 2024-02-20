@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 1920730438
+CRC: 322567567
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: b12f35cc1e100c942e6dac25fcfab2a8
+    Hash: 06b563feafe89db78f109352a9ab3e8b
   TypeTreeHash:
     serializedVersion: 2
-    Hash: ec4436b66a5abab9bdd9110e03e29c18
+    Hash: 18aa665146f3800b4962b1a200572e09
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 06b563feafe89db78f109352a9ab3e8b
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -29,6 +32,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/27.Chuseok/chuseok_heart.prefab
 Dependencies: []

@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 162249174
+CRC: 1845022046
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 96846a319ec9721d2a523ffe251e522e
+    Hash: 9dc0859173c9355d5baa5a617b8b988f
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 9dc0859173c9355d5baa5a617b8b988f
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/9.Rock/rock_beard.prefab
 Dependencies: []

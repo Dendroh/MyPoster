@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 3693398975
+CRC: 3953538786
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 6cc9f273d033109760c5f9c5b3d2b9a4
+    Hash: 79d65918caa32daf6b9a39e0560e5fae
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 79d65918caa32daf6b9a39e0560e5fae
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/23.BabySummer/babySummer_hand.prefab
 Dependencies: []

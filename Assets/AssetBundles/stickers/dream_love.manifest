@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 701128557
+CRC: 4092164608
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 689f5b7fc6fda5f22ecb4e7131d5429e
+    Hash: 8a354b69dd24e4be90e624a02c1e02cd
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 8a354b69dd24e4be90e624a02c1e02cd
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/Dream/dream_love.prefab
 Dependencies: []

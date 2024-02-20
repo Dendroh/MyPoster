@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 792627692
+CRC: 2004708245
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 1ac3712398b989a0e41a4485be331256
+    Hash: c131ca99533f7bb0b1fea37ddf23d566
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: c131ca99533f7bb0b1fea37ddf23d566
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/26.Cross/fg_cross.prefab
 Dependencies: []

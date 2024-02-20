@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 2195886865
+CRC: 4075627995
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 6b7b092d578efbc033384e0d8d9c9b1f
+    Hash: fc5ea75486cc8a7cce7494d7f8b93439
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: fc5ea75486cc8a7cce7494d7f8b93439
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/25.Santorini/santorini_flower.prefab
 Dependencies: []

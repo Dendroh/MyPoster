@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 2259852479
+CRC: 2145764340
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c5ac30fc45f7d4a4c807ef0a83e0c07d
+    Hash: b8a4c4c543bef5f2ad8a5ae445923e61
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 94d7998c63942d111f749c9a227ee820
+    Hash: 3cf5d19c67766f5f9c935ac0cd5944b5
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: b8a4c4c543bef5f2ad8a5ae445923e61
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -33,6 +36,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/13.CherryBlossom/cherryBlossom_icecreamSticker.prefab
 Dependencies: []

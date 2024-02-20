@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 2821830397
+CRC: 2444621384
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a8077afd6e7c7c4dd60b1f87f59def61
+    Hash: 3930124e757c2bc59b4ecfa90b1a391f
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 3930124e757c2bc59b4ecfa90b1a391f
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/3.Birthday/bday_ribbon.prefab
 Dependencies: []

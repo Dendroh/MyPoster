@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 3843323991
+CRC: 3862436965
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a38289424ed6878368c15bbae3d8fcff
+    Hash: ac13b30118e32d7055c2ab17d9182433
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: ac13b30118e32d7055c2ab17d9182433
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/Kakao/ryan_hat.prefab
 Dependencies: []

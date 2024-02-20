@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 238889928
+CRC: 3318497457
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 73957d5c55c27594e352679e7db6403c
+    Hash: 7ea104a391f7843d62ec8a2c801e6f4e
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 7ea104a391f7843d62ec8a2c801e6f4e
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/Temiorae/10.Garden/garden_coronet.prefab
 Dependencies: []

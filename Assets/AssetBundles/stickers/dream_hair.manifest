@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 603694898
+CRC: 2595697703
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 3150ca71421346bf2dfe5e6cc274b1c1
+    Hash: 9ee5ea65d04f30fdf05a8b7c6c7b650c
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 9ee5ea65d04f30fdf05a8b7c6c7b650c
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/Dream/dream_hair.prefab
 Dependencies: []

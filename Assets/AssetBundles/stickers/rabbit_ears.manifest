@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 2612624823
+CRC: 3394642216
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 1fde2de29475c1dd0a139b97bfddd426
+    Hash: bcdf6fb197638e29ae7b0e2fd12d46ed
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: bcdf6fb197638e29ae7b0e2fd12d46ed
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/2.Rabbit/rabbit_ears.prefab
 Dependencies: []

@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 3899804535
+CRC: 2301733559
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 14619ea91a0c80c0df2e3e184de27278
+    Hash: 47b5fb4b06b04e1d6a6bcab856deb087
   TypeTreeHash:
     serializedVersion: 2
-    Hash: ec4436b66a5abab9bdd9110e03e29c18
+    Hash: 18aa665146f3800b4962b1a200572e09
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 47b5fb4b06b04e1d6a6bcab856deb087
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -29,6 +32,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/Mackiss/soju.prefab
 Dependencies: []

@@ -1,16 +1,20 @@
 ManifestFileVersion: 0
-CRC: 3234917949
+CRC: 3676633079
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: f51b1eccc4e89d3f8eb6eaefa3b29ff7
+    Hash: 4346e997177f0cc6a87a2bf39de7f53e
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 4c6c8fc99ead083a5f8ccf318eab7a09
+    Hash: c12678a98877549a3fe7bb52917258ad
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 4346e997177f0cc6a87a2bf39de7f53e
 HashAppended: 0
 ClassTypes:
 - Class: 329
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/Video/video1.webm
 Dependencies: []

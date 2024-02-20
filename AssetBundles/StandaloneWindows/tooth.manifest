@@ -1,0 +1,22 @@
+ManifestFileVersion: 0
+CRC: 1707263452
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 15c94e77d04b7048bc9e3b20f609ebcc
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5e762ccb57c4caaabbb5a4199ac82c23
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 15c94e77d04b7048bc9e3b20f609ebcc
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Stickers/StickerPrefabs/39.Animoji_test/Materials/tooth.mat
+Dependencies: []

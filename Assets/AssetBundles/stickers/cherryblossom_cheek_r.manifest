@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 3510216634
+CRC: 164229041
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 05292d10e2975a9b1d908356d46b7a81
+    Hash: 557c6fced7dd5c9be319fb5284404266
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 557c6fced7dd5c9be319fb5284404266
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/13.CherryBlossom/cherryBlossom_cheek_r.prefab
 Dependencies: []

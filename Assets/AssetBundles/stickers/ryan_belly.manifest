@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 3027043215
+CRC: 1155754894
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 913b30e693b4ef1e2b2c8e85bf73f5ba
+    Hash: 5d3f48d0b10345ee2fde841ffd68d958
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 5d3f48d0b10345ee2fde841ffd68d958
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/Kakao/ryan_belly.prefab
 Dependencies: []

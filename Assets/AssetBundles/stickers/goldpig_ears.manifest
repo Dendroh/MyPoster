@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 3785785011
+CRC: 1499543232
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 5bd65eab163cb4cdd68e97f70ef39ceb
+    Hash: f2225aa0e0d3808dac183b90e116f460
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: f2225aa0e0d3808dac183b90e116f460
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/4.GoldPig/goldpig_ears.prefab
 Dependencies: []

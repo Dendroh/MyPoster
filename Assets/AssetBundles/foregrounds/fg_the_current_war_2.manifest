@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 1528660000
+CRC: 1360488958
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d95d11d09dfc3e518b7998d9b2a3c0bc
+    Hash: 37b0f51c30da5b0b66fd597c1fd59b7c
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 37b0f51c30da5b0b66fd597c1fd59b7c
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/20.TheCurrentWar/fg_the_current_war_2.prefab
 Dependencies: []

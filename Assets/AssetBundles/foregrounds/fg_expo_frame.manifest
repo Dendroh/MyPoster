@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 1227498275
+CRC: 2401098897
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: fe29d2159463aa8dae6f8a59c6f87416
+    Hash: bfc9f5e9ec52895dfeb167a661ccc4d4
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 52b90fe34acdbe892c80e1ff630fee3e
+    Hash: 06f631ffe5ac23ab9453d679f6a4c96e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: bfc9f5e9ec52895dfeb167a661ccc4d4
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,6 +26,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Stickers/StickerPrefabs/Dream/fg_expo_frame.prefab
 Dependencies: []
