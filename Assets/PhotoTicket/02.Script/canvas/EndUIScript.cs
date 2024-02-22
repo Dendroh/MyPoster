@@ -46,7 +46,7 @@ public class EndUIScript : MonoBehaviour, UIScript
 	{
 		if (FlowController.instance.currentCanvas == FlowController.instance.endCanvas)
 		{
-			if (Input.GetKeyDown(KeyCode.KeypadEnter))
+			if (Input.GetKeyDown(KeyCode.Keypad5))
 			{
 				GoToIntro();
 			}

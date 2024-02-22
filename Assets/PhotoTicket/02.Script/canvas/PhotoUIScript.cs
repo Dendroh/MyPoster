@@ -220,7 +220,7 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 				}
 			}
 
-			if (Input.GetKeyDown(KeyCode.F3) || Input.GetKeyDown(KeyCode.KeypadEnter))
+			if (Input.GetKeyDown(KeyCode.F3) || Input.GetKeyDown(KeyCode.Keypad5))
 			{
 				if (redButton.activeSelf)
 				{

@@ -28,7 +28,7 @@ public class ResultUIScript : MonoBehaviour, UIScript
 	{
 		if (FlowController.instance.currentCanvas == FlowController.instance.resultCanvas)
 		{
-			if (Input.GetKeyDown(KeyCode.KeypadEnter))
+			if (Input.GetKeyDown(KeyCode.Keypad5))
 			{
 				SendPoster();
 			}

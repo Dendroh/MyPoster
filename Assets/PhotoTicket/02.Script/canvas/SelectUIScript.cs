@@ -118,7 +118,7 @@ public class SelectUIScript : MonoBehaviour, UIScript
 				moveRight();
 			}
 
-			if (Input.GetKeyDown(KeyCode.KeypadEnter))
+			if (Input.GetKeyDown(KeyCode.Keypad5))
 			{
 				StartPhoto(scrollIndex);
 			}

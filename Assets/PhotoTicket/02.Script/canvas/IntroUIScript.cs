@@ -99,7 +99,7 @@ public class IntroUIScript : MonoBehaviour, UIScript
 
 		if (FlowController.instance.currentCanvas == FlowController.instance.introCanvas)
 		{
-			if (Input.GetKeyDown(KeyCode.KeypadEnter))
+			if (Input.GetKeyDown(KeyCode.Keypad5))
 			{
 				if (PlayerPrefs.GetString("quiz") == "true")
 				{

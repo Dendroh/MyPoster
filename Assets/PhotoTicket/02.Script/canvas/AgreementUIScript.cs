@@ -52,7 +52,7 @@ public class AgreementUIScript : MonoBehaviour, UIScript
 	{
 		if (FlowController.instance.currentCanvas == FlowController.instance.AgreementCanvas)
 		{
-			if (Input.GetKeyDown(KeyCode.KeypadEnter))
+			if (Input.GetKeyDown(KeyCode.Keypad5))
 			{
 				if (!terms.isOn)
 				{
