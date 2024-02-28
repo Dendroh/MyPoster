@@ -8,6 +8,7 @@ using System.Threading;
 using System.IO;
 using UnityEngine.Video;
 using Amazon.CognitoIdentity.Model;
+using Amazon.S3;
 
 public class PhotoUIScript : MonoBehaviour, UIScript
 {
@@ -233,6 +234,14 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 				if (redButton.activeSelf)
 				{
 					GoToIntro();
+				}
+			}
+
+			if (ComplexSceneBehavior.autoShot == true)
+			{
+				if (redButton.activeSelf)
+				{
+					ClickRedButton();
 				}
 			}
 		}

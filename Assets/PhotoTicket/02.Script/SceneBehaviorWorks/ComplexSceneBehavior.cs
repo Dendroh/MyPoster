@@ -16,6 +16,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using NatCorder;
 using NatCorder.Clocks;
+using Unity.Services.Analytics;
 
 namespace Alchera
 {
@@ -76,6 +77,12 @@ namespace Alchera
 		static CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 		CancellationToken cancellationToken = cancellationTokenSource.Token;
 
+		public static IEnumerable<FaceData> faces;
+		public static IEnumerable<HandData> hands;
+
+		public static bool autoShot = false;
+
+
 		void Awake()
 		{
 			Debug.Log("ComplexSceneBehavior Awake");
@@ -112,8 +119,8 @@ namespace Alchera
 				Debug.Log("GIF Save Progress..");
 			};
 
-			IEnumerable<FaceData> faces = null;
-			IEnumerable<HandData> hands = null;
+			faces = null;
+			hands = null;
 
 			try
 			{
@@ -131,7 +138,9 @@ namespace Alchera
 					if (faces != null)
 					{
 						foreach (var item in faces)
+						{
 							detectCount++;
+						}
 						faceConsumer.Consume(ref image, faces);
 					}
 					faceTranslator.Dispose();
@@ -142,7 +151,15 @@ namespace Alchera
 					if (hands != null)
 					{
 						foreach (var item in hands)
+						{
+							Debug.Log(item.Posture);
+							if (item.Posture == PostureCode.v)
+							{
+								autoShot = true;
+							}
+
 							detectCount++;
+						}
 						handConsumer.Consume(ref image, hands);
 					}
 					handTranslator.Dispose();
@@ -231,6 +248,8 @@ namespace Alchera
 							ResultUIScript.photoProgressFinished = true;
 
 							FlowController.instance.ChangeFlow(FlowController.instance.resultCanvas);
+
+							autoShot = false;
 						}
 					} else
 					{
