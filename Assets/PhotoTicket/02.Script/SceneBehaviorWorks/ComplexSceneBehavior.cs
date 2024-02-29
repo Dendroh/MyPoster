@@ -54,6 +54,8 @@ namespace Alchera
 
 		[SerializeField] int MaxCount;
 
+		public static Texture2D[] texture2Ds = new Texture2D[2];
+
 		public static int photoCount = 1;
 		public static int photoCountMax = 4;
 
@@ -98,6 +100,7 @@ namespace Alchera
 			faceConsumer = FaceConsumer.GetComponent<IFaceListConsumer>();
 			handConsumer = HandConsumer.GetComponent<IHandListConsumer>();
 		}
+
 
 		public async void Start()  //detect 로직 수행 중 
 		{
@@ -187,6 +190,8 @@ namespace Alchera
 							{
 								StartCoroutine(recoder.SavePhoto(jpgResult.GetComponent<RawImage>(), photoCount.ToString()));
 
+								await Task.Delay(1000);
+
 								await textureSaver.SaveTexture(texture, photoCount.ToString() + "_raw");
 
 								if (photoCount == photoCountMax)
@@ -194,6 +199,8 @@ namespace Alchera
 									StartCoroutine(recoder.SavePhoto(jpgResult.GetComponent<RawImage>(), "0"));
 
 									await textureSaver.SaveTexture(texture, "0_raw");
+
+									MergePhoto();
 								}
 							}
 						} else if (posingTimer < 0)   // GIF 저장
@@ -391,6 +398,40 @@ namespace Alchera
 			}
 
 			yield return null;
+		}
+
+		public async void MergePhoto()
+		{
+			Texture2D mergedTexture2D = CombineTextures(texture2Ds);
+
+			await textureSaver.SaveTexture(mergedTexture2D, "0_merged");
+		}
+
+		public static Texture2D CombineTextures(Texture2D[] textures)
+		{
+			int totalHeight = 0;
+			foreach (Texture2D texture in textures)
+			{
+				if (texture == null) continue;
+				totalHeight += texture.height;
+			}
+
+			// 새로운 텍스처 생성
+			Texture2D combinedTexture = new Texture2D(textures[0].width, totalHeight, TextureFormat.ARGB32, false);
+
+			// 픽셀 데이터 복사
+			int yOffset = 0;
+			foreach (Texture2D texture in textures)
+			{
+				if (texture == null) continue;
+				Color[] sourcePixels = texture.GetPixels();
+				combinedTexture.SetPixels(0, yOffset, texture.width, texture.height, sourcePixels);
+				yOffset += texture.height;
+			}
+
+			combinedTexture.Apply();
+
+			return combinedTexture;
 		}
 	}
 }

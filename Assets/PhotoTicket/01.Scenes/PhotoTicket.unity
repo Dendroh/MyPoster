@@ -25077,7 +25077,7 @@ MonoBehaviour:
   - {fileID: 1189325624}
   - {fileID: 176203867}
   - {fileID: 1733440017}
-  MaxCount: 1
+  MaxCount: 2
   posingWatingTime: 5.2
 --- !u!114 &1016391935
 MonoBehaviour:
