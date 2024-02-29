@@ -364,10 +364,10 @@ public class SendUIScript : MonoBehaviour, UIScript
 
 		if (Application.isEditor)
 		{
-			filepath = Application.dataPath + "/0.jpg";
+			filepath = Application.dataPath + "/0_merged.jpg";
 		} else
 		{
-			filepath = Path.GetFullPath(".") + "/photo/0.jpg";
+			filepath = Path.GetFullPath(".") + "/photo/0_merged.jpg";
 		}
 
 		AgentSendData sendData = new AgentSendData();
