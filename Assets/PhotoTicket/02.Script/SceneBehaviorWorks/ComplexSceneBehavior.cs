@@ -409,15 +409,20 @@ namespace Alchera
 
 		public static Texture2D CombineTextures(Texture2D[] textures)
 		{
-			int totalHeight = 0;
-			foreach (Texture2D texture in textures)
-			{
-				if (texture == null) continue;
-				totalHeight += texture.height;
-			}
+			int totalHeight = textures[0].height * 2 + 200;
+			int totalWidth = textures[0].width * 2 + 200;
 
 			// 새로운 텍스처 생성
-			Texture2D combinedTexture = new Texture2D(textures[0].width, totalHeight, TextureFormat.ARGB32, false);
+			Texture2D combinedTexture = new Texture2D(totalWidth, totalHeight, TextureFormat.ARGB32, false);
+
+			int i = (textures[0].width * 2 + 200) * (textures[0].height * 2 + 200);
+
+			Color[] whiteArea = new Color[i];
+			for (int j = 0; j < whiteArea.Length; j++)
+			{
+				whiteArea[j] = Color.white;
+			}
+			combinedTexture.SetPixels(0, 0, (textures[0].width * 2 + 200), (textures[0].height * 2 + 200), whiteArea);
 
 			// 픽셀 데이터 복사
 			int yOffset = 0;
@@ -425,8 +430,12 @@ namespace Alchera
 			{
 				if (texture == null) continue;
 				Color[] sourcePixels = texture.GetPixels();
+
 				combinedTexture.SetPixels(0, yOffset, texture.width, texture.height, sourcePixels);
-				yOffset += texture.height;
+
+				combinedTexture.SetPixels(texture.width+200, yOffset, texture.width, texture.height, sourcePixels);
+
+				yOffset += texture.height + 100;
 			}
 
 			combinedTexture.Apply();
