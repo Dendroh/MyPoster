@@ -126,6 +126,15 @@ public class EndUIScript : MonoBehaviour, UIScript
 
 	public void RePrintPoster()
 	{
+		string filepath = "";
+
+		if (Application.isEditor)
+		{
+			filepath = Application.dataPath + "/0_merged.jpg";
+		} else
+		{
+			filepath = Path.GetFullPath(".") + "/photo/0_merged.jpg";
+		}
 		// 버튼 효과음 출력
 		StartCoroutine(UtilsScript.playEffectAudio(buttonAudio));
 
@@ -136,13 +145,23 @@ public class EndUIScript : MonoBehaviour, UIScript
 		StartCoroutine(selectUIScript.CheckQueue());
 
 		AgentSendData sendData = new AgentSendData();
-		sendData.Command = "print_status";
-		sendData.PrintCount = "1";
 
-		string checkMessage = JsonUtility.ToJson(sendData);
+		sendData.Command = "print";
+		sendData.FilePath = filepath;
+		sendData.PrintCount = PlayerPrefs.GetString("count");
+		if (PlayerPrefs.GetString("pay_mode").Equals("t"))
+		{
+			sendData.PrintCount = "1";
+		}
 
-		Debug.Log("SENDMESSAGE:" + checkMessage);
-		SelectUIScript._netClient.SendMessage(checkMessage);
+		PlayerPrefs.SetString("count", "0");
+
+		string payMessage = JsonUtility.ToJson(sendData);
+
+		Debug.Log("SENDMESSAGE:" + payMessage);
+
+		//출력 명령 전송
+		SelectUIScript._netClient.SendMessage(payMessage);
 	}
 
 	private static Color32[] Encode(string textForEncoding, int width, int height)
