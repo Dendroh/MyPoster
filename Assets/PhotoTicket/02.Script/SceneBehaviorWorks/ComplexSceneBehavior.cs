@@ -152,12 +152,6 @@ namespace Alchera
 					{
 						foreach (var item in hands)
 						{
-							Debug.Log(item.Posture);
-							if (item.Posture == PostureCode.v)
-							{
-								autoShot = true;
-							}
-
 							detectCount++;
 						}
 						handConsumer.Consume(ref image, hands);
