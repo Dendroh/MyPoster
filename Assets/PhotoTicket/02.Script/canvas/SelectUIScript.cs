@@ -155,7 +155,6 @@ public class SelectUIScript : MonoBehaviour, UIScript
 			thumbnailValues[i] = ratio;
 			moviePosters[i].anchorMin = new Vector2(posterPosition * (2 * i + 3), 0);
 			moviePosters[i].anchorMax = new Vector2(posterPosition * (2 * i + 3), 1);
-			moviePosters[i].GetComponentsInChildren<Image>()[1].gameObject.SetActive(!isFree[i]);
 			posterButtons[i] = moviePosters[i].GetComponent<Button>();
 		}
 
