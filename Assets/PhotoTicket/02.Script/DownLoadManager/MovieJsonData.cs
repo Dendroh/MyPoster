@@ -110,7 +110,6 @@ public class MovieJsonData : MonoBehaviour
 		} catch (Exception e)
 		{
 			Debug.Log(e);
-			FlowController.instance.ChangeFlow(FlowController.instance.networkCheckCanvas);
 		}
 	}
 

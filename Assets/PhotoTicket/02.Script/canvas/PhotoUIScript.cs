@@ -8,20 +8,16 @@ using System.Threading;
 using System.IO;
 using UnityEngine.Video;
 using Amazon.CognitoIdentity.Model;
+using Amazon.S3;
 
 public class PhotoUIScript : MonoBehaviour, UIScript
 {
 	[Header("사진 촬영버튼 클릭 전")]
 	// 로딩화면 관련
-	[SerializeField] Text posterProgressText;
-	[SerializeField] Text posterProgressLabel;
-	[SerializeField] Slider posterProgressSlider;
-	[SerializeField] Text stickerProgressText;
-	[SerializeField] Text stickerProgressLabel;
-	[SerializeField] Slider stickerProgressSlider;
 	[SerializeField] Text posterPrefabProgressText;
 	[SerializeField] Text posterPrefabProgressLabel;
 	[SerializeField] Slider posterPrefabProgressSlider;
+
 	[SerializeField] Text DownLoadProgressLabel;
 
 	// 일반, 크로마키 촬영화면 설정 관련
@@ -111,9 +107,9 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 		detector = mainCamera.GetComponent<ComplexSceneBehavior>();
 
 		if (moviePosters.Length % 5 != 0)
-			content.GetComponent<RectTransform>().sizeDelta = new Vector2(0, posterHeight * ((moviePosters.Length / 5) - 1) + (posterHeight / 2.2f) - 130);
+			content.GetComponent<RectTransform>().sizeDelta = new Vector2(0, posterHeight * ((moviePosters.Length / 5) - 1) + (posterHeight / 2.2f));
 		else
-			content.GetComponent<RectTransform>().sizeDelta = new Vector2(0, posterHeight * ((moviePosters.Length / 5) - 2) + (posterHeight / 2.2f) - 130);
+			content.GetComponent<RectTransform>().sizeDelta = new Vector2(0, posterHeight * ((moviePosters.Length / 5) - 2) + (posterHeight / 2.2f));
 
 		isPhotoUIInitialized = true;
 	}
@@ -235,6 +231,14 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 					GoToIntro();
 				}
 			}
+
+			if (ComplexSceneBehavior.autoShot == true)
+			{
+				if (redButton.activeSelf)
+				{
+					ClickRedButton();
+				}
+			}
 		}
 	}
 
@@ -255,7 +259,6 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 		detector.Init();
 		movieScroll.value = 1;
 		selectPoster(FlowController.instance.currentMovieNumber);
-		carousel.GetComponent<RectTransform>().sizeDelta = new Vector2(1080, 610);
 
 		if (PlayerPrefs.GetString("quiz") == "true")
 		{  // 퀴즈 모드인 경우
@@ -290,10 +293,8 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 			{
 				doneSetPoster = true;
 			}
-
 			yield return null;
 		}
-
 		yield break;
 	}
 
@@ -391,28 +392,13 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 
 	private void UpdateProgressUI(float percent, float sliderValue)
 	{
-		// 포스터 다운로드 Progress UI 비활성화
-		posterProgressText.gameObject.SetActive(false);
-		posterProgressLabel.gameObject.SetActive(false);
-		posterProgressSlider.gameObject.SetActive(false);
-		stickerProgressText.gameObject.SetActive(false);
-		stickerProgressLabel.gameObject.SetActive(false);
-		stickerProgressSlider.gameObject.SetActive(false);
-
-		// 포스터 Set Prefab Progress UI 활성화
-		if (MovieDownManager.initialRun == false)
-		{
-			DownLoadProgressLabel.text = "포스터 스티커 이미지 설정중...";
-			posterPrefabProgressText.gameObject.SetActive(true);
-			posterPrefabProgressLabel.gameObject.SetActive(true);
-			posterPrefabProgressSlider.gameObject.SetActive(true);
-		} else
+		if (MovieDownManager.initialRun == true)
 		{
 			DownLoadProgressLabel.text = "새롭게 업데이트된 컨텐츠가 있습니다 \n 컨텐츠의 다운로드가 완료되면 자동으로 종료됩니다 \n 프로그램을 다시 시작해주세요";
 			posterPrefabProgressText.gameObject.SetActive(false);
 			posterPrefabProgressLabel.gameObject.SetActive(false);
 			posterPrefabProgressSlider.gameObject.SetActive(false);
-		}
+		} 
 	}
 
 	public void selectPoster(int movieNumber)
@@ -481,7 +467,6 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 		FirstBG.SetActive(false);
 		quizClickBlocker.SetActive(false);
 		detector.StartTimer();
-		carousel.GetComponent<RectTransform>().sizeDelta = new Vector2(1080, 480);
 
 		// 화면 전환을 위한 오디오 중지
 		StartCoroutine(UtilsScript.stopAudio(photoAudioKr));

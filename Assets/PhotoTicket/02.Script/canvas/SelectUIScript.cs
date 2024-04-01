@@ -3,7 +3,6 @@ using Amazon.Runtime.Internal;
 using PimDeWitte.UnityMainThreadDispatcher;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Purchasing;
 using UnityEngine.UI;
 
 public class SelectUIScript : MonoBehaviour, UIScript
@@ -155,7 +154,6 @@ public class SelectUIScript : MonoBehaviour, UIScript
 			thumbnailValues[i] = ratio;
 			moviePosters[i].anchorMin = new Vector2(posterPosition * (2 * i + 3), 0);
 			moviePosters[i].anchorMax = new Vector2(posterPosition * (2 * i + 3), 1);
-			moviePosters[i].GetComponentsInChildren<Image>()[1].gameObject.SetActive(!isFree[i]);
 			posterButtons[i] = moviePosters[i].GetComponent<Button>();
 		}
 
@@ -525,7 +523,6 @@ public class SelectUIScript : MonoBehaviour, UIScript
 		return devices.Length > 0;
 	}
 
-	// 프린트 에러 버튼 클릭 이벤트 (참조가 없지만 버튼에 연결되어 있음)
 	public void cancelPopup (GameObject popup)
 	{
 		StartCoroutine(UtilsScript.playEffectAudio(buttonAudio));

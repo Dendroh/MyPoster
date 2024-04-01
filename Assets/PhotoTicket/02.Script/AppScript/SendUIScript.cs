@@ -577,14 +577,7 @@ public class SendUIScript : MonoBehaviour, UIScript
 
 		if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
 		{
-			if (bSendScene)
-			{   // 전송 화면인 경우 에러 팝업 출력
-			    // 네트워크 에러 팝업 출력
-				networkErrorPopup.SetActive(true);
-			} else
-			{    // Config에서 실행한 경우 네트워크 체크 씬으로 전환
-				FlowController.instance.ChangeFlow(FlowController.instance.networkCheckCanvas);
-			}
+			networkErrorPopup.SetActive(true);
 		} else
 		{
 			Debug.Log("Get send setting complete!");

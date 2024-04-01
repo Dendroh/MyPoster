@@ -33,6 +33,7 @@ public class IntroUIScript : MonoBehaviour, UIScript
 		{
 			introAudioKr.enabled = false;
 			introAudioEn.enabled = false;
+
 			if (PlayerPrefs.GetString("quiz") == "true")
 			{
 				FlowController.instance.ChangeFlow(FlowController.instance.quizCanvas);
