@@ -5,15 +5,10 @@ using UnityEngine;
 public class FlowController : MonoBehaviour
 {
 	public static FlowController instance;
-	[Tooltip("체크 시 얼굴에 디버그 가이드도 같이 보여줍니다.")]
 	public bool drawStickerGuide;
-	[Tooltip("체크 False Alarm을 앱에서 추가연산합니다.")]
 	public bool removeFalseAlarm;
-	[Tooltip("이 시간동안 반응이 없으면 대기화면으로 돌아갑니다.")]
 	[SerializeField] float noTouchTime;
-	[Tooltip("씬이 전환될 때 디졸브 효과의 속도입니다. 높을수록 빠르게 전환됩니다.")]
 	[SerializeField] float Dimmingspeed;
-	[Tooltip("로딩창입니다. 로딩창이 켜져있는 동안에는 유저가 화면을 클릭해도 아무런 반응이 없습니다.")]
 	[SerializeField] GameObject LoadingCanvas;
 	[SerializeField] GameObject NetClientErrorCanvas;
 	[SerializeField] GameObject isReconnectPopup;
@@ -34,16 +29,10 @@ public class FlowController : MonoBehaviour
 	public CanvasGroup sendCanvas;
 	public CanvasGroup endCanvas;
 	public CanvasGroup AgreementCanvas;
-	public CanvasGroup networkCheckCanvas;
 	public CanvasGroup quizCanvas;
 	public CanvasGroup quizResultCanvas;
 	public CanvasGroup promotionCanvas;
 	bool IsDimming;
-
-	// 네트워크 체크 타임
-	int checkTime = 1;
-	float waitTime = 0.5f;
-	float checkTimer;
 
 	void Awake()
 	{
@@ -66,11 +55,9 @@ public class FlowController : MonoBehaviour
 		StartCoroutine(SetCanvasActive(sendCanvas, false));
 		StartCoroutine(SetCanvasActive(endCanvas, false));
 		StartCoroutine(SetCanvasActive(paymentCanvas, false));
-		StartCoroutine(SetCanvasActive(networkCheckCanvas, false));
 		StartCoroutine(SetCanvasActive(quizCanvas, false));
 		StartCoroutine(SetCanvasActive(quizResultCanvas, false));
 		StartCoroutine(SetCanvasActive(promotionCanvas, false));
-		StartCoroutine(IsInternetReachable());
 	}
 
 	void Update()
@@ -81,7 +68,7 @@ public class FlowController : MonoBehaviour
 				timer = 0; //화면을 터치하면 대기시간 초기화
 			}
 
-		if (currentCanvas == sendCanvas || currentCanvas == paymentCanvas || currentCanvas == introCanvas || currentCanvas == resultCanvas || currentCanvas == AgreementCanvas || currentCanvas == networkCheckCanvas)
+		if (currentCanvas == sendCanvas || currentCanvas == paymentCanvas || currentCanvas == introCanvas || currentCanvas == resultCanvas || currentCanvas == AgreementCanvas)
 		{
 			return; //결제할 때는 시간이 흐르지 않는다.
 		}
@@ -103,8 +90,6 @@ public class FlowController : MonoBehaviour
 				timer = 0;
 			}
 		}
-
-
 	}
 
 	public void Loading(bool flag)  //로딩 창 필요시에 생성하여 터치를 막는다.
@@ -147,28 +132,5 @@ public class FlowController : MonoBehaviour
 			}
 		}
 		IsDimming = false;
-	}
-
-	IEnumerator IsInternetReachable()
-	{
-		WaitForSeconds seconds = new WaitForSeconds(waitTime);
-
-		while (true)
-		{
-			yield return seconds;
-
-			// 인터넷 연결이 끊긴 경우 에러 화면 전환
-			if (Application.internetReachability == NetworkReachability.NotReachable)
-			{
-				ChangeFlow(networkCheckCanvas);
-				yield break;
-			}
-
-			checkTimer += waitTime;
-			if (checkTimer > checkTime)
-			{    // 일정 시간 체크 후 코루틴 종료
-				yield break;
-			}
-		}
 	}
 }

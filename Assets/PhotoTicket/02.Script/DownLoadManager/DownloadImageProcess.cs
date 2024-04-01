@@ -9,15 +9,11 @@ using UnityEngine.Networking;
 
 public class DownloadImageProcess : MonoBehaviour
 {
-	MovieDownManager movieDownManager;
-
 	string url;
 	string savePath;
 
 	void Start()
 	{
-		movieDownManager = GetComponent<MovieDownManager>();
-
 		url = ConstantsScript.OPERATE_URL + "/files/";
 		savePath = Application.persistentDataPath + "/Assetbundles/";
 
@@ -36,16 +32,6 @@ public class DownloadImageProcess : MonoBehaviour
 			UnityWebRequest webRequest = UnityWebRequest.Get(downloadPath + assetName);
 			webRequest.downloadHandler = new DownloadHandlerFile(savePath + assetName);
 			yield return webRequest.SendWebRequest();
-
-			if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
-			{
-				Debug.Log($"Error downloading {assetName}: {webRequest.error}");
-				// 오류 처리
-			} else
-			{
-				// 다운로드 완료 처리
-				movieDownManager.posterProgress++;
-			}
 		}
 	}
 
@@ -60,17 +46,6 @@ public class DownloadImageProcess : MonoBehaviour
 			UnityWebRequest webRequest = UnityWebRequest.Get(downloadPath + assetName);
 			webRequest.downloadHandler = new DownloadHandlerFile(savePath + assetName);
 			yield return webRequest.SendWebRequest();
-
-			if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
-			{
-				Debug.Log($"Error downloading {assetName}: {webRequest.error}");
-				FlowController.instance.ChangeFlow(FlowController.instance.networkCheckCanvas);
-				// 오류 처리
-			} else
-			{
-				// 다운로드 완료 처리
-				movieDownManager.posterProgress++;
-			}
 		}
 	}
 

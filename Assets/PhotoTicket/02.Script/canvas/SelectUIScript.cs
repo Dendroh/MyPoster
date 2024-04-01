@@ -3,7 +3,6 @@ using Amazon.Runtime.Internal;
 using PimDeWitte.UnityMainThreadDispatcher;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Purchasing;
 using UnityEngine.UI;
 
 public class SelectUIScript : MonoBehaviour, UIScript
