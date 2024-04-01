@@ -523,7 +523,6 @@ public class SelectUIScript : MonoBehaviour, UIScript
 		return devices.Length > 0;
 	}
 
-	// 프린트 에러 버튼 클릭 이벤트 (참조가 없지만 버튼에 연결되어 있음)
 	public void cancelPopup (GameObject popup)
 	{
 		StartCoroutine(UtilsScript.playEffectAudio(buttonAudio));
