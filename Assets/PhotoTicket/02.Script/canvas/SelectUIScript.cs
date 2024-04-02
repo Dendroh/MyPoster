@@ -104,24 +104,6 @@ public class SelectUIScript : MonoBehaviour, UIScript
 			else
 				posterButtons[i].interactable = false;
 		}
-
-		if (FlowController.instance.currentCanvas == FlowController.instance.selectCanvas)
-		{
-			if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Keypad4))
-			{
-				moveLeft();
-			}
-
-			if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.Keypad6))
-			{
-				moveRight();
-			}
-
-			if (Input.GetKeyDown(KeyCode.Keypad5))
-			{
-				StartPhoto(scrollIndex);
-			}
-		}
 	}
 
 	public void InstantiatePoster()
@@ -504,6 +486,7 @@ public class SelectUIScript : MonoBehaviour, UIScript
 		{   // 촬영 가능한 경우
 			if (isCameraConnected() == true)
 			{
+				Debug.Log(movieNumber + "번째 영화 선택");
 				FlowController.instance.currentMovieNumber = movieNumber;
 				FlowController.instance.currentMovieId = downManager.jsonData.movieInfo[movieNumber].ID;
 				FlowController.instance.ChangeFlow(FlowController.instance.photoCanvas);

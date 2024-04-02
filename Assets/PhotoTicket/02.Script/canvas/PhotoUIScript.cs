@@ -170,76 +170,6 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 			return;
 		if (moviePosters.Length <= 4)
 			return;
-
-
-		if (FlowController.instance.currentCanvas == FlowController.instance.photoCanvas)
-		{
-			if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.KeypadMinus))
-			{
-				StartCoroutine(SmoothScroll(movieScroll.value + 1.5f * (1f / (moviePosters.Length / 5f))));
-			}
-
-			if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.KeypadPlus))
-			{
-				StartCoroutine(SmoothScroll(movieScroll.value - 1.5f * (1f / (moviePosters.Length / 5f))));
-			}
-
-			if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Keypad8))
-			{
-				if (FlowController.instance.currentMovieNumber - 5 >= 0)
-				{
-					selectPoster(FlowController.instance.currentMovieNumber - 5);
-				}
-			}
-
-			if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.Keypad2))
-			{
-				if (FlowController.instance.currentMovieNumber + 5 <= moviePosters.Length - 1)
-				{
-					selectPoster(FlowController.instance.currentMovieNumber + 5);
-				}
-			}
-
-			if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Keypad4))
-			{
-				if (FlowController.instance.currentMovieNumber > 0)
-				{
-					selectPoster(FlowController.instance.currentMovieNumber - 1);
-				}
-			}
-
-			if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.Keypad6))
-			{
-				if (FlowController.instance.currentMovieNumber < moviePosters.Length - 1)
-				{
-					selectPoster(FlowController.instance.currentMovieNumber + 1);
-				}
-			}
-
-			if (Input.GetKeyDown(KeyCode.F3) || Input.GetKeyDown(KeyCode.Keypad5))
-			{
-				if (redButton.activeSelf)
-				{
-					ClickRedButton();
-				}
-			}
-
-			if (Input.GetKeyDown(KeyCode.KeypadMultiply))
-			{
-				if (redButton.activeSelf)
-				{
-					GoToIntro();
-				}
-			}
-
-			if (ComplexSceneBehavior.autoShot == true)
-			{
-				if (redButton.activeSelf)
-				{
-					ClickRedButton();
-				}
-			}
-		}
 	}
 
 	public void Init()
@@ -403,7 +333,6 @@ public class PhotoUIScript : MonoBehaviour, UIScript
 
 	public void selectPoster(int movieNumber)
 	{
-
 		for (int i = 0; i < posterButtons.Length; i++)
 		{
 			posterButtons[i].interactable = true;
