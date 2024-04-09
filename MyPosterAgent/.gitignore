@@ -1,0 +1,6 @@
+.vs/*
+KisPayAgent/obj/Debug/*
+KisPayAgent/bin/Debug/*
+KisPayAgent/bin/Release/*
+*.htm
+*.zip
